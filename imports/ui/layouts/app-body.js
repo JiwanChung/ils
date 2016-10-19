@@ -11,6 +11,7 @@ import { _ } from 'meteor/underscore';
 import { $ } from 'meteor/jquery';
 
 import { Tasks } from '../../api/tasks.js';
+import { Menusl } from '../../api/menusl.js';
 
 import './app-body.html';
 
@@ -55,10 +56,6 @@ Template.App_body.helpers({
     const email = Meteor.user().emails[0].address;
     return email.substring(0, email.indexOf('@'));
   },
-  userMenuOpen() {
-    const instance = Template.instance();
-    return instance.state.get('userMenuOpen');
-  },
   /*lists() {
     return Lists.find({ $or: [
       { userId: { $exists: false } },
@@ -78,18 +75,39 @@ Template.App_body.helpers({
 
     return true;
   },
-  templateGestures: {
-    'swipeleft .cordova'(event, instance) {
-      instance.state.set('menuOpen', false);
-    },
-    'swiperight .cordova'(event, instance) {
-      instance.state.set('menuOpen', true);
-    },
-  },
   languages() {
     return _.keys(TAPi18n.getLanguages());
   },
   isActiveLanguage(language) {
     return (TAPi18n.getLanguage() === language);
+  },
+  /*menusl() {
+    return Menusl.find({});
+  },*/
+  menusl() {
+    return Menusl.find({});
+  },
+});
+
+Template.App_body.events({
+  'submit .new-menul'(event) {
+    // Prevent default browser form submit
+    event.preventDefault();
+
+    // Get value from form element
+    const target = event.target;
+    const menutitle = target.menutitle.value;
+    const menuurl = target.menuurl.value;
+
+    // Insert a task into the collection
+    Menusl.insert({
+      menutitle,
+      menuurl,
+      createdAt: new Date(), // current time
+    });
+
+    // Clear form
+    target.menutitle.value = '';
+    target.menuurl.value = '';
   },
 });

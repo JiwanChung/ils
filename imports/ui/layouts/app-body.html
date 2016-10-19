@@ -10,7 +10,7 @@
         <nav class="mdl-navigation mdl-layout--large-screen-only">
           <div class="mdl-navigation__link" href="">
             <button class="mdl-button mdl-js-button mdl-js-ripple-effect">
-              Button
+              소개
             </button>
           </div>
           <a class="mdl-navigation__link" href="">학술지</a>
@@ -43,7 +43,36 @@
       </nav>
     </div>
     <main class="mdl-layout__content">
-      <div class="page-content"><!-- Your content goes here --></div>
+      <div class="page-content">
+
+        <ul>
+          {{#each menusl}}
+            {{> menuin}}
+          {{/each}}
+        </ul>
+
+        <form class="new-menul">
+          <fieldset>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+              <input class="mdl-textfield__input" type="text" name="menutitle">
+              <label class="mdl-textfield__label" for="menutitle">메뉴 이름</label>
+            </div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+              <input class="mdl-textfield__input" type="text" name="menuurl">
+              <label class="mdl-textfield__label" for="menuurl">메뉴 주소</label>
+            </div>
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect" type="submit">
+              입력
+            </button>
+          </fieldset>
+        </form>
+        <!-- Your content goes here -->
+      </div>
     </main>
   </div>
+</template>
+
+<template name="menuin">
+  <li>{{menutitle}}</li>
+  <li>{{menuurl}}</li>
 </template>

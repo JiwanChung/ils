@@ -1,4 +1,5 @@
 import { Meteor } from 'meteor/meteor';
+import { Menusl } from '../../api/menusl.js';
 /*import { Lists } from '../../api/lists/lists.js';
 import { Todos } from '../../api/todos/todos.js';*/
 
