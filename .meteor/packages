@@ -37,3 +37,5 @@ chriswessels:hammer
 npm-bcrypt
 accounts-password
 zodiase:mdl
+arillo:flow-router-helpers
+ryanwu:meteor-autosize

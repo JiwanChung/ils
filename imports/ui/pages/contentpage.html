@@ -1,0 +1,28 @@
+<template name="contentpage">
+  {{#if contentArray}}
+    {{#each contentArray}}
+      {{> newcontent}}
+    {{/each}}
+  {{/if}}
+</template>
+
+<template name="contentshow">
+  <li>{{title}}</li>
+  <li>{{detail}}</li>
+</template>
+
+<template name="newcontent">
+  <form class="new-menul">
+    <fieldset>
+      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+        <input class="mdl-textfield__input" type="text" name="titleinput">
+        <label class="mdl-textfield__label" for="titleinput">{{title}}</label>
+      </div>
+      <div class="mdl-textfield mdl-js-textfield">
+        <textarea class="mdl-textfield__input" type="text" rows= "20" name="detail" cols="100"></textarea>
+        <label class="mdl-textfield__label" for="sample5">{{detail}}</label>
+      </div>
+      <input class="mdl-button mdl-js-button mdl-js-ripple-effect" type="submit" value="입력">
+    </fieldset>
+  </form>
+</template>

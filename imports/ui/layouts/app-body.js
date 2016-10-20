@@ -9,9 +9,10 @@ import { TAPi18n } from 'meteor/tap:i18n';
 import { T9n } from 'meteor/softwarerero:accounts-t9n';
 import { _ } from 'meteor/underscore';
 import { $ } from 'meteor/jquery';
+import { autosize } from 'meteor/ryanwu:meteor-autosize';
 
-import { Tasks } from '../../api/tasks.js';
 import { Menusl } from '../../api/menusl.js';
+import { Contentall } from '../../api/contentall.js';
 
 import './app-body.html';
 
@@ -38,17 +39,9 @@ Template.App_body.onCreated(function appBodyOnCreated() {
   //this.subscribe('lists.private');
 
   this.state = new ReactiveDict();
-  this.state.setDefault({
-    menuOpen: false,
-    userMenuOpen: false,
-  });
 });
 
 Template.App_body.helpers({
-  menuOpen() {
-    const instance = Template.instance();
-    return instance.state.get('menuOpen') && 'menu-open';
-  },
   cordova() {
     return Meteor.isCordova && 'cordova';
   },
@@ -56,18 +49,6 @@ Template.App_body.helpers({
     const email = Meteor.user().emails[0].address;
     return email.substring(0, email.indexOf('@'));
   },
-  /*lists() {
-    return Lists.find({ $or: [
-      { userId: { $exists: false } },
-      { userId: Meteor.userId() },
-    ] });
-  },
-  activeListClass(list) {
-    const active = ActiveRoute.name('Lists.show')
-      && FlowRouter.getParam('_id') === list._id;
-
-    return active && 'active';
-  },*/
   connected() {
     if (showConnectionIssue.get()) {
       return Meteor.status().connected;
@@ -81,33 +62,26 @@ Template.App_body.helpers({
   isActiveLanguage(language) {
     return (TAPi18n.getLanguage() === language);
   },
-  /*menusl() {
-    return Menusl.find({});
-  },*/
-  menusl() {
-    return Menusl.find({});
+  contentall() {
+    return Contentall.find({});
   },
 });
 
-Template.App_body.events({
-  'submit .new-menul'(event) {
-    // Prevent default browser form submit
-    event.preventDefault();
 
-    // Get value from form element
+
+/*Template.rightmenu.events({
+  'click .js-new-list'() {
     const target = event.target;
-    const menutitle = target.menutitle.value;
-    const menuurl = target.menuurl.value;
+    const contenttitle = target.value;
+    FlowRouter.go('contents.show', { title: contenttitle });
+  }
+});*/
 
-    // Insert a task into the collection
-    Menusl.insert({
-      menutitle,
-      menuurl,
-      createdAt: new Date(), // current time
-    });
-
-    // Clear form
-    target.menutitle.value = '';
-    target.menuurl.value = '';
-  },
+Template.tempmenu.events({
+  'submit form'() {
+    const target = event.target;
+    const contenttitle = target.title.value;
+    FlowRouter.go('contents.show', { title: contenttitle });
+    target.title.value = '';
+  }
 });
