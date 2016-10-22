@@ -2,22 +2,23 @@ import { Template } from 'meteor/templating';
 import { FlowRouter } from 'meteor/kadira:flow-router';
 import { _ } from 'meteor/underscore';
 import { $ } from 'meteor/jquery';
-import { Materialize } from 'meteor/materialize:materialize';
 
 import { Contentall } from '../../api/contentall.js';
 
 import { contentRenderHold } from '../launch-screen.js';
 
-import './contentpage.html';
+import './viewpage.html';
 
 // Components used inside the template
 import './app-not-found.js';
 
-Template.contentpage.onCreated(function contentShowPageOnCreated() {
+Template.viewpage.onCreated(function contentShowPageOnCreated() {
   this.getContentTitle = () => FlowRouter.getParam('titleinput');
+
+  console.log(this.getContentTitle() + "in app-body");
 });
 
-Template.contentpage.onRendered(function contentShowPageOnRendered() {
+Template.viewpage.onRendered(function contentShowPageOnRendered() {
   this.autorun(() => {
     if (this.subscriptionsReady()) {
       contentRenderHold.release();
@@ -25,11 +26,7 @@ Template.contentpage.onRendered(function contentShowPageOnRendered() {
   });
 });
 
-Template.newcontent.onRendered(function() {
-  Materialize.updateTextFields();
-});
-
-Template.contentpage.helpers({
+Template.viewpage.helpers({
   // We use #each on an array of one item so that the "list" template is
   // removed and a new copy is added when changing lists, which is
   // important for animation purposes.
@@ -40,28 +37,9 @@ Template.contentpage.helpers({
   },
 });
 
-Template.newcontent.events({
-  'submit form'(event) {
-    event.preventDefault();
-
-    console.log( 'Submitting form!' );
-
-    // Get value from form element
-    const target = event.target;
-    const thisid = this._id;
-    const detail = target.detail.value;
-
-    console.log(thisid);
-
-    // Insert a task into the collection
-    Contentall.update({
-      _id: thisid
-    },{
-      $set: { detail: detail,
-      createdAt: new Date() },
-    });
-
-    // Clear form
-    target.detail.value = '';
-  },
+Template.viewpage.events({
+  'click .toupdatepage'() {
+    const contenttitle = instance.getContentTitle();
+    FlowRouter.go('contents.update', { titleinput: contenttitle });
+  }
 });

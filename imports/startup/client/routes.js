@@ -1,12 +1,13 @@
 import { FlowRouter } from 'meteor/kadira:flow-router';
 import { BlazeLayout } from 'meteor/kadira:blaze-layout';
-import { MDl } from 'meteor/zodiase:mdl';
+import { Materialize } from 'meteor/materialize:materialize';
 // Import to load these templates
 import '../../ui/layouts/app-body.js';
-import '../../ui/pages/root-redirector.js';
 import '../../ui/pages/contentpage.js';
 import '../../ui/pages/app-not-found.js';
-import '../../ui/pages/home-page.js';
+import '../../ui/pages/homepage.js';
+import '../../ui/pages/insertpage.js';
+import '../../ui/pages/viewpage.js';
 
 // Import to override accounts templates
 //import '../../ui/accounts/accounts-templates.js';
@@ -21,7 +22,7 @@ import '../../ui/pages/home-page.js';
 FlowRouter.route('/', {
   name: 'App.home',
   action() {
-    BlazeLayout.render('App_body', { main: 'app_rootRedirector' });
+    BlazeLayout.render('App_body', { main: 'homepage' });
   },
 });
 
@@ -32,9 +33,23 @@ FlowRouter.notFound = {
   },
 };
 
-FlowRouter.route('/contents/:title', {
-  name: 'contents.show',
+FlowRouter.route('/contents-update/:titleinput', {
+  name: 'contents.update',
   action() {
     BlazeLayout.render('App_body', { main: 'contentpage' });
+  },
+});
+
+FlowRouter.route('/contents/:titleinput', {
+  name: 'contents.show',
+  action() {
+    BlazeLayout.render('App_body', { main: 'viewpage' });
+  },
+});
+
+FlowRouter.route('/add', {
+  name: 'contents.add',
+  action() {
+    BlazeLayout.render('App_body', { main: 'insertpage' });
   },
 });

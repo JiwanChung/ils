@@ -6,23 +6,19 @@
   {{/if}}
 </template>
 
-<template name="contentshow">
-  <li>{{title}}</li>
-  <li>{{detail}}</li>
-</template>
-
 <template name="newcontent">
+  <h3>수정 페이지</h3>
   <form class="new-menul">
     <fieldset>
-      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-        <input class="mdl-textfield__input" type="text" name="titleinput">
-        <label class="mdl-textfield__label" for="titleinput">{{title}}</label>
+      <h2>{{titleinput}}</h2>
+      <div class="input-field col s12">
+        <i class="material-icons prefix">mode_edit</i>
+        <textarea value="{{detail}}" id="textarea1" class="materialize-textarea" name="detail"></textarea>
+        <label for="textarea1" class="active">내용</label>
       </div>
-      <div class="mdl-textfield mdl-js-textfield">
-        <textarea class="mdl-textfield__input" type="text" rows= "20" name="detail" cols="100"></textarea>
-        <label class="mdl-textfield__label" for="sample5">{{detail}}</label>
-      </div>
-      <input class="mdl-button mdl-js-button mdl-js-ripple-effect" type="submit" value="입력">
+      <button class="btn waves-effect waves-light" type="submit" name="action">제출
+        <i class="material-icons right">send</i>
+      </button>
     </fieldset>
   </form>
 </template>

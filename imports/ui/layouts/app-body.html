@@ -1,58 +1,39 @@
 <template name="App_body">
-  <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
-    <header class="mdl-layout__header">
-      <div class="mdl-layout__header-row">
-        <!-- Title -->
-        <span class="mdl-layout-title">연세대학교 법학연구원</span>
-        <!-- Add spacer, to align navigation to the right -->
-        <div class="mdl-layout-spacer"></div>
-        <!-- Navigation. We hide it in small screens. -->
-        <nav class="mdl-navigation mdl-layout--large-screen-only">
-          <div class="mdl-navigation__link" href="">
-            <button class="mdl-button mdl-js-button mdl-js-ripple-effect">
-              소개
-            </button>
-          </div>
-          <a class="mdl-navigation__link" href="">학술지</a>
-          <a class="mdl-navigation__link" href="">행사</a>
-          <a class="mdl-navigation__link" href="">산하센터</a>
-          <a class="mdl-navigation__link" href="">사업단</a>
-          <a class="mdl-navigation__link" href="">연구원사람들</a>
-          <a class="mdl-navigation__link" href="">관련사이트</a>
-        </nav>
-        <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable
-                  mdl-textfield--floating-label mdl-textfield--align-right">
-          <label class="mdl-button mdl-js-button mdl-button--icon"
-                 for="fixed-header-drawer-exp">
-            <i class="material-icons">search</i>
-          </label>
-          <div class="mdl-textfield__expandable-holder">
-            <input class="mdl-textfield__input" type="text" name="sample"
-                   id="fixed-header-drawer-exp">
-          </div>
-        </div>
-      </div>
-    </header>
-    <div class="mdl-layout--small-screen-only mdl-layout__drawer">
-      <span class="mdl-layout-title">Title</span>
-      <nav class="mdl-navigation">
-        <a class="mdl-navigation__link" href="">Link</a>
-        <a class="mdl-navigation__link" href="">Link</a>
-        <a class="mdl-navigation__link" href="">Link</a>
-        <a class="mdl-navigation__link" href="">Link</a>
-      </nav>
-    </div>
-    <main class="mdl-layout__content">
-      <div class="page-content">
+  {{> myNav}}
+      <div class="blue lighten-5">
 
         {{> tempmenu}}
 
-        {{> Template.dynamic template=main}}
-
+        <div class="container">
+          {{#if contentArray}}
+            {{#each contentArray}}
+              {{> contentshowit}}
+            {{/each}}
+          {{/if}}
+          {{> Template.dynamic template=main}}
+        </div>
         <!-- Your content goes here -->
       </div>
-    </main>
-  </div>
+</template>
+
+<template name="contentshowit">
+  <li>{{titleinput}}</li>
+  <li>{{detail}}</li>
+</template>
+
+<template name="myNav">
+  <nav>
+    <div class="nav-wrapper">
+      <a href="/" class="brand-logo">연세대학교 법학연구원</a>
+      <a href="#" data-activates="mobile-demo" id="button-collapse" class="button-collapse"><i class="material-icons">menu</i></a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="#">학술지</a></li>
+      </ul>
+      <ul class="side-nav" id="mobile-demo">
+        <li><a href="#">학술지</a></li>
+      </ul>
+    </div>
+  </nav>
 </template>
 
 <template name="tempmenu">

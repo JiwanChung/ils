@@ -9,7 +9,6 @@ import { TAPi18n } from 'meteor/tap:i18n';
 import { T9n } from 'meteor/softwarerero:accounts-t9n';
 import { _ } from 'meteor/underscore';
 import { $ } from 'meteor/jquery';
-import { autosize } from 'meteor/ryanwu:meteor-autosize';
 
 import { Menusl } from '../../api/menusl.js';
 import { Contentall } from '../../api/contentall.js';
@@ -32,6 +31,10 @@ Meteor.startup(() => {
     // Show the connection error box
     showConnectionIssue.set(true);
   }, CONNECTION_ISSUE_TIMEOUT);
+});
+
+Template.myNav.onRendered(function() {
+  $(".button-collapse").sideNav();
 });
 
 Template.App_body.onCreated(function appBodyOnCreated() {
@@ -62,7 +65,7 @@ Template.App_body.helpers({
   isActiveLanguage(language) {
     return (TAPi18n.getLanguage() === language);
   },
-  contentall() {
+  contentArray() {
     return Contentall.find({});
   },
 });
@@ -81,7 +84,8 @@ Template.tempmenu.events({
   'submit form'() {
     const target = event.target;
     const contenttitle = target.title.value;
-    FlowRouter.go('contents.show', { title: contenttitle });
     target.title.value = '';
+    console.log(contenttitle + "in app-body");
+    FlowRouter.go('contents.show', { titleinput: contenttitle });
   }
 });
