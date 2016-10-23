@@ -8,6 +8,7 @@ import '../../ui/pages/app-not-found.js';
 import '../../ui/pages/homepage.js';
 import '../../ui/pages/insertpage.js';
 import '../../ui/pages/viewpage.js';
+import '../../ui/pages/menuupdate.js';
 
 // Import to override accounts templates
 //import '../../ui/accounts/accounts-templates.js';
@@ -51,5 +52,12 @@ FlowRouter.route('/add', {
   name: 'contents.add',
   action() {
     BlazeLayout.render('App_body', { main: 'insertpage' });
+  },
+});
+
+FlowRouter.route('/menu', {
+  name: 'menu.update',
+  action() {
+    BlazeLayout.render('App_body', { main: 'menuupdate' });
   },
 });

@@ -1,0 +1,67 @@
+<template name="menuupdate">
+  {{> menushow}}
+  {{> menuadd}}
+</template>
+
+<template name="menushow">
+  {{#each menushow}}
+  <div class="card">
+    <div class="card-content">
+      <span class="card-title">
+        {{name}}
+      </span>
+      <hr>
+      {{#each menushow _id}}
+        <div class="chip">
+          {{name}} {{type}}
+        </div>
+      {{/each}}
+    </div>
+  </div>
+  {{/each}}
+</template>
+
+<template name="menuadd">
+  <h3>입력하세요</h3>
+  <form>
+    <fieldset>
+      <div class="input-field col s6">
+        <input id="input_text1" type="text" length="10" name="nameko">
+        <label for="input_text1">KO</label>
+      </div>
+      <div class="input-field col s6">
+        <input id="input_text2" type="text" length="10" name="nameen">
+        <label for="input_text2">EN</label>
+      </div>
+      <div>
+        <p>
+          <input name="menuradio" type="radio" id="rcontent" value="content"/>
+          <label for="rcontent">내용</label>
+        </p>
+        <p>
+          <input name="menuradio" type="radio" id="rboard" value="board"/>
+          <label for="rboard">게시판</label>
+        </p>
+        <p>
+          <input name="menuradio" type="radio" id="rgallery" value="gallery"/>
+          <label for="rgallery">갤러리</label>
+        </p>
+        <p>
+          <input name="menuradio" type="radio" id="rpeople" value="people"/>
+          <label for="rpeople">사람들</label>
+        </p>
+        <p>
+          <input name="menuradio" type="radio" id="rsite" value="site"/>
+          <label for="rsite">사이트</label>
+        </p>
+      </div>
+      <div class="input-field col s6">
+        <input id="input_text3" type="text" length="10" name="parent">
+        <label for="input_text3">상위메뉴이름</label>
+      </div>
+      <button class="btn waves-effect waves-light" type="submit" name="action">제출
+        <i class="material-icons right">send</i>
+      </button>
+    </fieldset>
+  </form>
+</template>

@@ -21,19 +21,60 @@
   <li>{{detail}}</li>
 </template>
 
+<template name="dropdownit">
+  <ul id="{{_id}}" class="dropdown-content">
+    {{#each menus _id}}
+      {{> dropdownli}}
+    {{/each}}
+  </ul>
+</template>
+
+<template name="dropdownli">
+  <li>
+    <a href="#!" name="{{name}}" class="{{type}}">
+      {{name}}
+    </a>
+  </li>
+</template>
+
+<template name="dropdownbt">
+  <li><a class="dropdown-button topnav" data-activates="{{_id}}" href="#!" name="{{name}}">{{name}}</a></li>
+</template>
+
 <template name="myNav">
+  {{#each menus}}
+    {{> dropdownit}}
+  {{/each}}
   <nav>
     <div class="nav-wrapper">
       <a href="/" class="brand-logo">연세대학교 법학연구원</a>
       <a href="#" data-activates="mobile-demo" id="button-collapse" class="button-collapse"><i class="material-icons">menu</i></a>
       <ul class="right hide-on-med-and-down">
-        <li><a href="#">학술지</a></li>
+        {{#each menus}}
+          {{> dropdownbt}}
+        {{/each}}
       </ul>
       <ul class="side-nav" id="mobile-demo">
-        <li><a href="#">학술지</a></li>
+        <ul class="collapsible" data-collapsible="accordion">
+          {{#each menus}}
+            <li>
+              {{> collapsiblemobile}}
+            </li>
+            <hr>
+          {{/each}}
+        </ul>
       </ul>
     </div>
   </nav>
+</template>
+
+<template name="collapsiblemobile">
+  <div class="collapsible-header"><a href="#" style="font-weight: bold">{{name}}</a></div>
+  <div class="collapsible-body">
+    {{#each menus _id}}
+      {{> dropdownli}}
+    {{/each}}
+  </div>
 </template>
 
 <template name="tempmenu">

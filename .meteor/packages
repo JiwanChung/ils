@@ -39,3 +39,6 @@ accounts-password
 arillo:flow-router-helpers
 ryanwu:meteor-autosize
 materialize:materialize
+tap:i18n-db
+jalik:ufs
+jalik:ufs-local

@@ -8,9 +8,10 @@ import { FlowRouter } from 'meteor/kadira:flow-router';
 import { TAPi18n } from 'meteor/tap:i18n';
 import { T9n } from 'meteor/softwarerero:accounts-t9n';
 import { _ } from 'meteor/underscore';
+import { FilesCollection } from 'meteor/ostrio:files';
 import { $ } from 'meteor/jquery';
 
-import { Menusl } from '../../api/menusl.js';
+import { Menus } from '../../api/menus.js';
 import { Contentall } from '../../api/contentall.js';
 
 import './app-body.html';
@@ -37,12 +38,44 @@ Template.myNav.onRendered(function() {
   $(".button-collapse").sideNav();
 });
 
+Template.dropdownbt.onRendered(function() {
+  $(".dropdown-button").dropdown();
+});
+
+Template.collapsiblemobile.onRendered(function() {
+  $(".collapsible").collapsible();
+});
+
 Template.App_body.onCreated(function appBodyOnCreated() {
   //this.subscribe('lists.public');
   //this.subscribe('lists.private');
 
   this.state = new ReactiveDict();
 });
+
+Template.myNav.menus = function(parent) {
+  if (parent) {
+    return Menus.find({parent:parent}).fetch();
+  } else {
+    return Menus.find({parent:null});
+  }
+}
+
+Template.dropdownit.menus = function(parent) {
+  if (parent) {
+    return Menus.find({parent:parent}).fetch();
+  } else {
+    return Menus.find({parent:null});
+  }
+}
+
+Template.collapsiblemobile.menus = function(parent) {
+  if (parent) {
+    return Menus.find({parent:parent}).fetch();
+  } else {
+    return Menus.find({parent:null});
+  }
+}
 
 Template.App_body.helpers({
   cordova() {
@@ -69,8 +102,6 @@ Template.App_body.helpers({
     return Contentall.find({});
   },
 });
-
-
 
 /*Template.rightmenu.events({
   'click .js-new-list'() {

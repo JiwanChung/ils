@@ -1,0 +1,4 @@
+{
+  "supported_languages": ["ko", "en"],
+  "i18n_files_route": "/tap-i18n"
+}
