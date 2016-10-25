@@ -9,6 +9,7 @@ import '../../ui/pages/homepage.js';
 import '../../ui/pages/insertpage.js';
 import '../../ui/pages/viewpage.js';
 import '../../ui/pages/menuupdate.js';
+import '../../ui/pages/upload.js';
 
 // Import to override accounts templates
 //import '../../ui/accounts/accounts-templates.js';
@@ -59,5 +60,12 @@ FlowRouter.route('/menu', {
   name: 'menu.update',
   action() {
     BlazeLayout.render('App_body', { main: 'menuupdate' });
+  },
+});
+
+FlowRouter.route('/upload', {
+  name: 'file.upload',
+  action() {
+    BlazeLayout.render('App_body', { main: 'upload' });
   },
 });

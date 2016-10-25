@@ -1,0 +1,26 @@
+<template name="upload">
+  {{> uploaditall}}
+</template>
+
+<template name="uploaditall">
+  <h3>파일 업로드</h3>
+  <form>
+    <fieldset>
+      <div class="input-field col s6">
+        <input id="input_text" type="text" length="10" name="filename">
+        <label for="input_text">파일 이름</label>
+      </div>
+      <div class="input-field col s12">
+        <i class="material-icons prefix">mode_edit</i>
+        <textarea id="textarea1" class="materialize-textarea" name="filedetail"></textarea>
+        <label for="textarea1">파일 설명</label>
+      </div>
+
+      <input type="file" class="dropify" name="thisfile" style="font-family: dropify"/>
+
+      <button class="btn waves-effect waves-light" type="submit" name="action">올리기
+        <i class="material-icons right">send</i>
+      </button>
+    </fieldset>
+  </form>
+</template>

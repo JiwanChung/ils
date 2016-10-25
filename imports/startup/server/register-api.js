@@ -5,3 +5,4 @@ import '../../api/todos/server/publications.js';*/
 import '../../api/menusl.js';
 import '../../api/contentall.js';
 import '../../api/menus.js';
+import '../../api/images.js';

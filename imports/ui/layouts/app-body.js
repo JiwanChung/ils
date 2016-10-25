@@ -8,8 +8,9 @@ import { FlowRouter } from 'meteor/kadira:flow-router';
 import { TAPi18n } from 'meteor/tap:i18n';
 import { T9n } from 'meteor/softwarerero:accounts-t9n';
 import { _ } from 'meteor/underscore';
-import { FilesCollection } from 'meteor/ostrio:files';
 import { $ } from 'meteor/jquery';
+import 'dropify/dist/js/dropify.js';
+import 'dropify/dist/css/dropify.css';
 
 import { Menus } from '../../api/menus.js';
 import { Contentall } from '../../api/contentall.js';

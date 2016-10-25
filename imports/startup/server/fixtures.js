@@ -2,6 +2,7 @@ import { Meteor } from 'meteor/meteor';
 import { Menusl } from '../../api/menusl.js';
 import { Contentall } from '../../api/contentall.js';
 import { Menus } from '../../api/menus.js';
+import { Images } from '../../api/images.js';
 /*import { Lists } from '../../api/lists/lists.js';
 import { Todos } from '../../api/todos/todos.js';*/
 
