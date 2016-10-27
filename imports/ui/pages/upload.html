@@ -4,7 +4,7 @@
 
 <template name="uploaditall">
   <h3>파일 업로드</h3>
-  <form>
+  <form id="uploadform1" action="#" class="uploadform">
     <fieldset>
       <div class="input-field col s6">
         <input id="input_text" type="text" length="10" name="filename">
@@ -15,10 +15,11 @@
         <textarea id="textarea1" class="materialize-textarea" name="filedetail"></textarea>
         <label for="textarea1">파일 설명</label>
       </div>
+      <div class="input-field file-field col s12">
+        <input type="file" class="dropify" name="thisfile" style="font-family: dropify" form="uploadform1"/>
+      </div>
 
-      <input type="file" class="dropify" name="thisfile" style="font-family: dropify"/>
-
-      <button class="btn waves-effect waves-light" type="submit" name="action">올리기
+      <button class="btn waves-effect waves-light submitit" type="button" name="action" id="submitit">올리기
         <i class="material-icons right">send</i>
       </button>
     </fieldset>

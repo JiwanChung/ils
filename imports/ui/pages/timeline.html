@@ -1,0 +1,26 @@
+<template name="timeline">
+  <h3>연혁</h3>
+  {{> mytimeline}}
+</template>
+
+<template name="mytimeline">
+  <div class="timeline">
+    {{#each what?}}
+    <div class="timeline-event">
+      <div class="card timeline-content">
+        <div class="card-image waves-effect waves-block waves-light">
+          <img class="activator" src="{{image}}">
+        </div>
+        <div class="card-content">
+          <span class="card-title activator grey-text text-darken-4">{{title}}<i class="material-icons right">schedule</i></span>
+          <p>{{year}}</p>
+        </div>
+        <div class="card-reveal">
+          <span class="card-title grey-text text-darken-4">{{title}}<i class="material-icons right">close</i></span>
+          <p>{{content}}</p>
+        </div>
+      </div>
+    </div>
+    {{/each}}
+  </div>
+</template>
