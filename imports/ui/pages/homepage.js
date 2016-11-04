@@ -12,8 +12,11 @@ import './homepage.html';
 // Components used inside the template
 import './app-not-found.js';
 
+import '../components/slider.js';
+import '../components/mainnews.js';
+import '../components/mainparallax.js';
+
 Template.homepage.onCreated(function contentShowPageOnCreated() {
-  $(".slider").slider({full_width: true});
 });
 
 Template.homepage.onRendered(function contentShowPageOnRendered() {

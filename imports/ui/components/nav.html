@@ -1,0 +1,61 @@
+<template name="nav">
+  {{> myNav}}
+</template>
+
+<template name="dropdownit">
+  <ul id="{{_id}}" class="dropdown-content">
+    {{#each menus _id}}
+      {{> dropdownli}}
+    {{/each}}
+  </ul>
+</template>
+
+<template name="dropdownli">
+  <li>
+    <a href="#!" name="{{name}}" class="{{type}}">
+      {{name}}
+    </a>
+  </li>
+</template>
+
+<template name="dropdownbt">
+  <li><a class="dropdown-button topnav" data-activates="{{_id}}" href="#!" name="{{name}}">{{name}}</a></li>
+</template>
+
+<template name="myNav">
+  <div class="navbar-fixed white-text">
+    {{#each menus}}
+      {{> dropdownit}}
+    {{/each}}
+    <nav>
+      <div class="nav-wrapper indigo darken-2">
+        <a href="/" class="brand-logo">연세대학교 법학연구원</a>
+        <a href="#" data-activates="mobile-demo" id="button-collapse" class="button-collapse"><i class="material-icons">menu</i></a>
+        <ul class="right hide-on-med-and-down">
+          {{#each menus}}
+            {{> dropdownbt}}
+          {{/each}}
+        </ul>
+        <ul class="side-nav" id="mobile-demo">
+          <ul class="collapsible" data-collapsible="accordion">
+            {{#each menus}}
+              <li>
+                {{> collapsiblemobile}}
+              </li>
+              <hr>
+            {{/each}}
+          </ul>
+        </ul>
+      </div>
+    </nav>
+  </div>
+</template>
+
+<template name="collapsiblemobile">
+  <div class="collapsible-header"><a href="#" style="font-weight: bold">{{name}}</a></div>
+  <div class="collapsible-body">
+    {{#each menus _id}}
+      {{> dropdownli}}
+    {{/each}}
+  </div>
+</template>

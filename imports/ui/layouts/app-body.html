@@ -1,19 +1,18 @@
 <template name="App_body">
-  {{> myNav}}
-      <div class="blue lighten-5">
-
-        {{> tempmenu}}
-
-        <div class="container">
-          {{#if contentArray}}
-            {{#each contentArray}}
-              {{> contentshowit}}
-            {{/each}}
-          {{/if}}
-          {{> Template.dynamic template=main}}
-        </div>
+  {{> nav}}
+      <div class="contentpage">
+        {{> Template.dynamic template=main}}
         <!-- Your content goes here -->
       </div>
+  {{> footer}}
+</template>
+
+<template name="temp">
+  {{#if contentArray}}
+    {{#each contentArray}}
+      {{> contentshowit}}
+    {{/each}}
+  {{/if}}
 </template>
 
 <template name="contentshowit">
@@ -21,64 +20,13 @@
   <li>{{detail}}</li>
 </template>
 
-<template name="dropdownit">
-  <ul id="{{_id}}" class="dropdown-content">
-    {{#each menus _id}}
-      {{> dropdownli}}
-    {{/each}}
-  </ul>
-</template>
-
-<template name="dropdownli">
-  <li>
-    <a href="#!" name="{{name}}" class="{{type}}">
-      {{name}}
-    </a>
-  </li>
-</template>
-
-<template name="dropdownbt">
-  <li><a class="dropdown-button topnav" data-activates="{{_id}}" href="#!" name="{{name}}">{{name}}</a></li>
-</template>
-
-<template name="myNav">
-  {{#each menus}}
-    {{> dropdownit}}
-  {{/each}}
-  <nav>
-    <div class="nav-wrapper">
-      <a href="/" class="brand-logo center">연세대학교 법학연구원</a>
-      <a href="#" data-activates="mobile-demo" id="button-collapse" class="button-collapse"><i class="material-icons">menu</i></a>
-      <ul class="right hide-on-med-and-down">
-        {{#each menus}}
-          {{> dropdownbt}}
-        {{/each}}
-      </ul>
-      <ul class="side-nav" id="mobile-demo">
-        <ul class="collapsible" data-collapsible="accordion">
-          {{#each menus}}
-            <li>
-              {{> collapsiblemobile}}
-            </li>
-            <hr>
-          {{/each}}
-        </ul>
-      </ul>
-    </div>
-  </nav>
-</template>
-
-<template name="collapsiblemobile">
-  <div class="collapsible-header"><a href="#" style="font-weight: bold">{{name}}</a></div>
-  <div class="collapsible-body">
-    {{#each menus _id}}
-      {{> dropdownli}}
-    {{/each}}
-  </div>
-</template>
-
 <template name="tempmenu">
   <form class="">
     <input type="text" name="title">
   </form>
+</template>
+
+<template name="pushdown">
+  <div style="display:block;height:120px">
+  </div>
 </template>

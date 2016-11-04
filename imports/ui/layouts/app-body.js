@@ -17,6 +17,9 @@ import { Contentall } from '../../api/contentall.js';
 
 import './app-body.html';
 
+import '../components/nav.js';
+import '../components/footer.js';
+
 const CONNECTION_ISSUE_TIMEOUT = 5000;
 
 // A store which is local to this file?
@@ -35,17 +38,7 @@ Meteor.startup(() => {
   }, CONNECTION_ISSUE_TIMEOUT);
 });
 
-Template.myNav.onRendered(function() {
-  $(".button-collapse").sideNav();
-});
 
-Template.dropdownbt.onRendered(function() {
-  $(".dropdown-button").dropdown();
-});
-
-Template.collapsiblemobile.onRendered(function() {
-  $(".collapsible").collapsible();
-});
 
 Template.App_body.onCreated(function appBodyOnCreated() {
   //this.subscribe('lists.public');
@@ -54,29 +47,10 @@ Template.App_body.onCreated(function appBodyOnCreated() {
   this.state = new ReactiveDict();
 });
 
-Template.myNav.menus = function(parent) {
-  if (parent) {
-    return Menus.find({parent:parent}).fetch();
-  } else {
-    return Menus.find({parent:null});
-  }
-}
 
-Template.dropdownit.menus = function(parent) {
-  if (parent) {
-    return Menus.find({parent:parent}).fetch();
-  } else {
-    return Menus.find({parent:null});
-  }
-}
+Template.App_body.onRendered(function appBodyOnRendered() {
+});
 
-Template.collapsiblemobile.menus = function(parent) {
-  if (parent) {
-    return Menus.find({parent:parent}).fetch();
-  } else {
-    return Menus.find({parent:null});
-  }
-}
 
 Template.App_body.helpers({
   cordova() {
@@ -98,9 +72,6 @@ Template.App_body.helpers({
   },
   isActiveLanguage(language) {
     return (TAPi18n.getLanguage() === language);
-  },
-  contentArray() {
-    return Contentall.find({});
   },
 });
 

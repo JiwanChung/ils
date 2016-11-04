@@ -1,0 +1,51 @@
+nav {
+    height: 100px;
+    line-height: 100px;
+    margin: 0 auto;
+    background-color: #536dfe;
+}
+
+nav i, nav [class^="mdi-"], nav [class*="mdi-"], nav i.material-icons {
+    height: 30px;
+    line-height: 30px;
+}
+
+nav .button-collapse i {
+    height: 30px;
+    line-height: 30px;
+}
+
+nav .brand-logo {
+    font-size: 1.6rem;
+}
+
+@media only screen and (min-width: 601px){
+    nav, nav .nav-wrapper i, nav a.button-collapse, nav a.button-collapse i {
+        height: 120px;
+        line-height: 120px;
+        margin: 0 auto;
+        opacity: 0.9;
+    }
+    nav .brand-logo {
+        font-size: 2rem;
+        font-weight: bold;
+        margin-left: 5rem;
+    }
+    .navbar-fixed {
+      height: 120px;
+    }
+}
+
+.navbar-fixed {
+  position: absolute;
+}
+
+.dropdown-button {
+  font-size: 1.3rem;
+  padding-right: 4rem;
+  padding-left: 4rem;
+}
+
+.dropdown-content {
+  margin-top: 120px;
+}
