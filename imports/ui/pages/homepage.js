@@ -25,6 +25,10 @@ Template.homepage.onRendered(function contentShowPageOnRendered() {
       contentRenderHold.release();
     }
   });
+  $('.slider').slider({
+    full_width: false,
+    height: 1000
+  });
 });
 
 Template.homepage.helpers({

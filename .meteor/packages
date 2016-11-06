@@ -44,3 +44,4 @@ jalik:ufs-local
 cfs:standard-packages
 cfs:filesystem
 cfs:ejson-file
+tmeasday:publish-counts

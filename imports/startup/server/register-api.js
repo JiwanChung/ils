@@ -6,3 +6,6 @@ import '../../api/contentall.js';
 import '../../api/menus.js';
 import '../../api/images.js';
 import '../../api/imagedata.js';
+import '../../api/bulletinall.js';
+import '../../api/files.js';
+import '../../api/filedata.js';

@@ -58,3 +58,24 @@ Template.collapsiblemobile.menus = function(parent) {
     return Menus.find({parent:null});
   }
 }
+
+Template.dropdownli.events({
+  'click .tolink'() {
+    console.log("clicked!");
+    const instance = Template.instance();
+    const contenttitle = instance.data.name;
+    const menutype = instance.data.type;
+    console.log(contenttitle);
+    if ( menutype == "board" ) {
+      FlowRouter.go('bulletins.show', { titleinput: contenttitle });
+    } else if ( menutype == "gallery" ) {
+      FlowRouter.go('bulletins.show', { titleinput: contenttitle });
+    } else if ( menutype == "people" ) {
+      FlowRouter.go('bulletins.show', { titleinput: contenttitle });
+    } else if ( menutype == "site" ) {
+      FlowRouter.go('bulletins.show', { titleinput: contenttitle });
+    } else {
+      FlowRouter.go('contents.show', { titleinput: contenttitle });
+    }
+  }
+});

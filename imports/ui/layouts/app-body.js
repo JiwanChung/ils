@@ -19,6 +19,7 @@ import './app-body.html';
 
 import '../components/nav.js';
 import '../components/footer.js';
+import '../components/jumbo.js';
 
 const CONNECTION_ISSUE_TIMEOUT = 5000;
 
@@ -73,6 +74,9 @@ Template.App_body.helpers({
   isActiveLanguage(language) {
     return (TAPi18n.getLanguage() === language);
   },
+  contentArray() {
+    return Contentall.find({});
+  },
 });
 
 /*Template.rightmenu.events({
@@ -89,6 +93,18 @@ Template.tempmenu.events({
     const contenttitle = target.title.value;
     target.title.value = '';
     console.log(contenttitle + "in app-body");
-    FlowRouter.go('contents.show', { titleinput: contenttitle });
+    const menu = Menus.find({ name: contenttitle }).fetch()[0];
+    const menutype = menu.type;
+    if ( menutype == "board" ) {
+      FlowRouter.go('bulletins.show', { titleinput: contenttitle });
+    } else if ( menutype == "gallery" ) {
+      FlowRouter.go('bulletins.show', { titleinput: contenttitle });
+    } else if ( menutype == "people" ) {
+      FlowRouter.go('bulletins.show', { titleinput: contenttitle });
+    } else if ( menutype == "site" ) {
+      FlowRouter.go('bulletins.show', { titleinput: contenttitle });
+    } else {
+      FlowRouter.go('contents.show', { titleinput: contenttitle });
+    }
   }
 });
