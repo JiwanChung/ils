@@ -1,15 +1,17 @@
 <template name="bulletinpage">
   {{> jumbo title=type}}
-  <div class="row">
-    <div class="col s12 m10 l8 offset-m1 offset-l2">
-      <div class="section">
-        {{> bulletinsee}}
-      </div>
-      <div class="section">
-        {{> bulletin bulletinArray=bulletinArray bulletinAll=bulletinAll type=type}}
-      </div>
-      <div class="section">
-        {{> bulletinadd type=type}}
+  <div class="navbottom">
+    <div class="row">
+      <div class="col s12 m10 l8 offset-m1 offset-l2">
+        <div class="section">
+          {{> bulletinsee}}
+        </div>
+        <div class="section">
+          {{> bulletin bulletinArray=bulletinArray bulletinAll=bulletinAll type=type}}
+        </div>
+        <div class="section">
+          {{> bulletinadd type=type}}
+        </div>
       </div>
     </div>
   </div>

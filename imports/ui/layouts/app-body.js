@@ -45,7 +45,17 @@ Meteor.startup(() => {
 Template.App_body.onCreated(function appBodyOnCreated() {
   //this.subscribe('lists.public');
   //this.subscribe('lists.private');
-
+  this.autorun(() => {
+    $(window).scroll(function(scroll) {
+  		var navStart = $('.navbottom').offset().top;
+  		var scroll = $(window).scrollTop();
+  		if (scroll > navStart - 200) {
+  			$('nav').addClass('opaque');
+  		} else {
+  			$('nav').removeClass('opaque');
+  		}
+  	});
+  });
   this.state = new ReactiveDict();
 });
 
