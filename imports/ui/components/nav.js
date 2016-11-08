@@ -65,17 +65,28 @@ Template.dropdownli.events({
     const instance = Template.instance();
     const contenttitle = instance.data.name;
     const menutype = instance.data.type;
-    console.log(contenttitle);
-    if ( menutype == "board" ) {
-      FlowRouter.go('bulletins.show', { titleinput: contenttitle });
-    } else if ( menutype == "gallery" ) {
-      FlowRouter.go('bulletins.show', { titleinput: contenttitle });
-    } else if ( menutype == "people" ) {
-      FlowRouter.go('bulletins.show', { titleinput: contenttitle });
-    } else if ( menutype == "site" ) {
-      FlowRouter.go('bulletins.show', { titleinput: contenttitle });
-    } else {
-      FlowRouter.go('contents.show', { titleinput: contenttitle });
+    console.log(menutype + contenttitle);
+    switch (menutype) {
+      case "board":
+          FlowRouter.go('bulletins.show', { titleinput: contenttitle });
+          break;
+      case "gallery":
+          FlowRouter.go('gallery.show', { titleinput: contenttitle });
+          break;
+      case "people":
+          FlowRouter.go('gallery.show', { titleinput: contenttitle });
+          break;
+      case "site":
+          FlowRouter.go('gallery.show', { titleinput: contenttitle });
+          break;
+      case "history":
+          FlowRouter.go('gallery.show', { titleinput: contenttitle });
+          break;
+      case "map":
+          FlowRouter.go('gallery.show', { titleinput: contenttitle });
+          break;
+      default:
+          FlowRouter.go('contents.show', { titleinput: contenttitle });
     }
   }
 });

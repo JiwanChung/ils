@@ -10,6 +10,7 @@ import '../../ui/pages/insertpage.js';
 import '../../ui/pages/viewpage.js';
 import '../../ui/pages/menuupdate.js';
 import '../../ui/pages/upload.js';
+import '../../ui/pages/gallery.js';
 import '../../ui/pages/bulletinpage.js';
 
 // Import to override accounts templates
@@ -47,6 +48,13 @@ FlowRouter.route('/contents/:titleinput', {
   name: 'contents.show',
   action() {
     BlazeLayout.render('App_body', { main: 'viewpage' });
+  },
+});
+
+FlowRouter.route('/gallery/:titleinput', {
+  name: 'gallery.show',
+  action() {
+    BlazeLayout.render('App_body', { main: 'gallery' });
   },
 });
 

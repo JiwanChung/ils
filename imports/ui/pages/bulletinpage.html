@@ -53,6 +53,9 @@
           <span class="card-title" style="font-weight: bold;">{{data.title}}</span>
           <div class="bulletindate">{{formatDate}}</div>
           <div class="bulletincat">{{formatCat}}</div>
+          {{#if alert}}
+            <div class="bulletinalert"><i class="material-icons circle red">info</i></div>
+          {{/if}}
           <hr>
           <pre>{{data.detail}}</pre>
         </div>

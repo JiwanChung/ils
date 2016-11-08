@@ -88,7 +88,11 @@ Template.bulletinsee.helpers({
     } else {
       return "공지";
     }
-  }
+  },
+  alert() {
+    let alert = Session.get("viewing").alert;
+    return alert == "on";
+  },
 });
 
 Template.bulletindata.events({

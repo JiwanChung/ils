@@ -26,7 +26,6 @@ Template.contentpage.onRendered(function contentShowPageOnRendered() {
 });
 
 Template.newcontent.onRendered(function() {
-  Materialize.updateTextFields();
 });
 
 Template.contentpage.helpers({

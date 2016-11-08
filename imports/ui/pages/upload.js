@@ -42,8 +42,10 @@ Template.uploaditall.events({
   'submit form'(event) {
     event.preventDefault();
     let self = this;
+    console.log("uploading")
 
     const target = event.target;
+    this.type = target.type.value;
     this.filename = target.filename.value;
     this.filedetail = target.filedetail.value;
     this.thisfile = target.thisfile.files[0];
@@ -51,9 +53,19 @@ Template.uploaditall.events({
     //console.log("file:" + this.thisfile.name);
     let fileObj = Images.insert(this.thisfile);
     ImageData.insert({
+      type: this.type,
       name: this.filename,
       detail: this.filedetail,
       photo: fileObj
     });
+    console.log(this.type);
+    target.type.value = '';
+    target.filename.value = '';
+    target.filedetail.value = '';
+    $(".dropify-clear").click();
+  },
+  'click #submitit'(event) {
+    event.preventDefault();
+    $(".uploadform").submit();
   },
 });
