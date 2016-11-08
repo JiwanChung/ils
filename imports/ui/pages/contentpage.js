@@ -38,6 +38,10 @@ Template.contentpage.helpers({
     const contenttitle = instance.getContentTitle();
     return Contentall.find({titleinput: contenttitle});
   },
+  type() {
+    const instance = Template.instance();
+    return viewtype = instance.getContentTitle();
+  },
 });
 
 Template.newcontent.events({

@@ -1,9 +1,15 @@
 <template name="contentpage">
-  {{#if contentArray}}
-    {{#each contentArray}}
-      {{> newcontent}}
-    {{/each}}
-  {{/if}}
+  {{>jumbo title=type}}
+
+  <div class="row">
+    <div class="col s12 m10 l8 offset-m1 offset-l2">
+      {{#if contentArray}}
+        {{#each contentArray}}
+          {{> newcontent}}
+        {{/each}}
+      {{/if}}
+    </div>
+  </div>
 </template>
 
 <template name="newcontent">

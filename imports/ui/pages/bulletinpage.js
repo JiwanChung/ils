@@ -3,6 +3,7 @@ import { FlowRouter } from 'meteor/kadira:flow-router';
 import { _ } from 'meteor/underscore';
 import { $ } from 'meteor/jquery';
 import { Counts } from 'meteor/tmeasday:publish-counts';
+import { Session } from 'meteor/session';
 
 import { contentRenderHold } from '../launch-screen.js';
 
@@ -32,6 +33,10 @@ Template.bulletinpage.helpers({
   // removed and a new copy is added when changing lists, which is
   // important for animation purposes.
   bulletinArray() {
+    const result = Session.get("searchresult");
+    if (!!result ) {
+      return result;
+    }
     const instance = Template.instance();
     const bulletintype = instance.getBulletinType();
     return Bulletinall.find({type: bulletintype});
@@ -42,6 +47,11 @@ Template.bulletinpage.helpers({
   },
   bcounts() {
     Counts.get(bulletincounter);
+  },
+  bulletinAll() {
+    const instance = Template.instance();
+    const bulletintype = instance.getBulletinType();
+    return Bulletinall.find({type: bulletintype});
   },
 });
 
@@ -59,7 +69,38 @@ Template.bulletindata.helpers({
     const thedate = instance.data.createdAt.toLocaleDateString();
     return thedate;
   },
-})
+});
+
+Template.bulletinsee.helpers({
+  data() {
+    return Session.get("viewing");
+  },
+  formatDate() {
+    let thedate = Session.get("viewing").createdAt.toLocaleDateString();
+    return thedate;
+  },
+  formatCat() {
+    let category = Session.get("viewing").category;
+    if (category == "announcement") {
+      return "모집공고";
+    } else if (category == "schedule") {
+      return "일정";
+    } else {
+      return "공지";
+    }
+  }
+});
+
+Template.bulletindata.events({
+  'click a'(event) {
+    event.preventDefault();
+    const instance = Template.instance();
+    Session.set({
+      viewing: instance.data
+    });
+    $("html, body").animate({ scrollTop: 500 }, "slow");
+  },
+});
 
 Template.bulletinadd.events({
   'submit form'(event) {

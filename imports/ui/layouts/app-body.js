@@ -20,6 +20,7 @@ import './app-body.html';
 import '../components/nav.js';
 import '../components/footer.js';
 import '../components/jumbo.js';
+import '../components/searchs.js';
 
 const CONNECTION_ISSUE_TIMEOUT = 5000;
 

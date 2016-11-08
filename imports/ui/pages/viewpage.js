@@ -35,10 +35,15 @@ Template.viewpage.helpers({
     const contenttitle = instance.getContentTitle();
     return Contentall.find({titleinput: contenttitle});
   },
+  type() {
+    const instance = Template.instance();
+    return viewtype = instance.getContentTitle();
+  },
 });
 
 Template.viewpage.events({
   'click .toupdatepage'() {
+    const instance = Template.instance();
     const contenttitle = instance.getContentTitle();
     FlowRouter.go('contents.update', { titleinput: contenttitle });
   }
