@@ -3,6 +3,7 @@ import { FlowRouter } from 'meteor/kadira:flow-router';
 import { _ } from 'meteor/underscore';
 import { $ } from 'meteor/jquery';
 import { Materialize } from 'meteor/materialize:materialize';
+import { Session } from 'meteor/session';
 
 import { contentRenderHold } from '../launch-screen.js';
 
@@ -38,7 +39,6 @@ Template.gallery.helpers({
   imagedata() {
     const instance = Template.instance();
     const type = instance.getGalleryType();
-    console.log(type);
     return ImageData.find({type: type});
   },
   images() {
@@ -60,6 +60,22 @@ Template.gallerycard.helpers({
   },
 });
 
-Template.gallery.events({
+Template.gallerycard.events({
+  'click a'(e) {
+    e.preventDefault();
+    const instance = Template.instance();
+    const id = instance.data._id;
+    $("#"+id).removeClass( "s12 m6 l4" ).addClass( "s12 m12 l8 active" );
+    $(id).removeClass("medium").addClass("large activecard");
+  },
+  'click .noclick'(e) {
+    e.stopPropagation();
+  },
+});
 
+Template.gallery.events({
+  'click .gallerywrapper'(e) {
+    $(".active").removeClass( "s12 m12 l8 active" ).addClass( "s12 m6 l4" );
+    $(".activecard").removeClass("large activecard").addClass("medium");
+  },
 });
