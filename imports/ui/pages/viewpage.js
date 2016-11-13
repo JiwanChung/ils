@@ -2,6 +2,8 @@ import { Template } from 'meteor/templating';
 import { FlowRouter } from 'meteor/kadira:flow-router';
 import { _ } from 'meteor/underscore';
 import { $ } from 'meteor/jquery';
+import { Session } from 'meteor/session';
+
 
 import { Contentall } from '../../api/contentall.js';
 
@@ -11,12 +13,17 @@ import './viewpage.html';
 
 // Components used inside the template
 import './app-not-found.js';
-import '../components/quill.js';
+
+var transformer = require('delta-transform-html');
+
 
 Template.viewpage.onCreated(function contentShowPageOnCreated() {
   this.getContentTitle = () => FlowRouter.getParam('titleinput');
-
-  console.log(this.getContentTitle() + "in app-body");
+  const type = this.getContentTitle();
+  Session.set({
+    type: type,
+    change: false
+  });
 });
 
 Template.viewpage.onRendered(function contentShowPageOnRendered() {
@@ -34,18 +41,54 @@ Template.viewpage.helpers({
   contentArray() {
     const instance = Template.instance();
     const contenttitle = instance.getContentTitle();
-    return Contentall.find({titleinput: contenttitle});
+    const result = Contentall.findOne({titleinput: contenttitle});
+    Session.set({
+      item: result
+    });
+    return result;
   },
   type() {
     const instance = Template.instance();
     return viewtype = instance.getContentTitle();
   },
+  change() {
+    return Session.get('change');
+  },
 });
 
-Template.viewpage.events({
+Template.contentshow.helpers({
+  content() {
+    let docc = Session.get('doc');
+    let doc = {};
+    if(docc) {
+      doc = docc;
+    } else {
+      let item = Session.get('item');
+      doc = item.doc;
+    }
+    let obj = JSON.parse(doc);
+    console.log(obj);
+    let rendered = transformer.transform(obj);
+    console.log(rendered);
+    return rendered;
+
+  },
+});
+
+Template.contentshow.events({
   'click .toupdatepage'() {
     const instance = Template.instance();
-    const contenttitle = instance.getContentTitle();
-    FlowRouter.go('contents.update', { titleinput: contenttitle });
+    Session.set({
+      change: true
+    });
+  }
+});
+
+Template.contentchange.events({
+  'click .toviewpage'() {
+    const instance = Template.instance();
+    Session.set({
+      change: false
+    });
   }
 });

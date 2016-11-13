@@ -1,9 +1,11 @@
+import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 import { FlowRouter } from 'meteor/kadira:flow-router';
 import { _ } from 'meteor/underscore';
 import { $ } from 'meteor/jquery';
 import { Counts } from 'meteor/tmeasday:publish-counts';
 import { Session } from 'meteor/session';
+import { Tracker } from 'meteor/tracker';
 
 import { contentRenderHold } from '../launch-screen.js';
 
@@ -16,9 +18,26 @@ import { Bulletinall } from '../../api/bulletinall.js';
 import { Files } from '../../api/files.js';
 import { FileData } from '../../api/filedata.js';
 
+
 Template.bulletinpage.onCreated(function bulletinPageOnCreated() {
   this.getBulletinType = () => FlowRouter.getParam('titleinput');
+  Tracker.autorun(function() {
+    // from the documentation [here](https://github.com/kadirahq/flow-router#flowrouterwatchpathchange)
+    FlowRouter.watchPathChange();
+    // PAGINATION SETUP
+    var limit, offset, page;
+    if (FlowRouter.getQueryParam('page')) {
+      page = parseInt(FlowRouter.getQueryParam('page'));
+    } else {
+      page = 0;
+    }
+    limit = 10;
+    offset = page * limit;
+
+    Meteor.subscribe('postsWithSkip', offset, limit);
+  });
 });
+
 
 Template.bulletinpage.onRendered(function bulletinPageOnRendered() {
   this.autorun(() => {
@@ -52,6 +71,14 @@ Template.bulletinpage.helpers({
     const instance = Template.instance();
     const bulletintype = instance.getBulletinType();
     return Bulletinall.find({type: bulletintype});
+  },
+});
+
+var limit = 10;
+
+Template.pagedbulletin.helpers({
+  bulletin() {
+    return Bulletinall.find({}, {limit: limit, sort: {createdAt: 1}});
   },
 });
 

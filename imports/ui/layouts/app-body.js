@@ -9,6 +9,8 @@ import { TAPi18n } from 'meteor/tap:i18n';
 import { T9n } from 'meteor/softwarerero:accounts-t9n';
 import { _ } from 'meteor/underscore';
 import { $ } from 'meteor/jquery';
+import 'meteor/miguelalarcos:flow-router-pagination';
+
 import 'dropify/dist/js/dropify.js';
 import 'dropify/dist/css/dropify.css';
 
@@ -21,6 +23,7 @@ import '../components/nav.js';
 import '../components/footer.js';
 import '../components/jumbo.js';
 import '../components/searchs.js';
+import '../components/quills.js';
 
 const CONNECTION_ISSUE_TIMEOUT = 5000;
 

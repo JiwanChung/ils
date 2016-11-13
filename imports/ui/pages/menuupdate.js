@@ -68,6 +68,13 @@ Template.newadd.events({
     const parent = null;
     const hier = 0;
     const type = target.menuradio.value;
+    if (type == "content") {
+      Contentall.insert({
+        titleinput: nameko,
+        doc: null,
+        createdAt: new Date(), // current time
+      });
+    }
 
     // Insert a task into the collection
     Menus.insertTranslations({
@@ -101,9 +108,14 @@ Template.underadd.events({
     const nameko = target.nameko.value;
     const parent = Session.get("tempname");
     const hier = Session.get("hier");
-    alert(parent);
     const type = target.menuradio.value;
-
+    if (type == "content") {
+      Contentall.insert({
+        titleinput: nameko,
+        doc: null,
+        createdAt: new Date(), // current time
+      });
+    }
     // Insert a task into the collection
     Menus.insertTranslations({
       name: nameko,

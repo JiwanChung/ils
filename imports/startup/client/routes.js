@@ -1,6 +1,8 @@
 import { FlowRouter } from 'meteor/kadira:flow-router';
 import { BlazeLayout } from 'meteor/kadira:blaze-layout';
 import { Materialize } from 'meteor/materialize:materialize';
+import 'meteor/miguelalarcos:flow-router-pagination';
+
 // Import to load these templates
 import '../../ui/layouts/app-body.js';
 import '../../ui/pages/contentpage.js';
@@ -59,7 +61,7 @@ FlowRouter.route('/gallery/:titleinput', {
   },
 });
 
-FlowRouter.route('/bbs/:titleinput', {
+FlowRouter.route('/bulletin/:titleinput', {
   name: 'bulletins.show',
   action() {
     BlazeLayout.render('App_body', { main: 'bulletinpage' });

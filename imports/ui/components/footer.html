@@ -1,27 +1,105 @@
 <template name="footer">
-  <footer class="page-footer">
-      <div class="container">
-        <div class="row">
-          <div class="col l6 s12">
-            <h5 class="white-text">Footer Content</h5>
-            <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
+  <div class="footer">
+    <footer class="page-footer">
+      {{#if Template.subscriptionsReady}}
+        {{> UI.dynamic template=foottemp data=footer}}
+      {{/if}}
+    </footer>
+  </div>
+</template>
+
+<template name="footadd">
+  {{#if feet}}
+  <a class="btn-floating btn-large waves-effect waves-light red" id="foot" name="change"><i class="material-icons">replay</i></a>
+  <div class="footercontainer">
+    <div class="row">
+      <div class="col l6 s12">
+        <form class="name">
+          <div class="input-field">
+            <input value="{{foote 'name'}}" name="name" type="text" class="validate">
           </div>
-          <div class="col l4 offset-l2 s12">
-            <h5 class="white-text">Links</h5>
-            <ul>
-              <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
-              <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
-              <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
-              <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
-            </ul>
+        </form>
+        <form class="detail">
+          <div class="input-field">
+            <input value="{{foote 'detail'}}" name="detail" type="text" class="validate">
           </div>
-        </div>
+        </form>
       </div>
-      <div class="footer-copyright">
-        <div class="container">
-        © 2014 Copyright Text
-        <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+      <div class="col l4 offset-l2 s12">
+        <ul>
+          <li>
+            <form class="location">
+              <div class="input-field">
+                <input value="{{foote 'location'}}" name="location" type="text" class="validate">
+              </div>
+            </form>
+          </li>
+          <hr>
+          <li>
+            <form class="tel">
+              <div class="input-field">
+                <h5>TEL: </h5>
+                <input value="{{foote 'tel'}}" name="tel" type="text" class="validate">
+              </div>
+            </form>
+          </li>
+          <li>
+            <form class="fax">
+              <div class="input-field">
+                <h5>FAX: </h5>
+                <input value="{{foote 'fax'}}" name="fax" type="text" class="validate">
+              </div>
+            </form>
+          </li>
+          <li>
+            <form class="email">
+              <div class="input-field">
+                <h5>EMAIL: </h5>
+                <input value="{{foote 'email'}}" name="email" type="text" class="validate">
+              </div>
+            </form>
+          </li>
+        </ul>
       </div>
     </div>
-  </footer>
+  </div>
+  <div class="container">
+    <form name="copyright">
+      <h5>저작권: </h5>
+      <div class="input-field">
+        <input value="{{foote 'copyright'}}" name="copyright" type="text" class="validate">
+      </div>
+    </form>
+  </div>
+  <div class="footer-copyright">
+  </div>
+  {{/if}}
+</template>
+
+<template name="foot">
+  {{#if feet}}
+  <a class="btn-floating btn-large waves-effect waves-light red" id="footchange" name="change"><i class="material-icons">add</i></a>
+  <div class="footercontainer">
+    <div class="row">
+      <div class="col l4 offset-l1 s12">
+        <h5 class="white-text">{{foote "name"}}</h5>
+        <p class="grey-text text-lighten-4">{{foote "detail"}}</p>
+      </div>
+      <div class="col l4 offset-l2 s12">
+        <ul>
+          <li><a class="grey-text text-lighten-3" href="#!">{{foote "location"}}</a></li>
+          <hr>
+          <li><a class="grey-text text-lighten-3" href="tel:{{foote 'tel'}}">TEL: {{foote "tel"}}</a></li>
+          <li><a class="grey-text text-lighten-3" href="fax:{{foote 'fax'}}">FAX: {{foote "fax"}}</a></li>
+          <li><a class="grey-text text-lighten-3" href="email:{{foote 'email'}}">EMAIL: {{foote "email"}}</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="footer-copyright">
+    <div class="container" style="float:right">
+    {{foote 'copyright'}}
+    </div>
+  </div>
+  {{/if}}
 </template>

@@ -11,7 +11,7 @@
                 <hr>
                 <hr>
                 <div class="row">
-                  {{#each imagedata}}
+                  {{#each people}}
                     {{> peoplecard}}
                   {{/each}}
                 </div>
@@ -48,5 +48,5 @@
 </template>
 
 <template name="peopleimage">
-  <img src="{{this.url store='images'}}" />
+  <img src="{{this.url store='images'}}" circle responsive-img/>
 </template>

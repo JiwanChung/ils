@@ -17,6 +17,15 @@
   </div>
 </template>
 
+<template name="pagedbulletin">
+    {{#each bulletin}}
+      {{> bulletindata}}
+    {{/each}}
+    <div class="col s12 m6 l4 offset-m3 offset-l4 bulletincenter">
+        {{> paginationBar itemsPerPage=limit window=5 count='total_posts'}}
+    </div>
+</template>
+
 <template name="bulletin">
   <ul class="collection with-header z-depth-1">
     <li class="collection-header">
@@ -28,11 +37,11 @@
       </div>
     </div>
     <hr>
-    {{#if bulletinArray}}
-      {{#each bulletinArray}}
-        {{> bulletindata}}
-      {{/each}}
-    {{/if}}
+    <div class="row">
+      {{#if bulletinArray}}
+        {{> pagedbulletin}}
+      {{/if}}
+    </div>
   </ul>
 </template>
 
