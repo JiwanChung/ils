@@ -11,6 +11,7 @@ import './viewpage.html';
 
 // Components used inside the template
 import './app-not-found.js';
+import '../components/quill.js';
 
 Template.viewpage.onCreated(function contentShowPageOnCreated() {
   this.getContentTitle = () => FlowRouter.getParam('titleinput');
