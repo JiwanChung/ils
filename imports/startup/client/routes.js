@@ -12,6 +12,7 @@ import '../../ui/pages/menuupdate.js';
 import '../../ui/pages/upload.js';
 import '../../ui/pages/gallery.js';
 import '../../ui/pages/bulletinpage.js';
+import '../../ui/pages/peoplepage.js';
 
 // Import to override accounts templates
 //import '../../ui/accounts/accounts-templates.js';
@@ -62,6 +63,13 @@ FlowRouter.route('/bbs/:titleinput', {
   name: 'bulletins.show',
   action() {
     BlazeLayout.render('App_body', { main: 'bulletinpage' });
+  },
+});
+
+FlowRouter.route('/people', {
+  name: 'people.show',
+  action() {
+    BlazeLayout.render('App_body', { main: 'peoplepage' });
   },
 });
 

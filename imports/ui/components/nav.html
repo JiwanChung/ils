@@ -4,7 +4,7 @@
 
 <template name="dropdownit">
   <ul id="{{_id}}" class="dropdown-content">
-    {{#each menus _id}}
+    {{#each menus name}}
       {{> dropdownli}}
     {{/each}}
   </ul>
@@ -22,6 +22,14 @@
   <li><a class="dropdown-button topnav" data-activates="{{_id}}" href="#" name="{{name}}">{{name}}</a></li>
 </template>
 
+<template name="genbt">
+  <li><a class="button gen-button topnav" href="#" name="{{name}}">{{name}}</a></li>
+</template>
+
+<template name="genbtm">
+  <li><a class="tolink" style="font-weight: bold; margin-left:15px;" href="#" name="{{name}}">{{name}}</a></li>
+</template>
+
 <template name="myNav">
   <div class="navbar-fixed white-text">
     {{#each menus}}
@@ -33,15 +41,23 @@
         <a href="#" data-activates="mobile-demo" id="button-collapse" class="button-collapse"><i class="material-icons">menu</i></a>
         <ul class="right hide-on-med-and-down">
           {{#each menus}}
-            {{> dropdownbt}}
+            {{#if types type}}
+              {{> dropdownbt}}
+            {{else}}
+              {{> genbt}}
+            {{/if}}
           {{/each}}
         </ul>
         <ul class="side-nav" id="mobile-demo">
           <ul class="collapsible" data-collapsible="accordion">
             {{#each menus}}
-              <li>
-                {{> collapsiblemobile}}
-              </li>
+              {{#if types type}}
+                <li>
+                  {{> collapsiblemobile}}
+                </li>
+              {{else}}
+                {{> genbtm}}
+              {{/if}}
               <hr>
             {{/each}}
           </ul>
@@ -54,7 +70,7 @@
 <template name="collapsiblemobile">
   <div class="collapsible-header"><a href="#" style="font-weight: bold">{{name}}</a></div>
   <div class="collapsible-body">
-    {{#each menus _id}}
+    {{#each menus name}}
       {{> dropdownli}}
     {{/each}}
   </div>

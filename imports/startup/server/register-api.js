@@ -10,3 +10,4 @@ import '../../api/bulletinall.js';
 import '../../api/files.js';
 import '../../api/filedata.js';
 import '../../api/galleryall.js';
+import '../../api/people.js';
