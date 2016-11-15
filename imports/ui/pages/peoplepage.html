@@ -1,4 +1,4 @@
-<template name="people">
+<template name="peoplepage">
   <div class="gallerywrapper">
     {{> jumbo title=type}}
     <div class="navbottom">
@@ -9,9 +9,12 @@
               <div class="card-content">
                 <span class="card-title" style="font-weight: bold;">{{type}}</span>
                 <hr>
+                <div class="row">
+                  {{> searchnorm coll=people}}
+                </div>
                 <hr>
                 <div class="row">
-                  {{#each people}}
+                  {{#each peoplesearch}}
                     {{> peoplecard}}
                   {{/each}}
                 </div>
@@ -19,6 +22,7 @@
             </div>
           </div>
           <div class="section">
+            {{> addpeople}}
           </div>
           <div class="section">
           </div>
@@ -28,25 +32,57 @@
   </div>
 </template>
 
+<template name="addpeople">
+  <h3>연구원 등록</h3>
+  <form id="uploadform1" action="#" class="uploadform row peopleform">
+    <fieldset>
+      <div class="input-field col s6">
+        <input id="input_text" type="text" length="10" name="name">
+        <label for="input_text">이름</label>
+      </div>
+      <div class="input-field col s12">
+        <input id="input_text2" type="text" name="jobs">
+        <label for="input_text2">직무</label>
+      </div>
+      <div class="input-field col s12">
+        <input id="input_text3" type="text" name="journals">
+        <label for="input_text3">논문</label>
+      </div>
+      <div class="input-field col s12">
+        <i class="material-icons prefix">mode_edit</i>
+        <textarea id="textarea1" class="materialize-textarea" name="detail"></textarea>
+        <label for="textarea1">기타 설명</label>
+      </div>
+      <div class="input-field file-field col s12">
+        <input type="file" class="dropify" name="thisfile" style="font-family: dropify" form="uploadform1"/>
+      </div>
+
+      <button class="btn waves-effect waves-light submitit col s12" type="button" name="action" id="submitpeople">올리기
+        <i class="material-icons right">send</i>
+      </button>
+    </fieldset>
+  </form>
+</template>
 
 <template name="peoplecard">
   <div class="col s12 m6 l4 noclick" id="{{_id}}">
     <a href="#">
       <div class="card waves-effect waves-block waves-light" name="{{_id}}">
         <div class="card-image">
-          {{#with image}}
-            {{> peopleimage}}
-          {{/with}}
-          <span class="card-title">{{name}}</span>
+          <img src="{{c.private_url id}}"/>
+          <span class="card-title"></span>
         </div>
         <div class="card-content">
-          <p>{{detail}}</p>
+          <div><p style="font-weight:bold;">{{name}}</p></div>
         </div>
+          <div class="row">
+            <div>
+              <p style="margin-top: 5px;">- {{job}}</p>
+              <p style="margin-top: 5px;">- {{journal}}</p>
+            </div>
+          </div>
+          <p class="ishidden" style="display:none">{{detail}}</p>
       </div>
     </a>
   </div>
-</template>
-
-<template name="peopleimage">
-  <img src="{{this.url store='images'}}" circle responsive-img/>
 </template>

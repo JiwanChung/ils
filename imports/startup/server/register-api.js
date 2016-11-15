@@ -12,3 +12,5 @@ import '../../api/filedata.js';
 import '../../api/galleryall.js';
 import '../../api/people.js';
 import '../../api/footer.js';
+import '../../api/timeline.js';
+import '../../api/tree.js';

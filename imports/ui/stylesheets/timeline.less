@@ -10,17 +10,17 @@
 
 .timeline .timeline-event .timeline-content {
   position: relative;
-  width: calc(50% - 50px);
+  width: ~"calc(50% - 50px)";
 }
 
 .timeline .timeline-event::before {
   display: block;
   content: "";
   width: 2px;
-  height: calc(50% - 30px);
+  height: ~"calc(50% - 30px)";
   position: absolute;
   background: #d2d2d2;
-  left: calc(50% - 1px);
+  left: ~"calc(50% - 1px)";
   top: 0;
 }
 
@@ -28,11 +28,11 @@
   display: block;
   content: "";
   width: 2px;
-  height: calc(50% - 30px);
+  height: ~"calc(50% - 30px)";
   position: absolute;
   background: #d2d2d2;
-  left: calc(50% - 1px);
-  top: calc(50% + 30px);
+  left: ~"calc(50% - 1px)";
+  top: ~"calc(50% + 30px)";
 }
 
 .timeline .timeline-event:first-child::before {
@@ -44,7 +44,7 @@
 }
 
 .timeline .timeline-event:nth-child(even) .timeline-content {
-  margin-left: calc(50% + 50px);
+  margin-left: ~"calc(50% + 50px)";
 }
 
 .timeline .timeline-event:nth-child(odd) .timeline-content {
@@ -57,8 +57,8 @@
   width: 40px;
   height: 40px;
   background: #d2d2d2;
-  top: calc(50% - 20px);
-  right: calc(50% - 20px);
+  top: ~"calc(50% - 20px)";
+  right: ~"calc(50% - 20px)";
   border-radius: 50%;
   text-align: center;
   cursor: default;
@@ -71,7 +71,7 @@
 
 @media (max-width: 600px) {
   .timeline .timeline-event .timeline-content {
-    width: calc(100% - 70px);
+    width: ~"calc(100% - 70px)";
   }
   .timeline .timeline-event::before {
     left: 19px;

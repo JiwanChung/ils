@@ -9,13 +9,17 @@ import { TAPi18n } from 'meteor/tap:i18n';
 import { T9n } from 'meteor/softwarerero:accounts-t9n';
 import { _ } from 'meteor/underscore';
 import { $ } from 'meteor/jquery';
-import 'meteor/miguelalarcos:flow-router-pagination';
+import { Pages } from 'meteor/alethes:pages';
+import { Cloudinary } from 'meteor/lepozepo:cloudinary';
+import { Session } from 'meteor/session';
+
 
 import 'dropify/dist/js/dropify.js';
 import 'dropify/dist/css/dropify.css';
 
 import { Menus } from '../../api/menus.js';
 import { Contentall } from '../../api/contentall.js';
+import { Bulletinall } from '../../api/bulletinall.js';
 
 import './app-body.html';
 
@@ -24,6 +28,7 @@ import '../components/footer.js';
 import '../components/jumbo.js';
 import '../components/searchs.js';
 import '../components/quills.js';
+import '../components/searchnorm.js';
 
 const CONNECTION_ISSUE_TIMEOUT = 5000;
 

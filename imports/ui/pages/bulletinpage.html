@@ -7,7 +7,7 @@
           {{> bulletinsee}}
         </div>
         <div class="section">
-          {{> bulletin bulletinArray=bulletinArray bulletinAll=bulletinAll type=type}}
+          {{> bulletin type=type}}
         </div>
         <div class="section">
           {{> bulletinadd type=type}}
@@ -17,13 +17,9 @@
   </div>
 </template>
 
-<template name="pagedbulletin">
-    {{#each bulletin}}
-      {{> bulletindata}}
-    {{/each}}
-    <div class="col s12 m6 l4 offset-m3 offset-l4 bulletincenter">
-        {{> paginationBar itemsPerPage=limit window=5 count='total_posts'}}
-    </div>
+<template name="bulletinall">
+    {{> pages}}
+    {{> pagesNav}}  <!--Bottom navigation-->
 </template>
 
 <template name="bulletin">
@@ -33,26 +29,24 @@
     </li>
     <div class="row">
       <div class="col s9 offset-l8 offset-m6">
-        {{> searchs Arrays=bulletinAll}}
+        {{> searchs type=type}}
+        {{search}}
       </div>
     </div>
     <hr>
     <div class="row">
-      {{#if bulletinArray}}
-        {{> pagedbulletin}}
-      {{/if}}
+      {{> bulletinall}}
     </div>
   </ul>
 </template>
 
 <template name="bulletindata">
-  <a href="#!" class="collection-item avatar">
-    <i class="material-icons circle {{color}}">{{category}}</i>
-    <span class="title">{{title}}</span>
-    <p>{{detail}}
+  <a href="#!" class="collection-item avatar" id="{{_id}}">
+    <i class="material-icons circle {{color alert}}" id="{{_id}}">{{category}}</i>
+    <span class="title" id="{{_id}}">{{title}}</span>
+    <p id="{{_id}}">{{detail}}
     </p>
-    <span class="badge">14</span>
-    <div style="position: absolute; top: 8px; right: 27px;">{{formatDate}}</div>
+    <div style="position: absolute; top: 8px; right: 27px;" id="{{_id}}">{{formatDate createdAt}}</div>
   </a>
 </template>
 
@@ -62,9 +56,9 @@
       <div class="card">
         <div class="card-content flow-text">
           <span class="card-title" style="font-weight: bold;">{{data.title}}</span>
-          <div class="bulletindate">{{formatDate}}</div>
-          <div class="bulletincat">{{formatCat}}</div>
-          {{#if alert}}
+          <div class="bulletindate">{{formatDate data.createdAt}}</div>
+          <div class="bulletincat">{{formatCat data.category}}</div>
+          {{#if alert data.alert}}
             <div class="bulletinalert"><i class="material-icons circle red">info</i></div>
           {{/if}}
           <hr>

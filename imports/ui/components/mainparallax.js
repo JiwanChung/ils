@@ -9,5 +9,5 @@ Template.mainparallax.onCreated(function parallOnCreated() {
 });
 
 Template.mainparallax.onRendered(function parallOnRendered() {
-  $('.helpme').parallax();
+  $('.helpmess').parallax();
 });

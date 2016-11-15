@@ -5,20 +5,24 @@
       <div class="row">
         <div class="col s12 m10 l8 offset-m1 offset-l2">
           <div class="section">
-            <div class="card">
+            <div class="card cardg">
               <div class="card-content">
                 <span class="card-title" style="font-weight: bold;">{{type}}</span>
                 <hr>
+                <div class="row">
+                  {{> searchnorm coll=gallery}}
+                </div>
                 <hr>
                 <div class="row">
-                  {{#each imagedata}}
-                    {{> gallerycard}}
+                  {{#each gallsearch}}
+                    {{> imagecard}}
                   {{/each}}
                 </div>
               </div>
             </div>
           </div>
           <div class="section">
+            {{> addgall type=type}}
           </div>
           <div class="section">
           </div>
@@ -28,25 +32,45 @@
   </div>
 </template>
 
+<template name="addgall">
+  <h3>갤러리 등록</h3>
+  <form id="uploadform1" action="#" class="uploadform row gallform">
+    <fieldset>
+      <div class="input-field col s6">
+        <input id="input_text" type="text" length="10" name="name">
+        <label for="input_text">제목</label>
+      </div>
+      <div class="input-field col s12">
+        <i class="material-icons prefix">mode_edit</i>
+        <textarea id="textarea1" class="materialize-textarea" name="detail"></textarea>
+        <label for="textarea1">내용</label>
+      </div>
+      <div class="input-field file-field col s12">
+        <input type="file" class="dropify" name="thisfile" style="font-family: dropify" form="uploadform1"/>
+      </div>
 
-<template name="gallerycard">
+      <button class="btn waves-effect waves-light submitit col s12" type="button" name="action" id="submitgall">올리기
+        <i class="material-icons right">send</i>
+      </button>
+    </fieldset>
+  </form>
+</template>
+
+<template name="imagecard">
   <div class="col s12 m6 l4 noclick" id="{{_id}}">
     <a href="#">
-      <div class="card waves-effect waves-block waves-light" name="{{_id}}">
+      <div class="card cardg waves-effect waves-block waves-light" name="{{_id}}">
         <div class="card-image">
-          {{#with image}}
-            {{> galleryimage}}
-          {{/with}}
-          <span class="card-title">{{name}}</span>
+          <img src="{{c.private_url id}}"/>
+          <span class="card-title"></span>
         </div>
         <div class="card-content">
-          <p>{{detail}}</p>
+          <div><p style="font-weight:bold;">{{name}}</p></div>
+          <div class="row">
+          </div>
+          <p class="ishidden" style="display:none">{{detail}}</p>
         </div>
       </div>
     </a>
   </div>
-</template>
-
-<template name="galleryimage">
-  <img src="{{this.url store='images'}}" />
 </template>

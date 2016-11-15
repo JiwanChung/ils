@@ -3,6 +3,8 @@ import { FlowRouter } from 'meteor/kadira:flow-router';
 import { _ } from 'meteor/underscore';
 import { $ } from 'meteor/jquery';
 import { FS } from 'meteor/cfs:base-package';
+import { Session } from 'meteor/session';
+
 import './upload.html';
 
 // Components used inside the template
@@ -10,6 +12,13 @@ import './app-not-found.js';
 
 import { Images } from '../../api/images.js';
 import { ImageData } from '../../api/imagedata.js';
+
+
+Template.upload.helpers({
+  mid() {
+    return Session.get("filename");
+  },
+});
 
 
 Template.uploaditall.onRendered(function uploadPageOnRendered() {
@@ -41,22 +50,27 @@ Template.uploaditall.helpers({
 Template.uploaditall.events({
   'submit form'(event) {
     event.preventDefault();
-    let self = this;
-    console.log("uploading")
 
     const target = event.target;
-    this.type = target.type.value;
-    this.filename = target.filename.value;
-    this.filedetail = target.filedetail.value;
-    this.thisfile = target.thisfile.files[0];
-    //console.log("name:" + this.filename);
-    //console.log("file:" + this.thisfile.name);
-    let fileObj = Images.insert(this.thisfile);
+    const type = target.type.value;
+    const filename = target.filename.value;
+    const filedetail = target.filedetail.value;
+    const thisfile = target.thisfile.files[0];
+
+    Session.set({filename: filename});
+
+    Cloudinary._upload_file(thisfile, {
+        public_id: filename,
+        type: "private"
+      },
+      function(err, res) {
+        console.log("Upload Error: " + err);
+        console.log(res);
+    });
     ImageData.insert({
-      type: this.type,
-      name: this.filename,
-      detail: this.filedetail,
-      photo: fileObj
+      type: type,
+      name: filename,
+      detail: filedetail
     });
     console.log(this.type);
     target.type.value = '';

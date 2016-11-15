@@ -45,4 +45,8 @@ cfs:standard-packages
 cfs:filesystem
 cfs:ejson-file
 tmeasday:publish-counts
-miguelalarcos:flow-router-pagination
+aldeed:collection2
+aldeed:autoform
+gildaspk:autoform-materialize
+alethes:pages
+lepozepo:cloudinary

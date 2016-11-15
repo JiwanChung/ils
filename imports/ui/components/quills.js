@@ -37,13 +37,9 @@ Template.quills.onRendered(function quillOnRendered() {
   Template.quill = quill = new Quill('#editor', {
     modules: {
       toolbar: [
-        [{ header: [1, 2, false] }],
-        [{ 'size': ['huge', 'large', 'false', 'small'] }],
-        [{ 'font': [] }],
         ['bold', 'italic', 'underline'],
         ['image'],
         [{ list: 'ordered' }],
-        [{ 'align': [] }],
 
         ['clean']
       ]

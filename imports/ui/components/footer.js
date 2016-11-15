@@ -15,12 +15,12 @@ Template.footer.onRendered(function footerOnRendered() {
   this.autorun(() => {
     if (this.subscriptionsReady()) {
       contentRenderHold.release();
+      Session.set({
+        foottemp: 'foot'
+      });
+      Materialize.updateTextFields();
     }
   });
-  Session.set({
-    foottemp: 'foot'
-  });
-  Materialize.updateTextFields();
 });
 
 Template.footer.helpers({

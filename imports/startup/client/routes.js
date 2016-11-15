@@ -1,20 +1,20 @@
 import { FlowRouter } from 'meteor/kadira:flow-router';
 import { BlazeLayout } from 'meteor/kadira:blaze-layout';
-import { Materialize } from 'meteor/materialize:materialize';
-import 'meteor/miguelalarcos:flow-router-pagination';
+import { Materialize } from 'meteor/materialize:materialize'
 
 // Import to load these templates
 import '../../ui/layouts/app-body.js';
 import '../../ui/pages/contentpage.js';
 import '../../ui/pages/app-not-found.js';
 import '../../ui/pages/homepage.js';
-import '../../ui/pages/insertpage.js';
 import '../../ui/pages/viewpage.js';
 import '../../ui/pages/menuupdate.js';
 import '../../ui/pages/upload.js';
 import '../../ui/pages/gallery.js';
 import '../../ui/pages/bulletinpage.js';
 import '../../ui/pages/peoplepage.js';
+import '../../ui/pages/timeline.js';
+import '../../ui/pages/tree.js';
 
 // Import to override accounts templates
 //import '../../ui/accounts/accounts-templates.js';
@@ -68,17 +68,24 @@ FlowRouter.route('/bulletin/:titleinput', {
   },
 });
 
-FlowRouter.route('/people', {
+FlowRouter.route('/people/:titleinput', {
   name: 'people.show',
   action() {
     BlazeLayout.render('App_body', { main: 'peoplepage' });
   },
 });
 
-FlowRouter.route('/add', {
-  name: 'contents.add',
+FlowRouter.route('/timeline/:titleinput', {
+  name: 'timeline.show',
   action() {
-    BlazeLayout.render('App_body', { main: 'insertpage' });
+    BlazeLayout.render('App_body', { main: 'timeline' });
+  },
+});
+
+FlowRouter.route('/organization/:titleinput', {
+  name: 'tree.show',
+  action() {
+    BlazeLayout.render('App_body', { main: 'tree' });
   },
 });
 

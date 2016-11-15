@@ -61,21 +61,25 @@ Template.myNav.helpers({
   },
 });
 
-Template.dropdownit.menus = function(parent) {
-  if (parent) {
-    return Menus.find({parent:parent}).fetch();
-  } else {
-    return Menus.find({parent:null});
+Template.dropdownit.helpers({
+  menus(parent) {
+    if (parent) {
+      return Menus.find({parent:parent}).fetch();
+    } else {
+      return Menus.find({parent:null});
+    }
   }
-}
+});
 
-Template.collapsiblemobile.menus = function(parent) {
-  if (parent) {
-    return Menus.find({parent:parent}).fetch();
-  } else {
-    return Menus.find({parent:null});
+Template.collapsiblemobile.helpers({
+  menus(parent) {
+    if (parent) {
+      return Menus.find({parent:parent}).fetch();
+    } else {
+      return Menus.find({parent:null});
+    }
   }
-}
+});
 
 Template.dropdownli.events({
   'click .tolink'() {
@@ -98,10 +102,13 @@ Template.dropdownli.events({
           FlowRouter.go('gallery.show', { titleinput: contenttitle });
           break;
       case "history":
-          FlowRouter.go('gallery.show', { titleinput: contenttitle });
+          FlowRouter.go('timeline.show', { titleinput: contenttitle });
           break;
       case "map":
           FlowRouter.go('gallery.show', { titleinput: contenttitle });
+          break;
+      case "tree":
+          FlowRouter.go('tree.show', { titleinput: contenttitle });
           break;
       default:
           FlowRouter.go('contents.show', { titleinput: contenttitle });

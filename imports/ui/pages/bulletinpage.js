@@ -21,30 +21,32 @@ import { FileData } from '../../api/filedata.js';
 
 Template.bulletinpage.onCreated(function bulletinPageOnCreated() {
   this.getBulletinType = () => FlowRouter.getParam('titleinput');
-  Tracker.autorun(function() {
-    // from the documentation [here](https://github.com/kadirahq/flow-router#flowrouterwatchpathchange)
-    FlowRouter.watchPathChange();
-    // PAGINATION SETUP
-    var limit, offset, page;
-    if (FlowRouter.getQueryParam('page')) {
-      page = parseInt(FlowRouter.getQueryParam('page'));
-    } else {
-      page = 0;
-    }
-    limit = 10;
-    offset = page * limit;
-
-    Meteor.subscribe('postsWithSkip', offset, limit);
-  });
+  const type = this.getBulletinType();
+  Session.set({
+    type: type,
+    change: false
+    });
 });
-
 
 Template.bulletinpage.onRendered(function bulletinPageOnRendered() {
   this.autorun(() => {
     if (this.subscriptionsReady()) {
       contentRenderHold.release();
     }
+    Session.set({
+      "viewing": null
+    });
+    const type = FlowRouter.getParam('titleinput');
+    let initialfilter = {
+      filters: {
+        type: type
+      }
+    };
+    BulletinNewsPages.set(initialfilter);
   });
+});
+
+Template.bulletinsee.onRendered(function bulletinSeeOnRendered() {
 });
 
 Template.bulletinpage.helpers({
@@ -61,8 +63,7 @@ Template.bulletinpage.helpers({
     return Bulletinall.find({type: bulletintype});
   },
   type() {
-    const instance = Template.instance();
-    return bulletintype = instance.getBulletinType();
+    return bulletintype = Session.get("type");
   },
   bcounts() {
     Counts.get(bulletincounter);
@@ -72,42 +73,49 @@ Template.bulletinpage.helpers({
     const bulletintype = instance.getBulletinType();
     return Bulletinall.find({type: bulletintype});
   },
-});
-
-var limit = 10;
-
-Template.pagedbulletin.helpers({
-  bulletin() {
-    return Bulletinall.find({}, {limit: limit, sort: {createdAt: 1}});
+  change() {
+    return Session.get('change');
   },
 });
 
+
+Template.bulletin.helpers({
+  search() {
+    const result = Session.get('searchresult');
+    BulletinNewsPages.set(result);
+  },
+  type() {
+    const type = Session.get("type");
+    return type;
+  },
+});
+
+
 Template.bulletindata.helpers({
-  color() {
-    const instance = Template.instance();
-    if (instance.data.alert == "on") {
+  color(alert) {
+    if (alert == "on") {
       return "red";
     } else {
       return "grey";
     }
   },
-  formatDate() {
-    const instance = Template.instance();
-    const thedate = instance.data.createdAt.toLocaleDateString();
+  formatDate(date) {
+    const thedate = date.toLocaleDateString();
     return thedate;
   },
 });
 
 Template.bulletinsee.helpers({
   data() {
-    return Session.get("viewing");
+    const id = Session.get("viewing");
+    const data = Bulletinall.findOne({_id: id});
+    return data;
   },
-  formatDate() {
-    let thedate = Session.get("viewing").createdAt.toLocaleDateString();
+  formatDate(created) {
+    let thedate = created.toLocaleDateString();
     return thedate;
   },
-  formatCat() {
-    let category = Session.get("viewing").category;
+  formatCat(category) {
     if (category == "announcement") {
       return "모집공고";
     } else if (category == "schedule") {
@@ -116,18 +124,18 @@ Template.bulletinsee.helpers({
       return "공지";
     }
   },
-  alert() {
-    let alert = Session.get("viewing").alert;
+  alert(alert) {
     return alert == "on";
   },
 });
 
 Template.bulletindata.events({
-  'click a'(event) {
-    event.preventDefault();
-    const instance = Template.instance();
+  'click a'(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    const id = e.target.id;
     Session.set({
-      viewing: instance.data
+      viewing: id
     });
     $("html, body").animate({ scrollTop: 500 }, "slow");
   },
@@ -137,7 +145,6 @@ Template.bulletinadd.events({
   'submit form'(event) {
     event.preventDefault();
 
-    console.log( 'Submitting form!' );
     const instance = Template.instance();
     const type = instance.data.type;
     console.log("child" + type);
@@ -149,20 +156,20 @@ Template.bulletinadd.events({
     const alert = target.alert.value;
 
     this.files = target.files.files;
-    console.log("files"+ this.files[0]);
-    let fileObj = [];
-    for (var i = 0; i < this.files.length; i++) {
-      fileObj.push(Files.insert(this.files[i]));
+    let fileId = null;
+    if (this.files[0] != null) {
+      let fileObj = [];
+      for (var i = 0; i < this.files.length; i++) {
+        fileObj.push(Files.insert(this.files[i]));
+      }
+      //console.log("name:" + this.filename);
+      //console.log("file:" + this.thisfile.name);
+      console.log("array"+fileObj[0]);
+      fileId = FileData.insert({
+        title: title,
+        file: fileObj
+      });
     }
-    //console.log("name:" + this.filename);
-    //console.log("file:" + this.thisfile.name);
-    console.log("array"+fileObj[0]);
-
-    let fileId = FileData.insert({
-      title: title,
-      file: fileObj
-    });
-
     console.log(fileId);
 
     // Insert a task into the collection
