@@ -4,7 +4,7 @@
 
 <template name="dropdownit">
   <ul id="{{_id}}" class="dropdown-content">
-    {{#each menus name}}
+    {{#each menus _id}}
       {{> dropdownli}}
     {{/each}}
   </ul>
@@ -70,7 +70,7 @@
 <template name="collapsiblemobile">
   <div class="collapsible-header"><a href="#" style="font-weight: bold">{{name}}</a></div>
   <div class="collapsible-body">
-    {{#each menus name}}
+    {{#each menus _id}}
       {{> dropdownli}}
     {{/each}}
   </div>

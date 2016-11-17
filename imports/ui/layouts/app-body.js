@@ -29,6 +29,8 @@ import '../components/jumbo.js';
 import '../components/searchs.js';
 import '../components/quills.js';
 import '../components/searchnorm.js';
+import '../components/top.js';
+import '../components/side.js';
 
 const CONNECTION_ISSUE_TIMEOUT = 5000;
 
@@ -55,9 +57,9 @@ Template.App_body.onCreated(function appBodyOnCreated() {
   //this.subscribe('lists.private');
   this.autorun(() => {
     $(window).scroll(function(scroll) {
-  		var navStart = $('.navbottom').offset().top;
+  		var navStart = $('.contentpage').offset().top;
   		var scroll = $(window).scrollTop();
-  		if (scroll > navStart - 200) {
+  		if (scroll > navStart + 370) {
   			$('nav').addClass('opaque');
   		} else {
   			$('nav').removeClass('opaque');

@@ -65,20 +65,20 @@
 </template>
 
 <template name="peoplecard">
-  <div class="col s12 m6 l4 noclick" id="{{_id}}">
+  <div class="col s4 m3 l2 noclick" id="{{_id}}">
     <a href="#">
       <div class="card waves-effect waves-block waves-light" name="{{_id}}">
         <div class="card-image">
           <img src="{{c.private_url id}}"/>
           <span class="card-title"></span>
         </div>
-        <div class="card-content">
-          <div><p style="font-weight:bold;">{{name}}</p></div>
-        </div>
           <div class="row">
+            <div class="peoplename">
+              <p style="font-weight:bold;">{{name}}</p>
+            </div>
             <div>
               <p style="margin-top: 5px;">- {{job}}</p>
-              <p style="margin-top: 5px;">- {{journal}}</p>
+              <p>- {{journal}}</p>
             </div>
           </div>
           <p class="ishidden" style="display:none">{{detail}}</p>

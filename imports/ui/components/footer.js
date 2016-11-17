@@ -18,9 +18,15 @@ Template.footer.onRendered(function footerOnRendered() {
       Session.set({
         foottemp: 'foot'
       });
-      Materialize.updateTextFields();
     }
   });
+});
+
+Template.footadd.onRendered(function footaddOnRendered() {
+  this.autorun(() => {
+      Materialize.updateTextFields();
+    }
+  );
 });
 
 Template.footer.helpers({

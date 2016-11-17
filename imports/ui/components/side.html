@@ -1,0 +1,15 @@
+<template name="side">
+  <div class="moreside col s4 m3 l2" data-target="itmore">
+    <div class="collection morecoll">
+      {{#each menus type}}
+        {{> sidetab}}
+      {{/each}}
+      {{done}}
+    </div>
+  </div>
+
+</template>
+
+<template name="sidetab">
+  <a href="#!" class="collection-item" name="{{name}}">{{name}}</a>
+</template>

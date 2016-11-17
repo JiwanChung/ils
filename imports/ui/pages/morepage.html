@@ -1,0 +1,18 @@
+<template name="morepage">
+  {{>jumbo title=type}}
+    <div class="row more">
+      <div class="top col s12">
+        {{>top type=id}}
+      </div>
+      <div class="itmore col s12" id="itmore">
+        {{>side type=id}}
+        <div class="moremain col s12 m9 l10">
+          {{>Moresin}}
+        </div>
+      </div>
+    </div>
+</template>
+
+<template name="Moresin">
+  {{> Template.dynamic template=sub}}
+</template>

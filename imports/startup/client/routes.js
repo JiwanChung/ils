@@ -1,6 +1,6 @@
 import { FlowRouter } from 'meteor/kadira:flow-router';
 import { BlazeLayout } from 'meteor/kadira:blaze-layout';
-import { Materialize } from 'meteor/materialize:materialize'
+import { Materialize } from 'meteor/materialize:materialize';
 
 // Import to load these templates
 import '../../ui/layouts/app-body.js';
@@ -15,6 +15,7 @@ import '../../ui/pages/bulletinpage.js';
 import '../../ui/pages/peoplepage.js';
 import '../../ui/pages/timeline.js';
 import '../../ui/pages/tree.js';
+import '../../ui/pages/morepage.js';
 
 // Import to override accounts templates
 //import '../../ui/accounts/accounts-templates.js';
@@ -96,9 +97,72 @@ FlowRouter.route('/menu', {
   },
 });
 
+FlowRouter.route('/:biginput/:menuid', {
+  name: 'more.show',
+  action() {
+    BlazeLayout.render('App_body', { main: 'morepage' });
+  },
+});
+
 FlowRouter.route('/upload', {
   name: 'file.upload',
   action() {
     BlazeLayout.render('App_body', { main: 'upload' });
+  },
+});
+
+FlowRouter.route('/board/:biginput/:titleinput/:menuid', {
+  name: 'more.board',
+  action() {
+    BlazeLayout.render('App_body', { main: 'morepage', sub: 'bulletinpage' });
+  },
+});
+
+FlowRouter.route('/gallery/:biginput/:titleinput/:menuid', {
+  name: 'more.gallery',
+  action() {
+    BlazeLayout.render('App_body', { main: 'morepage', sub: 'gallery' });
+  },
+});
+
+FlowRouter.route('/site/:biginput/:titleinput/:menuid', {
+  name: 'more.site',
+  action() {
+    BlazeLayout.render('App_body', { main: 'morepage', sub: 'site' });
+  },
+});
+
+FlowRouter.route('/people/:biginput/:titleinput/:menuid', {
+  name: 'more.people',
+  action() {
+    BlazeLayout.render('App_body', { main: 'morepage', sub: 'peoplepage' });
+  },
+});
+
+FlowRouter.route('/map/:biginput/:titleinput/:menuid', {
+  name: 'more.map',
+  action() {
+    BlazeLayout.render('App_body', { main: 'morepage', sub: 'map' });
+  },
+});
+
+FlowRouter.route('/history/:biginput/:titleinput/:menuid', {
+  name: 'more.history',
+  action() {
+    BlazeLayout.render('App_body', { main: 'morepage', sub: 'timeline' });
+  },
+});
+
+FlowRouter.route('/tree/:biginput/:titleinput/:menuid', {
+  name: 'more.tree',
+  action() {
+    BlazeLayout.render('App_body', { main: 'morepage', sub: 'tree' });
+  },
+});
+
+FlowRouter.route('/content/:biginput/:titleinput/:menuid', {
+  name: 'more.content',
+  action() {
+    BlazeLayout.render('App_body', { main: 'morepage', sub: 'viewpage' });
   },
 });

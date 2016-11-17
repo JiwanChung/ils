@@ -38,6 +38,7 @@ Template.contentpage.helpers({
     return Contentall.find({titleinput: contenttitle});
   },
   type() {
+    FlowRouter.watchPathChange();
     const instance = Template.instance();
     return viewtype = instance.getContentTitle();
   },

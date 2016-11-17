@@ -22,24 +22,26 @@ Template.menushow.helpers({
   hier0() {
     return Menus.find({hier:0}).fetch();
   },
-  hier1(name) {
-    return Menus.find({parent:name}).fetch();
+  hier1(id) {
+    return Menus.find({parent:id}).fetch();
   },
-  hier2(name) {
-    return Menus.find({parent:name}).fetch();
+  hier2(id) {
+    return Menus.find({parent:id}).fetch();
   },
 });
 
 Template.menushow.events({
   'click a'(event) {
     event.preventDefault();
-    const id = $(event.currentTarget).attr("id");
-    const name = $(event.currentTarget).attr("name");
+    const addtemp = $(event.currentTarget).attr("id");
+    const name = $(event.currentTarget).attr("data-name2");
     const hier = $(event.currentTarget).attr("hier");
+    const id = $(event.currentTarget).attr("name");
     Session.set({
-      addtemp: id,
+      addtemp: addtemp,
       tempname: name,
-      hier: hier
+      hier: hier,
+      id: id
     });
     console.log(id);
     $("html, body").animate({ scrollTop: 500 }, "slow");
@@ -106,7 +108,7 @@ Template.underadd.events({
     const target = event.target;
     const nameen = target.nameen.value;
     const nameko = target.nameko.value;
-    const parent = Session.get("tempname");
+    const parent = Session.get("id");
     const hier = Session.get("hier");
     const type = target.menuradio.value;
     if (type == "content") {

@@ -1,0 +1,15 @@
+<template name="top">
+  <div class="row toprow">
+    <div class="col s12">
+      <ul class="tabs .tabs-fixed-width .z-depth-1">
+        {{#each menus type}}
+          {{> toptab}}
+        {{/each}}
+      </ul>
+    </div>
+  </div>
+</template>
+
+<template name="toptab">
+  <li class="tab teea"><a href="#" name="{{name}}">{{name}}</a></li>
+</template>

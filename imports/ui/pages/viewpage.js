@@ -4,7 +4,6 @@ import { _ } from 'meteor/underscore';
 import { $ } from 'meteor/jquery';
 import { Session } from 'meteor/session';
 
-
 import { Contentall } from '../../api/contentall.js';
 
 import { contentRenderHold } from '../launch-screen.js';
@@ -48,6 +47,7 @@ Template.viewpage.helpers({
     return result;
   },
   type() {
+    FlowRouter.watchPathChange();
     const instance = Template.instance();
     return viewtype = instance.getContentTitle();
   },
@@ -67,9 +67,7 @@ Template.contentshow.helpers({
       doc = item.doc;
     }
     let obj = JSON.parse(doc);
-    console.log(obj);
     let rendered = transformer.transform(obj);
-    console.log(rendered);
     return rendered;
 
   },

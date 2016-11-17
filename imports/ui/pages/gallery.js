@@ -18,7 +18,6 @@ Template.gallery.onCreated(function gallOnCreated() {
 });
 
 Template.gallery.onRendered(function gallOnRendered() {
-
 });
 
 
@@ -46,6 +45,7 @@ Template.gallery.helpers({
   // removed and a new copy is added when changing lists, which is
   // important for animation purposes.
   type() {
+    FlowRouter.watchPathChange();
     const instance = Template.instance();
     return viewtype = instance.getGalleryType();
   },

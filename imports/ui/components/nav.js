@@ -87,6 +87,7 @@ Template.dropdownli.events({
     const instance = Template.instance();
     const contenttitle = instance.data.name;
     const menutype = instance.data.type;
+    const menuid = instance.data._id;
     console.log(menutype + contenttitle);
     switch (menutype) {
       case "board":
@@ -110,6 +111,9 @@ Template.dropdownli.events({
       case "tree":
           FlowRouter.go('tree.show', { titleinput: contenttitle });
           break;
+      case "more":
+          FlowRouter.go('more.show', { biginput: contenttitle, menuid: menuid });
+          break;
       default:
           FlowRouter.go('contents.show', { titleinput: contenttitle });
     }
@@ -122,6 +126,7 @@ Template.genbt.events({
     const instance = Template.instance();
     const contenttitle = instance.data.name;
     const menutype = instance.data.type;
+    const menuid = instance.data._id;
     console.log(menutype + contenttitle);
     switch (menutype) {
       case "board":
@@ -141,6 +146,12 @@ Template.genbt.events({
           break;
       case "map":
           FlowRouter.go('gallery.show', { titleinput: contenttitle });
+          break;
+      case "tree":
+          FlowRouter.go('tree.show', { titleinput: contenttitle });
+          break;
+      case "more":
+          FlowRouter.go('more.show', { biginput: contenttitle, menuid: menuid });
           break;
       default:
           FlowRouter.go('contents.show', { titleinput: contenttitle });

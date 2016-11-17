@@ -50,6 +50,7 @@ Template.addtime.onRendered(function addtimeOnRendered() {
 
 Template.timeline.helpers({
   type() {
+    FlowRouter.watchPathChange();
     const instance = Template.instance();
     return instance.getContentTitle();
   },

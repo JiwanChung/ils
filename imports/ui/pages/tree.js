@@ -28,6 +28,7 @@ Template.tree.onRendered(function treeOnRendered() {
       contentRenderHold.release();
     }
   });
+
 });
 
 Template.addtree.onRendered(function treeOnRendered() {
@@ -50,6 +51,7 @@ Template.addtree.onRendered(function treeOnRendered() {
 
 Template.tree.helpers({
   type() {
+    FlowRouter.watchPathChange();
     const instance = Template.instance();
     return instance.getContentTitle();
   },

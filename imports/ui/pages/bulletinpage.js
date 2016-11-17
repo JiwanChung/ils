@@ -43,7 +43,11 @@ Template.bulletinpage.onRendered(function bulletinPageOnRendered() {
       }
     };
     BulletinNewsPages.set(initialfilter);
+    Session.set({
+      type: type
+    });
   });
+  console.log("cchanged");
 });
 
 Template.bulletinsee.onRendered(function bulletinSeeOnRendered() {
@@ -63,6 +67,8 @@ Template.bulletinpage.helpers({
     return Bulletinall.find({type: bulletintype});
   },
   type() {
+    FlowRouter.watchPathChange();
+    console.log(Session.get("type"));
     return bulletintype = Session.get("type");
   },
   bcounts() {
