@@ -14,3 +14,7 @@ import '../../api/people.js';
 import '../../api/footer.js';
 import '../../api/timeline.js';
 import '../../api/tree.js';
+import '../../api/site.js';
+import '../../api/three.js';
+import '../../api/threed.js';
+import '../../api/ip.js';

@@ -4,6 +4,7 @@ import { $ } from 'meteor/jquery';
 
 import { Contentall } from '../../api/contentall.js';
 import { Menus } from '../../api/menus.js';
+import { Ip } from '../../api/ip.js';
 
 import './nav.html';
 
@@ -91,31 +92,37 @@ Template.dropdownli.events({
     console.log(menutype + contenttitle);
     switch (menutype) {
       case "board":
-          FlowRouter.go('bulletins.show', { titleinput: contenttitle });
+          FlowRouter.go('bulletins.show', { titleinput: contenttitle, id: menuid });
           break;
       case "gallery":
-          FlowRouter.go('gallery.show', { titleinput: contenttitle });
+          FlowRouter.go('gallery.show', { titleinput: contenttitle, id: menuid });
           break;
       case "people":
-          FlowRouter.go('people.show', { titleinput: contenttitle });
+          FlowRouter.go('people.show', { titleinput: contenttitle, id: menuid });
           break;
       case "site":
-          FlowRouter.go('gallery.show', { titleinput: contenttitle });
+          FlowRouter.go('site.show', { titleinput: contenttitle, id: menuid });
           break;
       case "history":
-          FlowRouter.go('timeline.show', { titleinput: contenttitle });
+          FlowRouter.go('timeline.show', { titleinput: contenttitle, id: menuid });
           break;
       case "map":
-          FlowRouter.go('gallery.show', { titleinput: contenttitle });
+          FlowRouter.go('map.show', { titleinput: contenttitle, id: menuid });
           break;
       case "tree":
-          FlowRouter.go('tree.show', { titleinput: contenttitle });
+          FlowRouter.go('tree.show', { titleinput: contenttitle, id: menuid });
           break;
-      case "more":
+      case "journal":
+          FlowRouter.go('more.show', { biginput: contenttitle, menuid: menuid });
+          break;
+      case "business":
+          FlowRouter.go('more.show', { biginput: contenttitle, menuid: menuid });
+          break;
+      case "center":
           FlowRouter.go('more.show', { biginput: contenttitle, menuid: menuid });
           break;
       default:
-          FlowRouter.go('contents.show', { titleinput: contenttitle });
+          FlowRouter.go('contents.show', { titleinput: contenttitle, id: menuid });
     }
   }
 });
@@ -130,31 +137,46 @@ Template.genbt.events({
     console.log(menutype + contenttitle);
     switch (menutype) {
       case "board":
-          FlowRouter.go('bulletins.show', { titleinput: contenttitle });
+          FlowRouter.go('bulletins.show', { titleinput: contenttitle, id: menuid });
           break;
       case "gallery":
-          FlowRouter.go('gallery.show', { titleinput: contenttitle });
+          FlowRouter.go('gallery.show', { titleinput: contenttitle, id: menuid });
           break;
       case "people":
-          FlowRouter.go('people.show', { titleinput: contenttitle });
+          FlowRouter.go('people.show', { titleinput: contenttitle, id: menuid });
           break;
       case "site":
-          FlowRouter.go('gallery.show', { titleinput: contenttitle });
+          FlowRouter.go('site.show', { titleinput: contenttitle, id: menuid });
           break;
       case "history":
-          FlowRouter.go('gallery.show', { titleinput: contenttitle });
+          FlowRouter.go('gallery.show', { titleinput: contenttitle, id: menuid });
           break;
       case "map":
-          FlowRouter.go('gallery.show', { titleinput: contenttitle });
+          FlowRouter.go('map.show', { titleinput: contenttitle, id: menuid });
           break;
       case "tree":
-          FlowRouter.go('tree.show', { titleinput: contenttitle });
+          FlowRouter.go('tree.show', { titleinput: contenttitle, id: menuid });
           break;
-      case "more":
+      case "journal":
+          FlowRouter.go('more.show', { biginput: contenttitle, menuid: menuid });
+          break;
+      case "business":
+          FlowRouter.go('more.show', { biginput: contenttitle, menuid: menuid });
+          break;
+      case "center":
           FlowRouter.go('more.show', { biginput: contenttitle, menuid: menuid });
           break;
       default:
-          FlowRouter.go('contents.show', { titleinput: contenttitle });
+          FlowRouter.go('contents.show', { titleinput: contenttitle, id: menuid });
     }
+  },
+});
+
+Template.langlink.events({
+  'click a'(e) {
+    const target = e.target;
+    const name = target.name;
+    console.log(name);
+    TAPi18n.setLanguage(name);
   },
 });

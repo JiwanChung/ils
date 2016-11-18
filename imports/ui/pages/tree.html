@@ -19,10 +19,11 @@
 
           </div>
         </div>
+        {{#if ip}}
         <div class="section">
           {{> addtree}}
         </div>
-
+        {{/if}}
 
       </div>
     </div>
@@ -101,7 +102,7 @@
 
 <template name="addtree">
   <h3>연혁 등록</h3>
-  <form id="uploadform1" action="#" class="uploadform row timeform">
+  <form id="uploadform1" action="#" class="uploadform row treeform">
     <fieldset>
       <div class="input-field col s6">
         <input id="input_text" type="text" length="10" name="name">

@@ -5,6 +5,7 @@ import { $ } from 'meteor/jquery';
 import { Session } from 'meteor/session';
 
 import { Contentall } from '../../api/contentall.js';
+import { Ip } from '../../api/ip.js';
 
 import { contentRenderHold } from '../launch-screen.js';
 
@@ -54,6 +55,10 @@ Template.viewpage.helpers({
   change() {
     return Session.get('change');
   },
+  ip() {
+    const sip = Session.get('ip');
+    return Ip.findOne({ip: sip}) ? true : false;
+  },
 });
 
 Template.contentshow.helpers({
@@ -70,6 +75,10 @@ Template.contentshow.helpers({
     let rendered = transformer.transform(obj);
     return rendered;
 
+  },
+  ip() {
+    const sip = Session.get('ip');
+    return Ip.findOne({ip: sip}) ? true : false;
   },
 });
 

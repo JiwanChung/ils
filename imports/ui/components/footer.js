@@ -5,6 +5,7 @@ import { Footer } from '../../api/footer.js';
 import { Session } from 'meteor/session';
 import { Materialize } from 'meteor/materialize:materialize';
 import { contentRenderHold } from '../launch-screen.js';
+import { Ip } from '../../api/ip.js';
 
 import './footer.html';
 
@@ -54,6 +55,10 @@ Template.footadd.helpers({
     const wow = search(param , data).value;
     return wow;
   },
+  ip() {
+    const sip = Session.get('ip');
+    return Ip.findOne({ip: sip}) ? true : false;
+  },
 });
 
 Template.foot.helpers({
@@ -62,6 +67,10 @@ Template.foot.helpers({
     const data = instance.data.feet;
     const wow = search(param , data).value;
     return wow;
+  },
+  ip() {
+    const sip = Session.get('ip');
+    return Ip.findOne({ip: sip}) ? true : false;
   },
 });
 

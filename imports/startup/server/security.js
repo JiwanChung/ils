@@ -9,6 +9,17 @@ Meteor.users.deny({
   },
 });
 
+Meteor.onConnection(function(conn) {
+  console.log(conn.clientAddress);
+});
+
+Meteor.methods({
+    getIP: function(){
+        var ip = this.connection.clientAddress;
+        return ip;
+    }
+});
+
 // Get a list of all accounts methods by running `Meteor.server.method_handlers` in meteor shell
 const AUTH_METHODS = [
   'login',

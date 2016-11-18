@@ -20,6 +20,8 @@ import 'dropify/dist/css/dropify.css';
 import { Menus } from '../../api/menus.js';
 import { Contentall } from '../../api/contentall.js';
 import { Bulletinall } from '../../api/bulletinall.js';
+import { Site } from '../../api/site.js';
+import { Ip } from '../../api/ip.js';
 
 import './app-body.html';
 
@@ -31,6 +33,7 @@ import '../components/quills.js';
 import '../components/searchnorm.js';
 import '../components/top.js';
 import '../components/side.js';
+import '../components/maingroup.js';
 
 const CONNECTION_ISSUE_TIMEOUT = 5000;
 
@@ -67,11 +70,15 @@ Template.App_body.onCreated(function appBodyOnCreated() {
   	});
   });
   this.state = new ReactiveDict();
+  Meteor.call('getIP', function(error, result){
+    if(error){
+      //Error handling code
+    } else {
+      Session.set("ip", result);
+    }
+  });
 });
 
-
-Template.App_body.onRendered(function appBodyOnRendered() {
-});
 
 
 Template.App_body.helpers({
@@ -98,6 +105,10 @@ Template.App_body.helpers({
   contentArray() {
     return Contentall.find({});
   },
+  ip() {
+    const sip = Session.get('ip');
+    return Ip.findOne({ip: sip}) ? true : false;
+  },
 });
 
 /*Template.rightmenu.events({
@@ -108,36 +119,11 @@ Template.App_body.helpers({
   }
 });*/
 
-Template.tempmenu.events({
-  'submit form'() {
-    const target = event.target;
-    const contenttitle = target.title.value;
-    target.title.value = '';
-    console.log(contenttitle + "in app-body");
-    const menu = Menus.find({ name: contenttitle }).fetch()[0];
-    const menutype = menu.type;
-    console.log(menutype);
-    switch (menutype) {
-      case "board":
-          FlowRouter.go('bulletins.show', { titleinput: contenttitle });
-          break;
-      case "gallery":
-          FlowRouter.go('gallery.show', { titleinput: contenttitle });
-          break;
-      case "people":
-          FlowRouter.go('gallery.show', { titleinput: contenttitle });
-          break;
-      case "site":
-          FlowRouter.go('gallery.show', { titleinput: contenttitle });
-          break;
-      case "history":
-          FlowRouter.go('gallery.show', { titleinput: contenttitle });
-          break;
-      case "map":
-          FlowRouter.go('gallery.show', { titleinput: contenttitle });
-          break;
-      default:
-          FlowRouter.go('contents.show', { titleinput: contenttitle });
-    }
-  }
+Template.mainbutton.events({
+  'click #toupdatemenu'(e){
+    FlowRouter.go('menu.update', { password: "dwedwewewqscxc" });
+  },
+  'click #toadminpage'(e){
+    FlowRouter.go('admin.show', { password: "dwedwewewqscxc" });
+  },
 });

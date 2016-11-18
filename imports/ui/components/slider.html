@@ -2,7 +2,7 @@
   <div class="slider pickgradient">
     <ul class="slides">
       <li>
-        <img src="http://wallpapersonthe.net/wallpapers/b/1920x1080/1920x1080-world_sky_glass_buildings_building-1231.jpg"> <!-- random image -->
+        <img width="100%" height="500px" src="{{c.url "slider1"}}"/> <!-- random image -->
         <div class="caption left-align">
           <div class="tagline">
             <h3>hellow fellows!</h3>
@@ -13,7 +13,7 @@
         </div>
       </li>
       <li>
-        <img src="http://www.shunvmall.com/data/out/38/47109610-building-wallpaper.jpg"> <!-- random image -->
+        <img width="100%" height="500px" src="{{c.url "slider2"}}"/> <!-- random image -->
         <div class="caption left-align">
           <div class="tagline">
             <h3>hellow fellows!</h3>
@@ -24,7 +24,7 @@
         </div>
       </li>
       <li>
-        <img src="https://wallpaperscraft.com/image/barcelona_city_building_street_people_30791_1920x1080.jpg"> <!-- random image -->
+        <img width="100%" height="500px" src="{{c.url "slider3"}}"/> <!-- random image -->
         <div class="caption left-align">
           <div class="tagline">
             <h3>hellow fellows!</h3>
@@ -34,18 +34,40 @@
           </div>
         </div>
       </li>
-      <li>
-        <img src="https://images7.alphacoders.com/473/thumb-1920-473664.jpg"> <!-- random image -->
-        <div class="caption left-align">
-          <div class="tagline">
-            <h3>hellow fellows!</h3>
-          </div>
-          <div class="tagcontent">
-            <div class="light text-lighten-1">Here's our small slogan.4</div>
-          </div>
-        </div>
-      </li>
     </ul>
   </div>
   <div class="gradientoverlay">p</div>
+</template>
+
+<template name="addslider">
+  <div class="card">
+    <div class="card-content row">
+      <form class="sliderform">
+        <fieldset>
+          <div class="input-field col s6">
+            <input id="input_text" type="text" length="10" name="name">
+            <label for="input_text">제목</label>
+          </div>
+          <div class="input-field col s6">
+            <input id="input_text2" type="text" length="10" name="name">
+            <label for="input_text2">English title</label>
+          </div>
+          <div class="input-field col s12">
+            <input id="input_text3" type="text" name="jobs">
+            <label for="input_text3">내용</label>
+          </div>
+          <div class="input-field col s12">
+            <input id="input_text4" type="text" name="jobs">
+            <label for="input_text4">English Content</label>
+          </div>
+          <div class="input-field file-field col s12">
+            <input type="file" class="dropify" name="thisfile" style="font-family: dropify" form="sliderform"/>
+          </div>
+          <button class="btn waves-effect waves-light col s12" type="button" name="action" id="submitone">올리기
+            <i class="material-icons right">send</i>
+          </button>
+        </fieldset>
+      </form>
+    </div>
+  </div>
 </template>

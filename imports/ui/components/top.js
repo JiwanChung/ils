@@ -4,6 +4,7 @@ import { $ } from 'meteor/jquery';
 import { Session } from 'meteor/session';
 
 import { Menus } from '../../api/menus.js';
+import { Ip } from '../../api/ip.js';
 
 import './top.html';
 
@@ -14,9 +15,7 @@ Template.top.onCreated(function navOnCreated() {
 
 Template.top.onRendered(function navOnRendered() {
   $('ul.tabs').tabs();
-  console.log("hey null");
   $('.tab a').first().click();
-  console.log("clickeit");
 });
 
 Template.top.helpers({

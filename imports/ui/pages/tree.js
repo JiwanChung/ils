@@ -7,6 +7,7 @@ import { Session } from 'meteor/session';
 import { contentRenderHold } from '../launch-screen.js';
 
 import { Tree } from '../../api/tree.js';
+import { Ip } from '../../api/ip.js';
 
 import './tree.html';
 
@@ -57,6 +58,10 @@ Template.tree.helpers({
   },
   tree() {
     return Tree.find({}).fetch();
+  },
+  ip() {
+    const sip = Session.get('ip');
+    return Ip.findOne({ip: sip}) ? true : false;
   },
 });
 

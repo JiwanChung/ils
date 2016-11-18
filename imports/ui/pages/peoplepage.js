@@ -6,6 +6,7 @@ import { Materialize } from 'meteor/materialize:materialize';
 import { Session } from 'meteor/session';
 
 import { contentRenderHold } from '../launch-screen.js';
+import { Ip } from '../../api/ip.js';
 
 import { People } from '../../api/people.js';
 import './peoplepage.html';
@@ -55,11 +56,15 @@ Template.peoplepage.helpers({
   peoplesearch() {
     const ses = Session.get("searched");
     if ( ses != null ) {
-      return ses;
+      return ses.sort({rank: 1});
     } else {
-      return People.find({});
+      return People.find({}).sort({rank: 1});
     }
-  }
+  },
+  ip() {
+    const sip = Session.get('ip');
+    return Ip.findOne({ip: sip}) ? true : false;
+  },
 });
 
 Template.peoplecard.helpers({
@@ -107,6 +112,7 @@ Template.addpeople.events({
     const journals = target.journals.value;
     const jobs = target.jobs.value;
     const detail = target.detail.value;
+    const cat = target.cat.value;
     const thisfile = target.thisfile.files[0];
 
     Session.set({name: name});
@@ -116,7 +122,8 @@ Template.addpeople.events({
       name: name,
       detail: detail,
       job: jobs,
-      journal: journals
+      journal: journals,
+      rank: cat
     });
     console.log(name);
     Cloudinary._upload_file(thisfile, {
@@ -132,6 +139,7 @@ Template.addpeople.events({
     target.detail.value = '';
     target.journals.value = '';
     target.jobs.value = '';
+    target.cat.value = '';
     $(".dropify-clear").click();
   },
   'click #submitpeople'(event) {

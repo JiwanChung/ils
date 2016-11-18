@@ -21,9 +21,11 @@
               </div>
             </div>
           </div>
+          {{#if ip}}
           <div class="section">
             {{> addpeople}}
           </div>
+          {{/if}}
           <div class="section">
           </div>
         </div>
@@ -56,6 +58,10 @@
       <div class="input-field file-field col s12">
         <input type="file" class="dropify" name="thisfile" style="font-family: dropify" form="uploadform1"/>
       </div>
+      <p class="range-field">
+        <input type="range" id="input2" min="0" max="10" name="cat"/>
+        <label for="input2">우선순위</label>
+      </p>
 
       <button class="btn waves-effect waves-light submitit col s12" type="button" name="action" id="submitpeople">올리기
         <i class="material-icons right">send</i>

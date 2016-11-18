@@ -1,0 +1,48 @@
+
+
+<template name="map">
+  {{> jumbo title=type}}
+  <div class="navbottom">
+    <div class="row">
+      <div class="col s12 m10 l8 offset-m1 offset-l2">
+        <h3>{{type}}</h3>
+        <hr>
+        <div class="section">
+          {{> gmap}}
+          {{> mapbottomg}}
+        </div>
+        <div class="section">
+          {{> amap}}
+          {{> mapbottoma}}
+        </div>
+
+      </div>
+    </div>
+  </div>
+</template>
+
+<template name="gmap">
+  <div class="map-container" id="map">
+  </div>
+</template>
+
+<template name="amap">
+  <div class="map-container" id="amap">
+  </div>
+</template>
+
+<template name="mapbottomg">
+  <div class="card">
+    <div class="card-content">
+      {{_ "mapoffice"}}
+    </div>
+  </div>
+</template>
+
+<template name="mapbottoma">
+  <div class="card">
+    <div class="card-content">
+      {{_ "mapstudy"}}
+    </div>
+  </div>
+</template>

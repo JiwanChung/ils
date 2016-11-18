@@ -10,6 +10,25 @@
   </ul>
 </template>
 
+<template name="langdrop">
+  <ul id="langdrop" class="dropdown-content">
+    {{> langlink}}
+  </ul>
+</template>
+
+<template name="langlink">
+  <li>
+    <a href="#" name="ko" class="tolink">
+      한국어
+    </a>
+  </li>
+  <li>
+    <a href="#" name="en" class="tolink">
+      English
+    </a>
+  </li>
+</template>
+
 <template name="dropdownli">
   <li>
     <a href="#" name="{{name}}" class="tolink">
@@ -26,6 +45,10 @@
   <li><a class="button gen-button topnav" href="#" name="{{name}}">{{name}}</a></li>
 </template>
 
+<template name="langbt">
+  <li><a class="dropdown-button topnav" data-activates="langdrop" href="#" name="language">{{_ "lang"}}</a></li>
+</template>
+
 <template name="genbtm">
   <li><a class="tolink" style="font-weight: bold; margin-left:15px;" href="#" name="{{name}}">{{name}}</a></li>
 </template>
@@ -35,9 +58,10 @@
     {{#each menus}}
       {{> dropdownit}}
     {{/each}}
+    {{> langdrop}}
     <nav>
       <div class="nav-wrapper">
-        <a href="/" class="brand-logo">연세대학교 법학연구원</a>
+        <a href="/" class="brand-logo">{{_ "ils"}}</a>
         <a href="#" data-activates="mobile-demo" id="button-collapse" class="button-collapse"><i class="material-icons">menu</i></a>
         <ul class="right hide-on-med-and-down">
           {{#each menus}}
@@ -47,6 +71,7 @@
               {{> genbt}}
             {{/if}}
           {{/each}}
+          {{> langbt}}
         </ul>
         <ul class="side-nav" id="mobile-demo">
           <ul class="collapsible" data-collapsible="accordion">
@@ -60,10 +85,19 @@
               {{/if}}
               <hr>
             {{/each}}
+
+            {{> langmobile}}
           </ul>
         </ul>
       </div>
     </nav>
+  </div>
+</template>
+
+<template name="langmobile">
+  <div class="collapsible-header"><a href="#" style="font-weight: bold">언어</a></div>
+  <div class="collapsible-body">
+    {{> langlink}}
   </div>
 </template>
 

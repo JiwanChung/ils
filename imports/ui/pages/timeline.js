@@ -7,6 +7,7 @@ import { Session } from 'meteor/session';
 import { contentRenderHold } from '../launch-screen.js';
 
 import { Timeline } from '../../api/timeline.js';
+import { Ip } from '../../api/ip.js';
 
 import './timeline.html';
 
@@ -56,6 +57,10 @@ Template.timeline.helpers({
   },
   timeline() {
     return Timeline.find({}).fetch();
+  },
+  ip() {
+    const sip = Session.get('ip');
+    return Ip.findOne({ip: sip}) ? true : false;
   },
 });
 

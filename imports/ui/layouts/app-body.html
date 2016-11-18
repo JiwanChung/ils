@@ -1,23 +1,13 @@
 <template name="App_body">
   {{> nav}}
       <div class="contentpage" id="contentpage">
+        {{#if ip}}
+          {{> mainbutton}}
+        {{/if}}
         {{> Template.dynamic template=main}}
         <!-- Your content goes here -->
       </div>
   {{> footer}}
-</template>
-
-<template name="temp">
-  {{#if contentArray}}
-    {{#each contentArray}}
-      {{> contentshowit}}
-    {{/each}}
-  {{/if}}
-</template>
-
-<template name="contentshowit">
-  <li>{{titleinput}}</li>
-  <li>{{detail}}</li>
 </template>
 
 <template name="tempmenu">
@@ -28,5 +18,17 @@
 
 <template name="pushdown">
   <div style="display:block;height:120px">
+  </div>
+</template>
+
+<template name="mainbutton">
+  <div class="fixed-action-btn">
+    <a class="btn-floating btn-large red">
+      <i class="large material-icons">menu</i>
+    </a>
+    <ul>
+      <li><a class="btn-floating red" id="toupdatemenu"><i class="material-icons">mode_edit</i></a></li>
+      <li><a class="btn-floating green" id="toadminpage"><i class="material-icons">supervisor_account</i></a></li>
+    </ul>
   </div>
 </template>

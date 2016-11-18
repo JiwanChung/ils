@@ -8,6 +8,7 @@ import { Session } from 'meteor/session';
 import { Tracker } from 'meteor/tracker';
 
 import { contentRenderHold } from '../launch-screen.js';
+import { Ip } from '../../api/ip.js';
 
 import './bulletinpage.html';
 
@@ -81,6 +82,10 @@ Template.bulletinpage.helpers({
   },
   change() {
     return Session.get('change');
+  },
+  ip() {
+    const sip = Session.get('ip');
+    return Ip.findOne({ip: sip}) ? true : false;
   },
 });
 

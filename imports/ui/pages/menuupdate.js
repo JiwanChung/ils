@@ -6,6 +6,7 @@ import { Session } from 'meteor/session';
 
 import { Contentall } from '../../api/contentall.js';
 import { Menus } from '../../api/menus.js';
+import { Ip } from '../../api/ip.js';
 
 import './menuupdate.html';
 
@@ -15,6 +16,10 @@ import './app-not-found.js';
 Template.menuupdate.helpers({
   addtemp() {
     return Session.get("addtemp");
+  },
+  ip() {
+    const sip = Session.get('ip');
+    return Ip.findOne({ip: sip}) ? true : false;
   },
 });
 
@@ -70,16 +75,22 @@ Template.newadd.events({
     const parent = null;
     const hier = 0;
     const type = target.menuradio.value;
+    const thisfile = target.thisfile.files[0];
     if (type == "content") {
       Contentall.insert({
         titleinput: nameko,
         doc: null,
         createdAt: new Date(), // current time
       });
+      Contentall.insert({
+        titleinput: nameen,
+        doc: null,
+        createdAt: new Date(), // current time
+      });
     }
 
     // Insert a task into the collection
-    Menus.insertTranslations({
+    const id = Menus.insertTranslations({
       name: nameko,
       type: type,
       parent: parent,
@@ -91,11 +102,63 @@ Template.newadd.events({
       }
     });
 
+    Cloudinary._upload_file(thisfile, {
+        public_id: id,
+        type: "private",
+        folder: "secret"
+      },
+      function(err, res) {
+        console.log("Upload Error: " + err);
+        console.log(res);
+    });
+
     console.log("PARENT:"+ parent + " TYPE:" + type + "added!");
     // Clear form
     target.nameen.value = '';
     target.nameko.value = '';
+    $(".dropify-clear").click();
   },
+  'click #submitnew'(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    $(".newform").submit();
+  },
+});
+
+Template.newadd.onRendered(function neonRendered() {
+  $('.dropify').dropify(
+    {
+      messages: {
+          'default': '파일을 드래그하거나 클릭하세요.',
+          'replace': '파일을 바꾸려면 파일을 드래그하거나 클릭하세요.',
+          'remove':  '지우기',
+          'error':   '파일 형식 오류'
+      }
+  }
+  );
+  $("input[type='image']").click(function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        $("input[id='submitnew']").click();
+  });
+});
+
+Template.underadd.onRendered(function udonRendered() {
+  $('.dropify').dropify(
+    {
+      messages: {
+          'default': '파일을 드래그하거나 클릭하세요.',
+          'replace': '파일을 바꾸려면 파일을 드래그하거나 클릭하세요.',
+          'remove':  '지우기',
+          'error':   '파일 형식 오류'
+      }
+  }
+  );
+  $("input[type='image']").click(function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        $("input[id='submitunder']").click();
+  });
 });
 
 Template.underadd.events({
@@ -111,15 +174,21 @@ Template.underadd.events({
     const parent = Session.get("id");
     const hier = Session.get("hier");
     const type = target.menuradio.value;
+    const thisfile = target.thisfile.files[0];
     if (type == "content") {
       Contentall.insert({
         titleinput: nameko,
         doc: null,
         createdAt: new Date(), // current time
       });
+      Contentall.insert({
+        titleinput: nameen,
+        doc: null,
+        createdAt: new Date(), // current time
+      });
     }
     // Insert a task into the collection
-    Menus.insertTranslations({
+    const id = Menus.insertTranslations({
       name: nameko,
       type: type,
       parent: parent,
@@ -131,9 +200,24 @@ Template.underadd.events({
       }
     });
 
+    Cloudinary._upload_file(thisfile, {
+        public_id: id,
+        type: "private",
+        folder: "secret"
+      },
+      function(err, res) {
+        console.log("Upload Error: " + err);
+        console.log(res);
+    });
+
     console.log("PARENT:"+ parent + " TYPE:" + type + "added!");
     // Clear form
     target.nameen.value = '';
     target.nameko.value = '';
+  },
+  'click #submitunder'(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    $(".underform").submit();
   },
 });

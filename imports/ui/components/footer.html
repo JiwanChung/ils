@@ -10,6 +10,7 @@
 
 <template name="footadd">
   {{#if feet}}
+  {{#if ip}}
   <a class="btn-floating btn-large waves-effect waves-light red" id="foot" name="change"><i class="material-icons">replay</i></a>
   <div class="footercontainer">
     <div class="row">
@@ -74,11 +75,14 @@
   <div class="footer-copyright">
   </div>
   {{/if}}
+  {{/if}}
 </template>
 
 <template name="foot">
   {{#if feet}}
+  {{#if ip}}
   <a class="btn-floating btn-large waves-effect waves-light red" id="footchange" name="change"><i class="material-icons">add</i></a>
+  {{/if}}
   <div class="footercontainer">
     <div class="row">
       <div class="col l4 offset-l1 s12">

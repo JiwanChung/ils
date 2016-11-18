@@ -6,6 +6,7 @@ import { Materialize } from 'meteor/materialize:materialize';
 import { Session } from 'meteor/session';
 
 import { contentRenderHold } from '../launch-screen.js';
+import { Ip } from '../../api/ip.js';
 
 import { Galleryall } from '../../api/galleryall.js';
 import './gallery.html';
@@ -63,7 +64,11 @@ Template.gallery.helpers({
       const type = instance.getGalleryType();
       return Galleryall.find({type: type}).fetch();
     }
-  }
+  },
+  ip() {
+    const sip = Session.get('ip');
+    return Ip.findOne({ip: sip}) ? true : false;
+  },
 });
 
 Template.imagecard.helpers({
