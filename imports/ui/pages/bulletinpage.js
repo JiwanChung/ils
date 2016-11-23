@@ -9,6 +9,7 @@ import { Tracker } from 'meteor/tracker';
 
 import { contentRenderHold } from '../launch-screen.js';
 import { Ip } from '../../api/ip.js';
+import { Menus } from '../../api/menus.js';
 
 import './bulletinpage.html';
 
@@ -21,7 +22,9 @@ import { FileData } from '../../api/filedata.js';
 
 
 Template.bulletinpage.onCreated(function bulletinPageOnCreated() {
-  this.getBulletinType = () => FlowRouter.getParam('titleinput');
+  this.getId = () => FlowRouter.getParam('id');
+  let id = this.getId();
+  this.getBulletinType = () => Menus.findOne({_id: id}).name;
   const type = this.getBulletinType();
   Session.set({
     type: type,
@@ -37,7 +40,10 @@ Template.bulletinpage.onRendered(function bulletinPageOnRendered() {
     Session.set({
       "viewing": null
     });
-    const type = FlowRouter.getParam('titleinput');
+    var getId = () => FlowRouter.getParam('id');
+    let id = getId();
+    var getBulletinType = () => Menus.findOne({_id: id}).name;
+    const type = getBulletinType();
     let initialfilter = {
       filters: {
         type: type

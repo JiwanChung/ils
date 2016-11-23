@@ -14,7 +14,7 @@ Click the link below to reset your password on Meteor Todos.
 ${url}
 If you didn't request this email, please ignore it.
 Thanks,
-The Meteor Todos team
+The Meteor Todos teams
 `;
   },
 //   html(user, url) {

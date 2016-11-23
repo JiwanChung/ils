@@ -5,6 +5,8 @@ import { $ } from 'meteor/jquery';
 import { Contentall } from '../../api/contentall.js';
 import { Menus } from '../../api/menus.js';
 import { Ip } from '../../api/ip.js';
+import { Session } from 'meteor/session';
+
 
 import './nav.html';
 
@@ -82,6 +84,43 @@ Template.collapsiblemobile.helpers({
   }
 });
 
+var theroute = function(menutype, menuid) {
+  switch (menutype) {
+    case "board":
+        FlowRouter.go('bulletins.show', { id: menuid });
+        break;
+    case "gallery":
+        FlowRouter.go('gallery.show', { id: menuid });
+        break;
+    case "people":
+        FlowRouter.go('people.show', { id: menuid });
+        break;
+    case "site":
+        FlowRouter.go('site.show', { id: menuid });
+        break;
+    case "history":
+        FlowRouter.go('timeline.show', { id: menuid });
+        break;
+    case "map":
+        FlowRouter.go('map.show', { id: menuid });
+        break;
+    case "tree":
+        FlowRouter.go('tree.show', { id: menuid });
+        break;
+    case "journal":
+        FlowRouter.go('more.show', { bigid: menuid });
+        break;
+    case "business":
+        FlowRouter.go('more.show', { bigid: menuid });
+        break;
+    case "center":
+        FlowRouter.go('more.show', { bigid: menuid });
+        break;
+    default:
+        FlowRouter.go('contents.show', { id: menuid });
+  }
+};
+
 Template.dropdownli.events({
   'click .tolink'() {
     console.log("clicked!");
@@ -90,40 +129,7 @@ Template.dropdownli.events({
     const menutype = instance.data.type;
     const menuid = instance.data._id;
     console.log(menutype + contenttitle);
-    switch (menutype) {
-      case "board":
-          FlowRouter.go('bulletins.show', { titleinput: contenttitle, id: menuid });
-          break;
-      case "gallery":
-          FlowRouter.go('gallery.show', { titleinput: contenttitle, id: menuid });
-          break;
-      case "people":
-          FlowRouter.go('people.show', { titleinput: contenttitle, id: menuid });
-          break;
-      case "site":
-          FlowRouter.go('site.show', { titleinput: contenttitle, id: menuid });
-          break;
-      case "history":
-          FlowRouter.go('timeline.show', { titleinput: contenttitle, id: menuid });
-          break;
-      case "map":
-          FlowRouter.go('map.show', { titleinput: contenttitle, id: menuid });
-          break;
-      case "tree":
-          FlowRouter.go('tree.show', { titleinput: contenttitle, id: menuid });
-          break;
-      case "journal":
-          FlowRouter.go('more.show', { biginput: contenttitle, menuid: menuid });
-          break;
-      case "business":
-          FlowRouter.go('more.show', { biginput: contenttitle, menuid: menuid });
-          break;
-      case "center":
-          FlowRouter.go('more.show', { biginput: contenttitle, menuid: menuid });
-          break;
-      default:
-          FlowRouter.go('contents.show', { titleinput: contenttitle, id: menuid });
-    }
+    theroute(menutype, menuid);
   }
 });
 
@@ -135,40 +141,7 @@ Template.genbt.events({
     const menutype = instance.data.type;
     const menuid = instance.data._id;
     console.log(menutype + contenttitle);
-    switch (menutype) {
-      case "board":
-          FlowRouter.go('bulletins.show', { titleinput: contenttitle, id: menuid });
-          break;
-      case "gallery":
-          FlowRouter.go('gallery.show', { titleinput: contenttitle, id: menuid });
-          break;
-      case "people":
-          FlowRouter.go('people.show', { titleinput: contenttitle, id: menuid });
-          break;
-      case "site":
-          FlowRouter.go('site.show', { titleinput: contenttitle, id: menuid });
-          break;
-      case "history":
-          FlowRouter.go('gallery.show', { titleinput: contenttitle, id: menuid });
-          break;
-      case "map":
-          FlowRouter.go('map.show', { titleinput: contenttitle, id: menuid });
-          break;
-      case "tree":
-          FlowRouter.go('tree.show', { titleinput: contenttitle, id: menuid });
-          break;
-      case "journal":
-          FlowRouter.go('more.show', { biginput: contenttitle, menuid: menuid });
-          break;
-      case "business":
-          FlowRouter.go('more.show', { biginput: contenttitle, menuid: menuid });
-          break;
-      case "center":
-          FlowRouter.go('more.show', { biginput: contenttitle, menuid: menuid });
-          break;
-      default:
-          FlowRouter.go('contents.show', { titleinput: contenttitle, id: menuid });
-    }
+    theroute(menutype, menuid);
   },
 });
 

@@ -5,6 +5,7 @@ import { $ } from 'meteor/jquery';
 import { Materialize } from 'meteor/materialize:materialize';
 
 import { Contentall } from '../../api/contentall.js';
+import { Menus } from '../../api/menus.js';
 
 import { contentRenderHold } from '../launch-screen.js';
 
@@ -14,7 +15,9 @@ import './contentpage.html';
 import './app-not-found.js';
 
 Template.contentpage.onCreated(function contentShowPageOnCreated() {
-  this.getContentTitle = () => FlowRouter.getParam('titleinput');
+  this.getId = () => FlowRouter.getParam('id');
+  let id = this.getId();
+  this.getContentTitle = () => Menus.findOne({_id: id}).name;
 });
 
 Template.contentpage.onRendered(function contentShowPageOnRendered() {

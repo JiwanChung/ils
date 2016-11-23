@@ -8,14 +8,17 @@ import { Tracker } from 'meteor/tracker';
 
 import { contentRenderHold } from '../launch-screen.js';
 
+import { Menus } from '../../api/menus.js';
+
 import './morepage.html';
 
 // Components used inside the template
 import './app-not-found.js';
 
 Template.morepage.onCreated(function moreShowPageOnCreated() {
-  this.getMoreTitle = () => FlowRouter.getParam('biginput');
-  this.getMoreId = () => FlowRouter.getParam('menuid');
+  this.getMoreId = () => FlowRouter.getParam('bigid');
+  let id = this.getMoreId();
+  this.getMoreTitle = () => Menus.findOne({_id: id}).name;
 });
 
 Template.morepage.onRendered(function moreShowPageOnRendered() {

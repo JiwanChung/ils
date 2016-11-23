@@ -79,6 +79,9 @@ Template.App_body.onCreated(function appBodyOnCreated() {
   });
 });
 
+Template.App_body.onRendered(function appBodyOnRendered() {
+});
+
 
 
 Template.App_body.helpers({

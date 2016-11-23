@@ -7,6 +7,7 @@ import { Session } from 'meteor/session';
 
 import { contentRenderHold } from '../launch-screen.js';
 import { Ip } from '../../api/ip.js';
+import { Menus } from '../../api/menus.js';
 
 import { Galleryall } from '../../api/galleryall.js';
 import './gallery.html';
@@ -15,7 +16,9 @@ import './gallery.html';
 import './app-not-found.js';
 
 Template.gallery.onCreated(function gallOnCreated() {
-  this.getGalleryType = () => FlowRouter.getParam('titleinput');
+  this.getId = () => FlowRouter.getParam('id');
+  let id = this.getId();
+  this.getGalleryType = () => Menus.findOne({_id: id}).name;
 });
 
 Template.gallery.onRendered(function gallOnRendered() {

@@ -40,151 +40,151 @@ FlowRouter.route('/', {
 // the App_notFound template is used for unknown routes and missing lists
 FlowRouter.notFound = {
   action() {
-    BlazeLayout.render('App_body', { main: 'homepage' });
+    BlazeLayout.render('App_body', { main: 'App_notFound' });
   },
 };
 
-FlowRouter.route('/contents-update/:titleinput/:id', {
+FlowRouter.route('/contents-update/:id', {
   name: 'contents.update',
   action() {
     BlazeLayout.render('App_body', { main: 'contentpage' });
   },
 });
 
-FlowRouter.route('/contents/:titleinput/:id', {
+FlowRouter.route('/contents/:id', {
   name: 'contents.show',
   action() {
     BlazeLayout.render('App_body', { main: 'viewpage' });
   },
 });
 
-FlowRouter.route('/gallery/:titleinput/:id', {
+FlowRouter.route('/gallery/:id', {
   name: 'gallery.show',
   action() {
     BlazeLayout.render('App_body', { main: 'gallery' });
   },
 });
 
-FlowRouter.route('/bulletin/:titleinput/:id', {
+FlowRouter.route('/bulletin/:id', {
   name: 'bulletins.show',
   action() {
     BlazeLayout.render('App_body', { main: 'bulletinpage' });
   },
 });
 
-FlowRouter.route('/people/:titleinput/:id', {
+FlowRouter.route('/people/:id', {
   name: 'people.show',
   action() {
     BlazeLayout.render('App_body', { main: 'peoplepage' });
   },
 });
 
-FlowRouter.route('/timeline/:titleinput/:id', {
+FlowRouter.route('/timeline/:id', {
   name: 'timeline.show',
   action() {
     BlazeLayout.render('App_body', { main: 'timeline' });
   },
 });
 
-FlowRouter.route('/organization/:titleinput/:id', {
+FlowRouter.route('/organization/:id', {
   name: 'tree.show',
   action() {
     BlazeLayout.render('App_body', { main: 'tree' });
   },
 });
 
-FlowRouter.route('/map/:titleinput/:id', {
+FlowRouter.route('/map/:id', {
   name: 'map.show',
   action() {
     BlazeLayout.render('App_body', { main: 'map' });
   },
 });
 
-FlowRouter.route('/site/:titleinput/:id', {
+FlowRouter.route('/site/:id', {
   name: 'site.show',
   action() {
     BlazeLayout.render('App_body', { main: 'site' });
   },
 });
 
-FlowRouter.route('/menu/:password', {
+FlowRouter.route('/menu', {
   name: 'menu.update',
   action() {
     BlazeLayout.render('App_body', { main: 'menuupdate' });
   },
 });
 
-FlowRouter.route('/admin/:password', {
+FlowRouter.route('/admin', {
   name: 'admin.show',
   action() {
     BlazeLayout.render('App_body', { main: 'admin' });
   },
 });
 
-FlowRouter.route('/beetle27', {
+FlowRouter.route('/admin2', {
   name: 'admin.show',
   action() {
     BlazeLayout.render('App_body', { main: 'admin2' });
   },
 });
 
-FlowRouter.route('/:biginput/:menuid/:id', {
+FlowRouter.route('/more/:bigid', {
   name: 'more.show',
   action() {
     BlazeLayout.render('App_body', { main: 'morepage' });
   },
 });
 
-FlowRouter.route('/board/:biginput/:titleinput/:menuid/:id', {
+FlowRouter.route('/dboard/:bigid/:id', {
   name: 'more.board',
   action() {
     BlazeLayout.render('App_body', { main: 'morepage', sub: 'bulletinpage' });
   },
 });
 
-FlowRouter.route('/gallery/:biginput/:titleinput/:menuid/:id', {
+FlowRouter.route('/dgallery/:bigid/:id', {
   name: 'more.gallery',
   action() {
     BlazeLayout.render('App_body', { main: 'morepage', sub: 'gallery' });
   },
 });
 
-FlowRouter.route('/site/:biginput/:titleinput/:menuid/:id', {
+FlowRouter.route('/dsite/:bigid/:id', {
   name: 'more.site',
   action() {
     BlazeLayout.render('App_body', { main: 'morepage', sub: 'site' });
   },
 });
 
-FlowRouter.route('/people/:biginput/:titleinput/:menuid/:id', {
+FlowRouter.route('/dpeople/:bigid/:id', {
   name: 'more.people',
   action() {
     BlazeLayout.render('App_body', { main: 'morepage', sub: 'peoplepage' });
   },
 });
 
-FlowRouter.route('/map/:biginput/:titleinput/:menuid/:id', {
+FlowRouter.route('/dmap/:bigid/:id', {
   name: 'more.map',
   action() {
     BlazeLayout.render('App_body', { main: 'morepage', sub: 'map' });
   },
 });
 
-FlowRouter.route('/history/:biginput/:titleinput/:menuid/:id', {
+FlowRouter.route('/dhistory/:bigid/:id', {
   name: 'more.history',
   action() {
     BlazeLayout.render('App_body', { main: 'morepage', sub: 'timeline' });
   },
 });
 
-FlowRouter.route('/organization/:biginput/:titleinput/:menuid/:id', {
+FlowRouter.route('/dorganization/:bigid/:id', {
   name: 'more.tree',
   action() {
     BlazeLayout.render('App_body', { main: 'morepage', sub: 'tree' });
   },
 });
 
-FlowRouter.route('/content/:biginput/:titleinput/:menuid/:id', {
+FlowRouter.route('/dcontent/:bigid/:id', {
   name: 'more.content',
   action() {
     BlazeLayout.render('App_body', { main: 'morepage', sub: 'viewpage' });

@@ -9,8 +9,9 @@ import { Ip } from '../../api/ip.js';
 import './top.html';
 
 Template.top.onCreated(function navOnCreated() {
-  this.getMoreTitle = () => FlowRouter.getParam('biginput');
-  this.getMoreId = () => FlowRouter.getParam('menuid');
+  this.getMoreId = () => FlowRouter.getParam('bigid');
+  let id = this.getMoreId();
+  this.getMoreTitle = () => Menus.findOne({_id: id}).name;
 });
 
 Template.top.onRendered(function navOnRendered() {
@@ -46,37 +47,37 @@ Template.toptab.events({
     $(".active").removeClass("active");
     $(target).addClass("active");
     const instance = Template.instance();
-    const contenttitle = instance.data.name;
+    const id = instance.data._id;
     const menutype = instance.data.type;
     const biginput = Session.get('biginput');
     const menuid = Session.get('menuid');
     switch (menutype) {
       case "board":
-          FlowRouter.go('more.board', { biginput: biginput, menuid: menuid, titleinput: contenttitle });
+          FlowRouter.go('more.board', { bigid: menuid, id: id });
           break;
       case "gallery":
-          FlowRouter.go('more.gallery', { biginput: biginput, menuid: menuid, titleinput: contenttitle });
+          FlowRouter.go('more.gallery', { bigid: menuid, id: id });
           break;
       case "people":
-          FlowRouter.go('more.people', { biginput: biginput, menuid: menuid, titleinput: contenttitle });
+          FlowRouter.go('more.people', { bigid: menuid, id: id });
           break;
       case "site":
-          FlowRouter.go('more.site', { biginput: biginput, menuid: menuid, titleinput: contenttitle });
+          FlowRouter.go('more.site', { bigid: menuid, id: id });
           break;
       case "history":
-          FlowRouter.go('more.history', { biginput: biginput, menuid: menuid, titleinput: contenttitle });
+          FlowRouter.go('more.history', { bigid: menuid, id: id });
           break;
       case "map":
-          FlowRouter.go('more.map', { biginput: biginput, menuid: menuid, titleinput: contenttitle });
+          FlowRouter.go('more.map', { bigid: menuid, id: id });
           break;
       case "tree":
-          FlowRouter.go('more.tree', { biginput: biginput, menuid: menuid, titleinput: contenttitle });
+          FlowRouter.go('more.tree', { bigid: menuid, id: id });
           break;
       case "content":
-          FlowRouter.go('more.content', { biginput: biginput, menuid: menuid, titleinput: contenttitle});
+          FlowRouter.go('more.content', { bigid: menuid, id: id });
           break;
       default:
-          FlowRouter.go('more.content', { biginput: biginput, menuid: menuid, titleinput: contenttitle});
+          FlowRouter.go('more.content', { bigid: menuid, id: id });
     }
   }
 });

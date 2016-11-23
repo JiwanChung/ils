@@ -8,6 +8,7 @@ import { Session } from 'meteor/session';
 import { contentRenderHold } from '../launch-screen.js';
 import { Ip } from '../../api/ip.js';
 
+import { Menus } from '../../api/menus.js';
 import { People } from '../../api/people.js';
 import './peoplepage.html';
 
@@ -15,7 +16,9 @@ import './peoplepage.html';
 import './app-not-found.js';
 
 Template.peoplepage.onCreated(function peopleOnCreated() {
-  this.getPeopleType = () => FlowRouter.getParam('titleinput');
+  this.getId = () => FlowRouter.getParam('id');
+  let id = this.getId();
+  this.getPeopleType = () => Menus.findOne({_id: id}).name;
 });
 
 Template.peoplepage.onRendered(function peopleOnRendered() {

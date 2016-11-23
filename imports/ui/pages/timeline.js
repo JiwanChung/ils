@@ -8,6 +8,7 @@ import { contentRenderHold } from '../launch-screen.js';
 
 import { Timeline } from '../../api/timeline.js';
 import { Ip } from '../../api/ip.js';
+import { Menus } from '../../api/menus.js';
 
 import './timeline.html';
 
@@ -15,7 +16,9 @@ import './timeline.html';
 import './app-not-found.js';
 
 Template.timeline.onCreated(function timelineOnCreated() {
-  this.getContentTitle = () => FlowRouter.getParam('titleinput');
+  this.getId = () => FlowRouter.getParam('id');
+  let id = this.getId();
+  this.getContentTitle = () => Menus.findOne({_id: id}).name;
   const type = this.getContentTitle();
   Session.set({
     type: type,

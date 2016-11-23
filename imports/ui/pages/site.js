@@ -8,6 +8,7 @@ import { Ip } from '../../api/ip.js';
 
 import { contentRenderHold } from '../launch-screen.js';
 
+import { Menus } from '../../api/menus.js';
 import { Site } from '../../api/site.js';
 import './site.html';
 
@@ -15,7 +16,9 @@ import './site.html';
 import './app-not-found.js';
 
 Template.site.onCreated(function siteOnCreated() {
-  this.getSiteType = () => FlowRouter.getParam('titleinput');
+  this.getId = () => FlowRouter.getParam('id');
+  let id = this.getId();
+  this.getSiteType = () => Menus.findOne({_id: id}).name;
 });
 
 Template.site.onRendered(function siteOnRendered() {

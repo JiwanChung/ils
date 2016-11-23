@@ -7,6 +7,8 @@ import { Session } from 'meteor/session';
 import { contentRenderHold } from '../launch-screen.js';
 
 import { Ip } from '../../api/ip.js';
+import { Menus } from '../../api/menus.js';
+
 
 import './admin2.html';
 
@@ -14,7 +16,9 @@ import './admin2.html';
 import './app-not-found.js';
 
 Template.admin2.onCreated(function ipOnCreated() {
-  this.getContentTitle = () => FlowRouter.getParam('titleinput');
+  this.getId = () => FlowRouter.getParam('id');
+  let id = this.getId();
+  this.getContentTitle = () => Menus.findOne({_id: id}).name;
 });
 
 Template.admin2.onRendered(function ipOnRendered() {

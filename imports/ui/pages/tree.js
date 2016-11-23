@@ -8,6 +8,7 @@ import { contentRenderHold } from '../launch-screen.js';
 
 import { Tree } from '../../api/tree.js';
 import { Ip } from '../../api/ip.js';
+import { Menus } from '../../api/menus.js';
 
 import './tree.html';
 
@@ -15,7 +16,9 @@ import './tree.html';
 import './app-not-found.js';
 
 Template.tree.onCreated(function treeOnCreated() {
-  this.getContentTitle = () => FlowRouter.getParam('titleinput');
+  this.getId = () => FlowRouter.getParam('id');
+  let id = this.getId();
+  this.getContentTitle = () => Menus.findOne({_id: id}).name;
   const type = this.getContentTitle();
   Session.set({
     type: type,

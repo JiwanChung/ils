@@ -6,6 +6,7 @@ import { Session } from 'meteor/session';
 
 import { Contentall } from '../../api/contentall.js';
 import { Ip } from '../../api/ip.js';
+import { Menus } from '../../api/menus.js';
 
 import { contentRenderHold } from '../launch-screen.js';
 
@@ -18,7 +19,9 @@ var transformer = require('delta-transform-html');
 
 
 Template.viewpage.onCreated(function contentShowPageOnCreated() {
-  this.getContentTitle = () => FlowRouter.getParam('titleinput');
+  this.getId = () => FlowRouter.getParam('id');
+  let id = this.getId();
+  this.getContentTitle = () => Menus.findOne({_id: id}).name;
   const type = this.getContentTitle();
   Session.set({
     type: type,
