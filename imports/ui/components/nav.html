@@ -81,12 +81,16 @@
                   {{> collapsiblemobile}}
                 </li>
               {{else}}
-                {{> genbtm}}
+                <li>
+                  {{> genbtm}}
+                </li>
               {{/if}}
               <hr>
             {{/each}}
 
-            {{> langmobile}}
+            <li>
+              {{> langmobile}}
+            </li>
           </ul>
         </ul>
       </div>
@@ -95,7 +99,7 @@
 </template>
 
 <template name="langmobile">
-  <div class="collapsible-header"><a href="#" style="font-weight: bold">언어</a></div>
+  <div class="collapsible-header"><a href="#" style="font-weight: bold">{{_ "lang"}}</a></div>
   <div class="collapsible-body">
     {{> langlink}}
   </div>

@@ -47,7 +47,10 @@ Template.bulletinpage.onRendered(function bulletinPageOnRendered() {
     let initialfilter = {
       filters: {
         type: type
-      }
+      },
+      sort: {
+        createdAt: -1
+      },
     };
     BulletinNewsPages.set(initialfilter);
     Session.set({
@@ -71,7 +74,7 @@ Template.bulletinpage.helpers({
     }
     const instance = Template.instance();
     const bulletintype = instance.getBulletinType();
-    return Bulletinall.find({type: bulletintype});
+    return Bulletinall.find({type: bulletintype}, {sort: {createdAt: -1}});
   },
   type() {
     FlowRouter.watchPathChange();
@@ -84,7 +87,7 @@ Template.bulletinpage.helpers({
   bulletinAll() {
     const instance = Template.instance();
     const bulletintype = instance.getBulletinType();
-    return Bulletinall.find({type: bulletintype});
+    return Bulletinall.find({type: bulletintype}, {sort: {createdAt: -1}});
   },
   change() {
     return Session.get('change');
@@ -120,6 +123,12 @@ Template.bulletindata.helpers({
     const thedate = date.toLocaleDateString();
     return thedate;
   },
+  concat() {
+    const instance = Template.instance();
+    const detail = instance.data.detail;
+    const concat = detail.slice(0, 25);
+    return concat;
+  },
 });
 
 Template.bulletinsee.helpers({
@@ -143,6 +152,19 @@ Template.bulletinsee.helpers({
   },
   alert(alert) {
     return alert == "on";
+  },
+  datafile() {
+    const id = Session.get("viewing");
+    const data = Bulletinall.findOne({_id: id});
+    const fileid = data.fileId;
+    const filedata = FileData.findOne({_id: fileid});
+    this.files = filedata.file;
+    let fileObj = [];
+    for (var i = 0; i < this.files.length; i++) {
+      let afile = this.files[i];
+      fileObj.push(afile.getFileRecord());
+    }
+    return fileObj;
   },
 });
 
@@ -204,5 +226,6 @@ Template.bulletinadd.events({
     // Clear form
     target.title.value = '';
     target.detail.value = '';
+    target.files.value = null;
   },
 });

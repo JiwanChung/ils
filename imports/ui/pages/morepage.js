@@ -39,6 +39,12 @@ Template.morepage.helpers({
     const instance = Template.instance();
     return viewtype = instance.getMoreId();
   },
+  ifmobile() {
+    if ($(window).width() < 600 ) {
+      return true;
+    }
+    return false;
+  },
 });
 
 

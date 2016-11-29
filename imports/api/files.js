@@ -2,7 +2,7 @@ import { Mongo } from 'meteor/mongo';
 import { FS } from 'meteor/cfs:base-package';
 
 export const Files = new FS.Collection("files", {
-  stores: [new FS.Store.FileSystem("files", {path: process.env.PWD + "/public/files"})]
+  stores: [new FS.Store.FileSystem("files", {path: process.cwd() + "/public/files"})]
 });
 
 if (Meteor.isServer) {

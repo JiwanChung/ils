@@ -42,9 +42,7 @@ Template.workit.events({
     console.log("clicked!");
     const instance = Template.instance();
     const contenttitle = instance.data.name;
-    const menutype = instance.data.type;
     const menuid = instance.data._id;
-    console.log(menutype + contenttitle);
-    FlowRouter.go('more.show', { biginput: contenttitle, menuid: menuid });
+    FlowRouter.go('more.show', { bigid: menuid });
   },
 });

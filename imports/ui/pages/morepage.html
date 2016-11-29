@@ -2,10 +2,19 @@
   {{>jumbo title=type}}
     <div class="row more">
       <div class="top col s12">
-        {{>top type=id}}
+        {{#if ifmobile}}
+          {{>top type=id}}
+        {{else}}
+          {{>topblank}}
+        {{/if}}
+
       </div>
       <div class="itmore col s12" id="itmore">
-        {{>side type=id}}
+        {{#if ifmobile}}
+
+        {{else}}
+          {{>side type=id}}
+        {{/if}}
         <div class="moremain col s12 m9 l10">
           {{>Moresin}}
         </div>
@@ -15,4 +24,11 @@
 
 <template name="Moresin">
   {{> Template.dynamic template=sub}}
+</template>
+
+<template name="topblank">
+  <div class="row toprow">
+    <div class="col topping s12">
+    </div>
+  </div>
 </template>

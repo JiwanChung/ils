@@ -8,9 +8,7 @@
           </div>
         </div>
       {{/each}}
-      {{#if ip}}
-      {{> addmainnews}}
-      {{/if}}
+
     </div>
   </div>
 </template>
@@ -19,6 +17,7 @@
   <div class="mainnews1">
     <ul class="collection with-header">
         <li class="collection-header"><h4>{{value}}</h4></li>
+        <hr>
         {{#each bbgun}}
           {{> newdetail}}
         {{/each}}
@@ -28,56 +27,14 @@
 
 <template name="newdetail">
   <li class="collection-item row mi flow-text">
-    <div class="col s3 l2 white-text bi bim">
-      {{title}}
-    </div>
-    <div class="col s9 l10 bi">
-      {{detail}}
+    <div class="boid">
+      <div class="bi bim">
+        {{title}}
+      </div>
+      <div class="bi bic">
+        <hr>
+        {{concat}}
+      </div>
     </div>
   </li>
-</template>
-
-<template name="addmainnews">
-  <div class="card">
-    <div class="card-content row">
-      <form class="mainnewsform">
-        <fieldset>
-        <div class="input-field col s12 op1">
-          <select name="first">
-            <option value="" disabled selected>고르세요</option>
-            {{#each newsatt}}
-              {{> option2}}
-            {{/each}}
-          </select>
-          <label>첫번째</label>
-        </div>
-        <div class="input-field col s12 op2">
-          <select name="second">
-            <option value="" disabled selected>고르세요</option>
-            {{#each newsatt}}
-              {{> option2}}
-            {{/each}}
-          </select>
-          <label>두번째</label>
-        </div>
-        <div class="input-field col s12 op3">
-          <select name="third">
-            <option value="" disabled selected>고르세요</option>
-            {{#each newsatt}}
-              {{> option2}}
-            {{/each}}
-          </select>
-          <label>세번째</label>
-        </div>
-        <button class="btn waves-effect waves-light col s12" type="button" name="action" id="submitnews">올리기
-          <i class="material-icons right">send</i>
-        </button>
-      </fieldset>
-      </form>
-    </div>
-  </div>
-</template>
-
-<template name="option2">
-  <option value="{{name}}">{{name}}</option>
 </template>

@@ -29,7 +29,7 @@
 
 .tagline {
   padding: 10px;
-  background-color: #3f51b5;
+  background-color: @tagline;
   padding-left: 3rem;
   padding-right: 3rem;
   opacity: 0.8;
@@ -46,7 +46,7 @@
 
 .tagcontent {
   padding: 10px;
-  background-color: #ffe0b2;
+  background-color: @tagline-sub;
   color: black;
   opacity: 0.8;
   padding-left: 2rem;
@@ -64,9 +64,12 @@
   display:inline-block;
 }
 
-.caption {
-  margin-top: 25rem;
-  margin-left: 45rem;
+.slider .slides li .caption {
+  bottom: 30%;
+  right: 20%;
+  top:auto;
+  left:auto;
+  width:auto;
 }
 
 .gradientoverlay {

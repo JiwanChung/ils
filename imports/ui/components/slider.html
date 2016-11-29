@@ -1,42 +1,26 @@
 <template name="slider">
   <div class="slider pickgradient">
     <ul class="slides">
-      <li>
-        <img width="100%" height="500px" src="{{c.url "slider1"}}"/> <!-- random image -->
-        <div class="caption left-align">
-          <div class="tagline">
-            <h3>hellow fellows!</h3>
-          </div>
-          <div class="tagcontent">
-            <div class="light text-lighten-1">Here's our small slogan.1</div>
-          </div>
-        </div>
-      </li>
-      <li>
-        <img width="100%" height="500px" src="{{c.url "slider2"}}"/> <!-- random image -->
-        <div class="caption left-align">
-          <div class="tagline">
-            <h3>hellow fellows!</h3>
-          </div>
-          <div class="tagcontent">
-            <div class="light text-lighten-1">Here's our small slogan.2</div>
-          </div>
-        </div>
-      </li>
-      <li>
-        <img width="100%" height="500px" src="{{c.url "slider3"}}"/> <!-- random image -->
-        <div class="caption left-align">
-          <div class="tagline">
-            <h3>hellow fellows!</h3>
-          </div>
-          <div class="tagcontent">
-            <div class="light text-lighten-1">Here's our small slogan.3</div>
-          </div>
-        </div>
-      </li>
+      {{#each dream}}
+        {{> aslide}}
+      {{/each}}
     </ul>
   </div>
-  <div class="gradientoverlay">p</div>
+  <div class="gradientoverlay"></div>
+</template>
+
+<template name="aslide">
+  <li>
+    <img width="100%" height="500px" src="{{url}}"/> <!-- random image -->
+    <div class="caption left-align">
+      <div class="tagline">
+        <h3>{{title}}</h3>
+      </div>
+      <div class="tagcontent">
+        <div class="light text-lighten-1">{{concatm}}</div>
+      </div>
+    </div>
+  </li>
 </template>
 
 <template name="addslider">

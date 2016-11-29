@@ -23,6 +23,7 @@ Template.searchnorm.events({
     console.log("searchtype"+ type);
     const coll = instance.data.coll;
     const value = $(event.target).val();
+    Session.set({keyword: value});
     let returneddata = [];
     function findit(ses) {
      return  ses.name.indexOf(value) >= 0;

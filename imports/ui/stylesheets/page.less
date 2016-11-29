@@ -1,6 +1,6 @@
 @my-green: #449D44;
 @my-red: #C9302C;
-@my-blue: #31B0D5;
+@my-blue: @color-sub;
 
 .box(@color){
   color: white;
@@ -19,15 +19,15 @@
 }
 
 .minus-button {
-  .box(#31B0D5);
+  .box(@color-sub);
 }
 
 .plus-button {
-  .box(#31B0D5);
+  .box(@color-sub);
 }
 
 .page-button, .first-button, .last-button {
-  .box(#31B0D5);
+  .box(@color-sub);
 }
 
 .bulletincenter {

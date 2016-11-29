@@ -14,9 +14,13 @@
                 </div>
                 <hr>
                 <div class="row">
-                  {{#each peoplesearch}}
-                    {{> peoplecard}}
-                  {{/each}}
+                  {{#if searchednot}}
+                    {{> peoplecat}}
+                  {{else}}
+                    {{#each peoplesearch}}
+                      {{> peoplecard}}
+                    {{/each}}
+                  {{/if}}
                 </div>
               </div>
             </div>
@@ -43,6 +47,10 @@
         <label for="input_text">이름</label>
       </div>
       <div class="input-field col s12">
+        <input id="input_text4" type="text" name="department">
+        <label for="input_text4">소속</label>
+      </div>
+      <div class="input-field col s12">
         <input id="input_text2" type="text" name="jobs">
         <label for="input_text2">직무</label>
       </div>
@@ -58,11 +66,6 @@
       <div class="input-field file-field col s12">
         <input type="file" class="dropify" name="thisfile" style="font-family: dropify" form="uploadform1"/>
       </div>
-      <p class="range-field">
-        <input type="range" id="input2" min="0" max="10" name="cat"/>
-        <label for="input2">우선순위</label>
-      </p>
-
       <button class="btn waves-effect waves-light submitit col s12" type="button" name="action" id="submitpeople">올리기
         <i class="material-icons right">send</i>
       </button>
@@ -75,7 +78,9 @@
     <a href="#">
       <div class="card waves-effect waves-block waves-light" name="{{_id}}">
         <div class="card-image">
-          <img src="{{c.private_url id}}"/>
+          {{#with image}}
+            <img class="materialboxed" width="300" src="{{this.url store='images'}}">
+          {{/with}}
           <span class="card-title"></span>
         </div>
           <div class="row">
@@ -91,4 +96,20 @@
       </div>
     </a>
   </div>
+</template>
+
+<template name="peoplecat">
+  {{#each cat}}
+  <div class="section col s12">
+    <h4>{{name}}</h4>
+    <hr>
+    {{> peopleeach datum=datum}}
+  </div>
+  {{/each}}
+</template>
+
+<template name="peopleeach">
+  {{#each people}}
+    {{> peoplecard}}
+  {{/each}}
 </template>

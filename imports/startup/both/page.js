@@ -4,5 +4,6 @@ this.BulletinNewsPages = new Meteor.Pagination(Bulletinall, {
   itemTemplate: "bulletindata",
   availableSettings: {
       filters: true,
+      sort: true,
     },
 });

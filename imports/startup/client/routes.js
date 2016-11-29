@@ -1,6 +1,5 @@
 import { FlowRouter } from 'meteor/kadira:flow-router';
 import { BlazeLayout } from 'meteor/kadira:blaze-layout';
-import { Materialize } from 'meteor/materialize:materialize';
 
 // Import to load these templates
 import '../../ui/layouts/app-body.js';
@@ -131,7 +130,7 @@ FlowRouter.route('/admin2', {
 FlowRouter.route('/more/:bigid', {
   name: 'more.show',
   action() {
-    BlazeLayout.render('App_body', { main: 'morepage' });
+    BlazeLayout.render('App_body', { main: 'morepage'});
   },
 });
 

@@ -47,8 +47,14 @@
         <textarea id="textarea1" class="materialize-textarea" name="detail"></textarea>
         <label for="textarea1">내용</label>
       </div>
-      <div class="input-field file-field col s12">
-        <input type="file" class="dropify" name="thisfile" style="font-family: dropify" form="uploadform1"/>
+      <div class="file-field input-field col s12">
+        <div class="btn">
+          <span>파일</span>
+          <input type="file" name="files" multiple>
+        </div>
+        <div class="file-path-wrapper">
+          <input class="file-path validate" type="text" placeholder="파일을 올려주세요">
+        </div>
       </div>
 
       <button class="btn waves-effect waves-light submitit col s12" type="button" name="action" id="submitgall">올리기
@@ -59,11 +65,17 @@
 </template>
 
 <template name="imagecard">
-  <div class="col s12 m6 l4 noclick" id="{{_id}}">
+  <div class="col s12 m6 l6 noclick" id="{{_id}}">
     <a href="#">
       <div class="card cardg waves-effect waves-block waves-light" name="{{_id}}">
         <div class="card-image">
-          <img src="{{c.private_url id}}"/>
+          {{#if clicked _id}}
+            {{> carousel images=images}}
+          {{else}}
+            {{#with animage}}
+              <img class="materialboxed" width="300" src="{{this.url store='images'}}">
+            {{/with}}
+          {{/if}}
           <span class="card-title"></span>
         </div>
         <div class="card-content">

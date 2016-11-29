@@ -8,6 +8,8 @@ import { Session } from 'meteor/session';
 import { contentRenderHold } from '../launch-screen.js';
 import { Ip } from '../../api/ip.js';
 import { Menus } from '../../api/menus.js';
+import { Images } from '../../api/images.js';
+import { ImageData } from '../../api/imagedata.js';
 
 import { Galleryall } from '../../api/galleryall.js';
 import './gallery.html';
@@ -19,6 +21,7 @@ Template.gallery.onCreated(function gallOnCreated() {
   this.getId = () => FlowRouter.getParam('id');
   let id = this.getId();
   this.getGalleryType = () => Menus.findOne({_id: id}).name;
+  Session.set({clicky: null});
 });
 
 Template.gallery.onRendered(function gallOnRendered() {
@@ -42,7 +45,6 @@ Template.addgall.onRendered(function addgallOnRendered() {
         $("input[id='submitgall']").click();
   });
 });
-
 
 Template.gallery.helpers({
   // We use #each on an array of one item so that the "list" template is
@@ -80,6 +82,33 @@ Template.imagecard.helpers({
     const id = instance.data._id;
     return "secret/" + id;
   },
+  images() {
+    const instance = Template.instance();
+    const id = instance.data.fileId;
+    const data = ImageData.findOne({_id: id});
+    this.files = data.file;
+    let fileObj = [];
+    for (var i = 0; i < this.files.length; i++) {
+      let afile = this.files[i];
+      fileObj.push(afile.getFileRecord());
+    }
+    return fileObj;
+  },
+  clicked(param) {
+    if (Session.get('clicky') == param) {
+      return true;
+    }
+    return false;
+  },
+  animage() {
+    const instance = Template.instance();
+    const id = instance.data.fileId;
+    const data = ImageData.findOne({_id: id});
+    this.files = data.file;
+    let afile = this.files[0];
+    afile.getFileRecord();
+    return afile;
+  },
 });
 
 Template.imagecard.events({
@@ -89,12 +118,13 @@ Template.imagecard.events({
     const id = instance.data._id;
     const target = $("#"+id);
     if ( !target.hasClass("active") ) {
-      $(".active1").removeClass( "s12 m12 l8 active1" ).addClass( "s12 m6 l4" );
+      $(".active1").removeClass( "s12 m12 l12 active1" ).addClass( "s12 m6 l6" );
       $(".activecard1").removeClass("large activecard1").addClass("medium");
 
-      $("#"+id).removeClass( "s12 m6 l4" ).addClass( "s12 m12 l8 active1" );
+      $("#"+id).removeClass( "s12 m6 l6" ).addClass( "s12 m12 l12 active1" );
       $(id).removeClass("medium").addClass("large activecard1");
       $("#" + id + " .ishidden").show();
+      Session.set({clicky: id});
     }
   },
   'click .noclick'(e) {
@@ -105,8 +135,9 @@ Template.imagecard.events({
 Template.gallery.events({
   'click .gallerywrapper'(e) {
     $(".active1 .ishidden").hide();
-    $(".active1").removeClass( "s12 m12 l8 active1" ).addClass( "s12 m6 l4" );
+    $(".active1").removeClass( "s12 m12 l12 active1" ).addClass( "s12 m6 l6" );
     $(".activecard1").removeClass("large activecard1").addClass("medium");
+    Session.set({clicky: null});
   },
 });
 
@@ -117,31 +148,41 @@ Template.addgall.events({
     const target = event.target;
     const name = target.name.value;
     const detail = target.detail.value;
-    const thisfile = target.thisfile.files[0];
     const instance = Template.instance();
     const type = instance.data.type;
 
+    this.files = target.files.files;
+
     Session.set({name: name});
 
+    let fileId = null;
+    if (this.files[0] != null) {
+      let fileObj = [];
+      for (var i = 0; i < this.files.length; i++) {
+        fileObj.push(Images.insert(this.files[i]));
+      }
+      //console.log("name:" + this.filename);
+      //console.log("file:" + this.thisfile.name);
+      console.log("array"+fileObj[0]);
+      fileId = ImageData.insert({
+        name: name,
+        file: fileObj
+      });
+    }
+    console.log(fileId);
 
-    const id = Galleryall.insert({
+    // Insert a task into the collection
+    Galleryall.insert({
       name: name,
       detail: detail,
-      type: type
+      type: type,
+      fileId: fileId,
+      createdAt: new Date(), // current time
     });
-    console.log(name);
-    Cloudinary._upload_file(thisfile, {
-        public_id: id,
-        type: "private",
-        folder: "secret"
-      },
-      function(err, res) {
-        console.log("Upload Error: " + err);
-        console.log(res);
-    });
+
     target.name.value = '';
     target.detail.value = '';
-    $(".dropify-clear").click();
+    target.files.value = null;
   },
   'click #submitgall'(event) {
     event.preventDefault();

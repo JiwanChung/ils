@@ -22,7 +22,10 @@ let setbulletin = function(val, type) {
         val
       },
       type: type
-    }
+    },
+    sort: {
+      createdAt: -1
+    },
   };
   return filter;
 };
@@ -34,7 +37,10 @@ let setbulletinc = function(val, type) {
         val
       },
       type: type
-    }
+    },
+    sort: {
+      createdAt: -1
+    },
   };
   return filter;
 };
@@ -43,7 +49,10 @@ let setbulletine = function(type) {
   const filter = {
     filters: {
       type: type
-    }
+    },
+    sort: {
+      createdAt: -1
+    },
   };
   return filter;
 };

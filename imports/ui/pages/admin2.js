@@ -37,6 +37,9 @@ Template.admin2.helpers({
     const sip = Session.get('ip');
     return Ip.findOne({ip: sip}) ? true : false;
   },
+  seeip() {
+    return Session.get('ip');
+  }
 });
 
 Template.showipa.helpers({

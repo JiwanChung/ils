@@ -42,7 +42,6 @@ materialize:materialize
 tap:i18n-db
 jalik:ufs-local
 cfs:standard-packages
-cfs:filesystem
 cfs:ejson-file
 tmeasday:publish-counts
 aldeed:collection2
@@ -51,3 +50,4 @@ gildaspk:autoform-materialize
 alethes:pages
 lepozepo:cloudinary
 tomwasd:history-polyfill
+skaro:filesystem

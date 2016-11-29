@@ -2,6 +2,8 @@ import { Template } from 'meteor/templating';
 import { FlowRouter } from 'meteor/kadira:flow-router';
 import { _ } from 'meteor/underscore';
 import { $ } from 'meteor/jquery';
+import { Materialize } from 'meteor/materialize:materialize';
+
 
 import { Contentall } from '../../api/contentall.js';
 
@@ -15,6 +17,7 @@ import './app-not-found.js';
 import '../components/slider.js';
 import '../components/mainnews.js';
 import '../components/mainparallax.js';
+import '../components/panel.js';
 
 Template.homepage.onCreated(function contentShowPageOnCreated() {
 });
@@ -29,6 +32,7 @@ Template.homepage.onRendered(function contentShowPageOnRendered() {
     full_width: false,
     height: 1000
   });
+  $('.helpmess').parallax();
 });
 
 Template.homepage.helpers({
@@ -39,6 +43,12 @@ Template.homepage.helpers({
     const instance = Template.instance();
     const contenttitle = instance.getContentTitle();
     return Contentall.find({});
+  },
+  ifmobile() {
+    if ($(window).width() < 600 ) {
+      return true;
+    }
+    return false;
   },
 });
 

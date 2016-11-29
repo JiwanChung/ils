@@ -1,11 +1,18 @@
 <template name="homepage">
+  {{#if ifmobile}}
   <div>
     {{> slider}}
   </div>
+  {{else}}
+    <div>
+      {{> slider}}
+    </div>
+  {{/if}}
   <div class="navbottom">
     {{> mainnews}}
     {{> mainparallax}}
     {{> maingroup}}
+    {{> panel}}
   </div>
 </template>
 

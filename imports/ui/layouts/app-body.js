@@ -12,7 +12,7 @@ import { $ } from 'meteor/jquery';
 import { Pages } from 'meteor/alethes:pages';
 import { Cloudinary } from 'meteor/lepozepo:cloudinary';
 import { Session } from 'meteor/session';
-
+import { Materialize } from 'meteor/materialize:materialize';
 
 import 'dropify/dist/js/dropify.js';
 import 'dropify/dist/css/dropify.css';
@@ -34,6 +34,9 @@ import '../components/searchnorm.js';
 import '../components/top.js';
 import '../components/side.js';
 import '../components/maingroup.js';
+import '../components/carousel.js';
+import '../components/grouptab.js';
+import '../components/panel.js';
 
 const CONNECTION_ISSUE_TIMEOUT = 5000;
 
@@ -74,6 +77,7 @@ Template.App_body.onCreated(function appBodyOnCreated() {
     if(error){
       //Error handling code
     } else {
+      console.log(result);
       Session.set("ip", result);
     }
   });

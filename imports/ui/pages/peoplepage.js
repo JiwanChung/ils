@@ -10,6 +10,7 @@ import { Ip } from '../../api/ip.js';
 
 import { Menus } from '../../api/menus.js';
 import { People } from '../../api/people.js';
+import { Images } from '../../api/images.js';
 import './peoplepage.html';
 
 // Components used inside the template
@@ -59,9 +60,18 @@ Template.peoplepage.helpers({
   peoplesearch() {
     const ses = Session.get("searched");
     if ( ses != null ) {
-      return ses.sort({rank: 1});
+      return ses;
     } else {
-      return People.find({}).sort({rank: 1});
+      return People.find({});
+    }
+  },
+  searchednot() {
+    const ses = Session.get("keyword");
+    console.log(ses);
+    if ( ses == null || ses=="" ) {
+      return true;
+    } else {
+      return false;
     }
   },
   ip() {
@@ -75,6 +85,35 @@ Template.peoplecard.helpers({
     const instance = Template.instance();
     const id = instance.data._id;
     return "secret/" + id;
+  },
+  image() {
+    const instance = Template.instance();
+    let afile = instance.data.fileId;
+    afile.getFileRecord();
+    return afile;
+  },
+});
+
+Template.peoplecat.helpers({
+  cat() {
+    let list = ["원장", "부원장", "연구원", "결송입안팀", "행정실", "SSK사업단", "의료기술과학과 법 센터", "아시아 법 센터"];
+    let result = [];
+    for (let i = 0; i < list.length; i++) {
+      let objecty = {};
+      objecty.name = list[i];
+      const datum = People.find({department: objecty.name}).fetch();
+      objecty.datum = datum;
+      result.push(objecty);
+    }
+    return result;
+  },
+});
+
+Template.peopleeach.helpers({
+  people() {
+    const instance = Template.instance();
+    const ous = instance.data.datum;
+    return ous;
   },
 });
 
@@ -115,34 +154,26 @@ Template.addpeople.events({
     const journals = target.journals.value;
     const jobs = target.jobs.value;
     const detail = target.detail.value;
-    const cat = target.cat.value;
+    const depart = target.department.value;
     const thisfile = target.thisfile.files[0];
+    const fileId = Images.insert(thisfile);
 
-    Session.set({name: name});
-
-
-    const id = People.insert({
+    People.insert({
       name: name,
       detail: detail,
       job: jobs,
       journal: journals,
-      rank: cat
+      department: depart,
+      fileId: fileId,
+      createdAt: new Date(), // current time
     });
+    Session.set({name: name});
     console.log(name);
-    Cloudinary._upload_file(thisfile, {
-        public_id: id,
-        type: "private",
-        folder: "secret"
-      },
-      function(err, res) {
-        console.log("Upload Error: " + err);
-        console.log(res);
-    });
     target.name.value = '';
     target.detail.value = '';
     target.journals.value = '';
     target.jobs.value = '';
-    target.cat.value = '';
+    target.department.value = '';
     $(".dropify-clear").click();
   },
   'click #submitpeople'(event) {
