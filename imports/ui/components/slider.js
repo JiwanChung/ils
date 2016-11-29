@@ -14,7 +14,7 @@ Template.slider.onCreated(function asOnCreated() {
 Template.aslide.onRendered(function asOnRendered() {
   $('.slider').slider({
     full_width: false,
-    height: 1000
+    height: 500
   });
 });
 

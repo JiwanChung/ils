@@ -62,7 +62,7 @@ Template.App_body.onCreated(function appBodyOnCreated() {
   //this.subscribe('lists.public');
   //this.subscribe('lists.private');
   this.autorun(() => {
-    $(window).scroll(function(scroll) {
+    /*$(window).scroll(function(scroll) {
   		var navStart = $('.contentpage').offset().top;
   		var scroll = $(window).scrollTop();
   		if (scroll > navStart + 370) {
@@ -70,7 +70,7 @@ Template.App_body.onCreated(function appBodyOnCreated() {
   		} else {
   			$('nav').removeClass('opaque');
   		}
-  	});
+  	});*/
   });
   this.state = new ReactiveDict();
   Meteor.call('getIP', function(error, result){

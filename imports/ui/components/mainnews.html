@@ -1,14 +1,15 @@
 <template name="mainnews">
-  <div class="row">
-    <div class="col s12 m10 l8 offset-m1 offset-l2 minsw">
+  <div class="row hmm">
+    <div class="why">
       {{#each bulletin}}
-        <div class="card">
+      <div class="col s6 minsw">
+        <div class="card z-depth-2">
           <div class="card-content">
           {{> mainnews1}}
           </div>
         </div>
+      </div>
       {{/each}}
-
     </div>
   </div>
 </template>

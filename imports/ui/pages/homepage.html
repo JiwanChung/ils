@@ -1,19 +1,22 @@
 <template name="homepage">
-  {{#if ifmobile}}
-  <div>
-    {{> slider}}
-  </div>
-  {{else}}
-    <div>
-      {{> slider}}
+  <div class="row whats">
+    <div class="col s12 m12 l8">
+      {{#if ifmobile}}
+      <div>
+        {{> slider}}
+      </div>
+      {{else}}
+        <div>
+          {{> slider}}
+        </div>
+      {{/if}}
     </div>
-  {{/if}}
-  <div class="navbottom">
-    {{> mainnews}}
-    {{> mainparallax}}
-    {{> maingroup}}
-    {{> panel}}
+    <div class="col s12 m12 l4">
+      {{> maingroup}}
+    </div>
   </div>
+  {{> mainnews}}
+  {{> panel}}
 </template>
 
 <template name="addit">

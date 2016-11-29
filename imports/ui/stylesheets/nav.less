@@ -1,9 +1,7 @@
 nav {
-    height: 100px;
-    line-height: 100px;
     margin: 0 auto;
-    background-color: transparent;
     opacity: 1;
+    background-color: @menu-color;
     transition:opacity 0.3s;
     box-shadow: 0px 0px 0px #888888;
 }
@@ -28,26 +26,12 @@ nav .brand-logo {
     font-size: 1.6rem;
 }
 
-@media only screen and (min-width: 993px){
-    nav, nav .nav-wrapper i, nav a.button-collapse, nav a.button-collapse i {
-        height: 120px;
-        line-height: 120px;
-        margin: 0 auto;
-    }
-    nav .brand-logo {
-        font-size: 2rem;
-        font-weight: bold;
-        margin-left: 5rem;
-    }
-    .navbar-fixed {
-      height: 120px;
-    }
-}
+
 
 nav, nav .nav-wrapper i, nav a.button-collapse, nav a.button-collapse i {
   margin: 0 auto;
-  height: 120px;
-  line-height: 120px;
+  height: 80px;
+  line-height: 80px;
 }
 
 nav .nav-wrapper i {
@@ -60,16 +44,46 @@ nav .nav-wrapper i {
 
 .nav-wrapper .dropdown-button {
   font-size: 1.3rem;
-  padding-right: 4rem;
-  padding-left: 4rem;
+  padding-right: 1rem;
+  padding-left: 1rem;
 }
 
 .nav-wrapper .dropdown-content {
-  margin-top: 120px;
+  margin-top: 80px;
 }
 
 .nav-wrapper .gen-button {
   font-size: 1.3rem;
-  padding-right: 4rem;
-  padding-left: 4rem;
+  padding-right: 1rem;
+  padding-left: 1rem;
+}
+
+.hide-on-med-and-down {
+  height: 40px;
+}
+
+@media only screen and (min-width: 993px){
+    nav, nav .nav-wrapper i, nav a.button-collapse, nav a.button-collapse i {
+        height: 80px;
+        line-height: 80px;
+        margin: 0 auto;
+    }
+    nav .brand-logo {
+        font-size: 2rem;
+        font-weight: bold;
+        margin-left: 4rem;
+    }
+}
+
+@media only screen and (min-width: 1580px){
+  .nav-wrapper .dropdown-button {
+    font-size: 1.3rem;
+    padding-right: 3rem;
+    padding-left: 3rem;
+  }
+  .nav-wrapper .gen-button {
+    font-size: 1.3rem;
+    padding-right: 3rem;
+    padding-left: 3rem;
+  }
 }

@@ -30,7 +30,7 @@ Template.homepage.onRendered(function contentShowPageOnRendered() {
   });
   $('.slider').slider({
     full_width: false,
-    height: 1000
+    height: 500
   });
   $('.helpmess').parallax();
 });

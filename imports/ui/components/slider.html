@@ -1,12 +1,11 @@
 <template name="slider">
   <div class="slider pickgradient">
-    <ul class="slides">
+    <ul class="slides z-depth-2">
       {{#each dream}}
         {{> aslide}}
       {{/each}}
     </ul>
   </div>
-  <div class="gradientoverlay"></div>
 </template>
 
 <template name="aslide">
