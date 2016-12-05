@@ -1,0 +1,61 @@
+<template name="mainupdate">
+  {{>jumbo title="슬라이드"}}
+  <div class="navbottom">
+    <div class="section row">
+      <div class="col s12 m8 l8 offset-l2 offset-m2">
+        <h1>슬라이드 수정 페이지</h1>
+        <hr>
+      </div>
+    </div>
+    {{#if ip}}
+      <div class="section row">
+        <div class="col s12 m8 l8 offset-l2 offset-m2">
+          {{> slider}}
+          <h3>슬라이드 메뉴</h3>
+          <div class="row">
+          {{#each add}}
+            <div class="col s12 m6 l4">
+              <div>
+              {{> mainadd type=type}}
+              </div>
+            </div>
+          {{/each}}
+          </div>
+        </div>
+      </div>
+    {{/if}}
+  </div>
+</template>
+
+<template name="mainadd">
+  {{#with image}}
+    <img src="{{this.url store='images'}}" style="width:100%"/>
+  {{/with}}
+
+  <form name="main" class="newform{{type}}" id="newform{{type}}">
+    <fieldset>
+      <div class="input-field col s6">
+        <input id="input_text1" type="text" length="10" class="validate" name="nameko">
+        <label for="input_text1">제목</label>
+      </div>
+      <div class="input-field col s6">
+        <input id="input_text1" type="text" length="10" class="validate" name="conko">
+        <label for="input_text1">내용</label>
+      </div>
+      <div class="input-field col s6">
+        <input id="input_text2" type="text" length="10" class="validate" name="nameen">
+        <label for="input_text2">Title</label>
+      </div>
+      <div class="input-field col s6">
+        <input id="input_text2" type="text" length="10" class="validate" name="conen">
+        <label for="input_text2">Content</label>
+      </div>
+      <div class="input-field file-field col s12">
+        <input type="file" class="dropify" name="thisfile" style="font-family: dropify" form="newform{{type}}"/>
+      </div>
+      <button class="btn waves-effect waves-light sendform" type="submit" id="submitnew{{type}}" name="action">제출
+        <i class="material-icons right">send</i>
+      </button>
+    </fieldset>
+  </form>
+</template>

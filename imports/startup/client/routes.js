@@ -18,6 +18,7 @@ import '../../ui/pages/map.js';
 import '../../ui/pages/site.js';
 import '../../ui/pages/admin.js';
 import '../../ui/pages/admin2.js';
+import '../../ui/pages/mainupdate.js';
 
 // Import to override accounts templates
 //import '../../ui/accounts/accounts-templates.js';
@@ -110,6 +111,13 @@ FlowRouter.route('/menu', {
   name: 'menu.update',
   action() {
     BlazeLayout.render('App_body', { main: 'menuupdate' });
+  },
+});
+
+FlowRouter.route('/slide', {
+  name: 'slide.update',
+  action() {
+    BlazeLayout.render('App_body', { main: 'mainupdate' });
   },
 });
 

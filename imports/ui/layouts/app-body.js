@@ -133,4 +133,7 @@ Template.mainbutton.events({
   'click #toadminpage'(e){
     FlowRouter.go('admin.show', { password: "dwedwewewqscxc" });
   },
+  'click #slideupdate'(e){
+    FlowRouter.go('slide.update', { password: "dwedwewewqscxc" });
+  },
 });
