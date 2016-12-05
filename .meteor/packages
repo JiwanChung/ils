@@ -50,5 +50,6 @@ gildaspk:autoform-materialize
 alethes:pages
 lepozepo:cloudinary
 tomwasd:history-polyfill
-skaro:filesystem
 http
+numtel:mysql
+cfs:filesystem

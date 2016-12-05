@@ -85,6 +85,7 @@ Template.collapsiblemobile.helpers({
 });
 
 var theroute = function(menutype, menuid) {
+  let thisob, thisid;
   switch (menutype) {
     case "board":
         FlowRouter.go('bulletins.show', { id: menuid });
@@ -108,13 +109,31 @@ var theroute = function(menutype, menuid) {
         FlowRouter.go('tree.show', { id: menuid });
         break;
     case "journal":
-        FlowRouter.go('more.show', { bigid: menuid });
+        thisob = Menus.find({parent: menuid, name:'소개'}).fetch();
+        thisid = thisob[0]._id;
+        if(!thisid) {
+          thisob = Menus.findOne({parent: menuid});
+          thisid = thisob._id;
+        }
+        FlowRouter.go('more.content', { bigid: menuid, id: thisid });
         break;
     case "business":
-        FlowRouter.go('more.show', { bigid: menuid });
+        thisob = Menus.find({parent: menuid, name:'소개'}).fetch();
+        thisid = thisob[0]._id;
+        if(!thisid) {
+          thisob = Menus.findOne({parent: menuid});
+          thisid = thisob._id;
+        }
+        FlowRouter.go('more.content', { bigid: menuid, id: thisid });
         break;
     case "center":
-        FlowRouter.go('more.show', { bigid: menuid });
+        thisob = Menus.find({parent: menuid, name:'소개'}).fetch();
+        thisid = thisob[0]._id;
+        if(!thisid) {
+          thisob = Menus.findOne({parent: menuid});
+          thisid = thisob._id;
+        }
+        FlowRouter.go('more.content', { bigid: menuid, id: thisid });
         break;
     default:
         FlowRouter.go('contents.show', { id: menuid });

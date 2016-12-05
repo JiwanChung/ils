@@ -130,7 +130,7 @@ FlowRouter.route('/admin2', {
 FlowRouter.route('/more/:bigid', {
   name: 'more.show',
   action() {
-    BlazeLayout.render('App_body', { main: 'morepage'});
+    BlazeLayout.render('App_body', { main: 'morepage', sub: 'viewpage'});
   },
 });
 

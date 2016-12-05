@@ -12,3 +12,4 @@ import './security.js';
 import './register-api.js';
 import './cfs.js';
 import './cloudinary.js';
+import './mysql.js';

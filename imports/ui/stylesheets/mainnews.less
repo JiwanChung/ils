@@ -15,15 +15,21 @@
 }
 
 .newscardone {
-  background-color: #eeeeee;
+  background-color: @color-news;;
   padding: 2rem;
 }
 
+.why .col .card {
+  background-color: @color-news;
+}
+
 .mainnews1 .collection.with-header {
+  background-color: @color-news;
   margin:0;
 }
 
 .mainnews1 .collection.with-header hr{
+  color:@color-sub;
   margin-top: 0;
 }
 
@@ -32,11 +38,12 @@
 }
 
 .mainnews1 .collection.with-header .boid {
+  background-color: @color-news;
   padding-left: 1rem;
 }
 
 .mainnews1 .collection.with-header .collection-header {
-  background-color: white;
+  background-color: @color-news;
   color: black;
   font-size: 3rem;
 }
@@ -50,15 +57,20 @@
   padding: 10px;
 }
 
+.collection .mi .bi hr{
+  color: @color-sub;
+
+}
+
 
 .collection .mi .bim{
-  background-color: white;
+  background-color: @color-news;
   font-weight: bold;
   font-size: 1.5rem;
 }
 
 .collection .mi .bic{
-  background-color: white;
+  background-color: @color-news;
   padding-left: 5rem;
   padding-top: 0;
   font-size: 1.2rem;
@@ -77,6 +89,8 @@
 
 .minsw .card {
   margin: 0;
+  border-color: @color-sub;
+  border-style: solid;
 }
 
 .contentpage .row .minsw {

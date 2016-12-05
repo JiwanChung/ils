@@ -1,6 +1,7 @@
 <template name="jumbo">
   <div class="card jumbocard">
     <div class="card-image jumboimage">
+      {{#if more}}
       {{#if jumbos}}
       {{#with jumbos}}
         {{> jumboimage}}
@@ -9,6 +10,7 @@
         {{> jumboblank}}
       {{/if}}
       <span class="card-title jumbotitle"><div class="tagline"><h2>{{title}}</h2></div></span>
+      {{/if}}
     </div>
   </div>
 </template>
