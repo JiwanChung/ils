@@ -36,16 +36,6 @@ Template.tree.onRendered(function treeOnRendered() {
 });
 
 Template.addtree.onRendered(function treeOnRendered() {
-  $('.dropify').dropify(
-    {
-      messages: {
-          'default': '파일을 드래그하거나 클릭하세요.',
-          'replace': '파일을 바꾸려면 파일을 드래그하거나 클릭하세요.',
-          'remove':  '지우기',
-          'error':   '파일 형식 오류'
-      }
-  }
-  );
   $("input[type='image']").click(function(e) {
         e.preventDefault();
         e.stopPropagation();
@@ -65,7 +55,7 @@ Template.tree.helpers({
   ip() {
     const sip = Session.get('ip');
     return Ip.findOne({ip: sip}) ? true : false;
-  },
+  }
 });
 
 /*
@@ -78,6 +68,26 @@ Template.mytree.helpers({
   },
 });*/
 
+Template.chart.helpers({
+  charts() {
+    let list = [];
+    const diesem = Tree.find({top: ""}).fetch();
+    for (i = 0; i < diesem.length; i++) {
+      const top = diesem[i].name;
+      const tor = Tree.find({top: top}).fetch();
+      const obj = {
+        top: top,
+        tor: tor
+      }
+      list.push(obj);
+    }
+    return list;
+  }
+});
+
+Template.achart.helpers({
+
+});
 
 
 Template.chart.events({
@@ -91,30 +101,20 @@ Template.addtree.events({
     event.preventDefault();
 
     const target = event.target;
-    const name = target.name.value;
-    const detail = target.detail.value;
-    const year = target.year.value;
-    const thisfile = target.thisfile.files[0];
-
-    const id = Tree.insert({
-      name: name,
-      detail: detail,
-      year: year,
+    const nameko = target.nameko.value;
+    const nameen = target.nameen.value;
+    const top = target.top.value;
+    Tree.insertTranslations({
+      name: nameko,
+      top: top
+      }, {
+      en: {
+          name: nameen
+      }
     });
-    console.log(name);
-    Cloudinary._upload_file(thisfile, {
-        public_id: id,
-        type: "private",
-        folder: "secret"
-      },
-      function(err, res) {
-        console.log("Upload Error: " + err);
-        console.log(res);
-    });
-    target.name.value = '';
-    target.detail.value = '';
-    target.year.value = '';
-    $(".dropify-clear").click();
+    target.nameko.value = '';
+    target.nameen.value = '';
+    target.top.value = '';
   },
   'click #submittree'(event) {
     event.preventDefault();

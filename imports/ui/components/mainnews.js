@@ -24,19 +24,6 @@ Template.mainnews.onRendered(function mainnewsOnRendered() {
 
 
 Template.mainnews.helpers({
-  bulletin() {
-    const bulletins = [
-      {
-        name: "first",
-        value: "소식"
-      },
-      {
-        name: "second",
-        value: "행사 소식"
-      },
-    ];
-    return bulletins;
-  },
   ip() {
     const sip = Session.get('ip');
     return Ip.findOne({ip: sip}) ? true : false;
@@ -45,8 +32,15 @@ Template.mainnews.helpers({
 
 Template.mainnews1.helpers({
   bbgun() {
-    const instance = Template.instance();
-    const type = instance.data.value;
+    const type = "소식";
+    const bulletin = Bulletinall.find({type: type}, {sort: {createdAt: -1}, limit: 3 }).fetch();
+    return bulletin;
+  },
+});
+
+Template.mainnews2.helpers({
+  bbgun() {
+    const type = "행사 소식";
     const bulletin = Bulletinall.find({type: type}, {sort: {createdAt: -1}, limit: 3 }).fetch();
     return bulletin;
   },

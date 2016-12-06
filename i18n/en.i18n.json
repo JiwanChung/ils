@@ -1,5 +1,15 @@
 { "ils": "Yonsei Institute of Law Studies",
   "lang": "Language",
+  "mapoffice": "서울특별시 서대문구 연세로 50 연세대학교 학술정보원 7층 법학연구원",
+  "business": "Business",
+  "center": "Centres",
   "agree": "Agree",
-  "personalinforule": "Personal Information"
+  "personalinforule": "Personal Information",
+  "director": "Director",
+  "administration": "Administration Office",
+  "assidirec": "Assistant Director",
+  "webyonseihome": "Yonsei Univ. Home",
+  "weblawuniv": "Yonsei Univ. Law School",
+  "news": "News",
+  "eventnews": "Event News"
 }

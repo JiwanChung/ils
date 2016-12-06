@@ -4,6 +4,8 @@ import { $ } from 'meteor/jquery';
 
 import { Menus } from '../../api/menus.js';
 import { Bulletinall } from '../../api/bulletinall.js';
+import { Slide } from '../../api/slide.js';
+import { Images } from '../../api/images.js';
 
 import './slider.html';
 
@@ -27,7 +29,10 @@ Template.slider.helpers({
     let list = bulletin;
     for (var i=0; i< list.length; i++) {
       let j = i + 1;
-      list[i].url = "/images/"+ j + ".jpg";
+      const slide = Slide.findOne({num: j});
+      let afile = slide.fileId;
+      afile.getFileRecord();
+      list[i].image = afile;
     }
     console.log(list);
     return list;
