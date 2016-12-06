@@ -33,6 +33,9 @@ Template.slider.helpers({
       let afile = slide.fileId;
       afile.getFileRecord();
       list[i].image = afile;
+      console.log(slide.title);
+      list[i].title = slide.name;
+      list[i].detail = slide.content;
     }
     console.log(list);
     return list;

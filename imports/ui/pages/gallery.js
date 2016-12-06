@@ -72,7 +72,9 @@ Template.gallery.helpers({
   },
   ip() {
     const sip = Session.get('ip');
-    return Ip.findOne({ip: sip}) ? true : false;
+    const dip = sip[0];
+    const obj = Ip.findOne({ip: dip});
+    return obj ? true : false;
   },
 });
 

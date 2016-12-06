@@ -3,6 +3,7 @@ import { FlowRouter } from 'meteor/kadira:flow-router';
 import { _ } from 'meteor/underscore';
 import { $ } from 'meteor/jquery';
 import { Session } from 'meteor/session';
+import { Meteor } from 'meteor/meteor';
 
 import { contentRenderHold } from '../launch-screen.js';
 
@@ -35,10 +36,17 @@ Template.addipa.onRendered(function addipOnRendered() {
 Template.admin2.helpers({
   ip() {
     const sip = Session.get('ip');
-    return Ip.findOne({ip: sip}) ? true : false;
+    const dip = sip[0];
+    const obj = Ip.findOne({ip: dip});
+    return obj ? true : false;
   },
   seeip() {
     return Session.get('ip');
+  },
+  godip() {
+    const ip = Session.get('godip');
+    console.log(ip);
+    return ip;
   }
 });
 

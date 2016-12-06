@@ -22,14 +22,18 @@ Meteor.methods({
 
         // Locals
         var conn        = this.connection;
-        var ipPublic    = conn.clientAddress;
-        var ipSource    = conn.httpHeaders['x-forwarded-for'].split(',')[0]
-                        || ipPublic;
-        var prox        = (process.env.HTTP_FORWARDED_COUNT)
-                        ? parseInt(process.env.HTTP_FORWARDED_COUNT)
-                        : 0;
+        var ipSource    = conn.httpHeaders['x-forwarded-for'].split(',');
         // Determine IP to log
-        return (prox) ? ipSource : ipPublic;
+        return ipSource;
+    },
+    godIP: function() {
+      this.unblock();
+
+      // Locals
+      var conn        = this.connection;
+      var ipSource    = conn.httpHeaders['x-forwarded-for'].split(',');
+      // Determine IP to log
+      return ipSource;
     }
 });
 

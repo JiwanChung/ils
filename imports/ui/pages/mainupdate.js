@@ -17,7 +17,9 @@ Template.mainupdate.helpers({
 
   ip() {
     const sip = Session.get('ip');
-    return Ip.findOne({ip: sip}) ? true : false;
+    const dip = sip[0];
+    const obj = Ip.findOne({ip: dip});
+    return obj ? true : false;
   },
   add() {
     const arrat = [
@@ -54,7 +56,8 @@ Template.mainadd.events({
     const conen = target.conen.value;
     const thisfile = target.thisfile.files[0];
     const fileId = Images.insert(thisfile);
-    const id = Slide.findOne({num: num});
+    const obj = Slide.findOne({num: num});
+    const id = obj.id;
     if ( ! id ) {
       Slide.insertTranslations({
         name: nameko,
@@ -69,9 +72,11 @@ Template.mainadd.events({
       });
     } else {
       Slide.updateTranslations(id, {
+        ko: {
         name: nameko,
         content: conko,
         fileId: fileId
+        }
         }, {
         en: {
             name: nameen,

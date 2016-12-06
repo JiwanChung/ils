@@ -81,6 +81,14 @@ Template.App_body.onCreated(function appBodyOnCreated() {
       Session.set("ip", result);
     }
   });
+  Meteor.call('godIP', function(error, result){
+    if(error){
+      //Error handling code
+    } else {
+      console.log(result);
+      Session.set("godip", result);
+    }
+  });
 });
 
 Template.App_body.onRendered(function appBodyOnRendered() {
@@ -114,7 +122,9 @@ Template.App_body.helpers({
   },
   ip() {
     const sip = Session.get('ip');
-    return Ip.findOne({ip: sip}) ? true : false;
+    const dip = sip[0];
+    const obj = Ip.findOne({ip: dip});
+    return obj ? true : false;
   },
 });
 
