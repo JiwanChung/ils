@@ -1,12 +1,12 @@
 import { LiveMysql } from 'meteor/numtel:mysql';
 
 var liveDb = new LiveMysql({
-    host: 'localhost',
+    host: '10.0.0.1',
     // Port 3407 as specified in leaderboard.mysql.json
     // If using external MySQL server, the default port is 3306
     port: 3306,
-    user: 'root',
-    password: '1111',
+    user: 'yslaw2',
+    password: 'law6015!',
     database: 'yslaw2'
 });
 

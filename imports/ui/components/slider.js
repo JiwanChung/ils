@@ -25,16 +25,18 @@ Template.slider.helpers({
   dream() {
     const instance = Template.instance();
     const type = "행사 소식";
-    const bulletin = Bulletinall.find({type: type}, {sort: {createdAt: -1}, limit: 3 }).fetch();
-    let list = bulletin;
-    for (var i=0; i< list.length; i++) {
+    let list = [];
+    for (var i=0; i< 3; i++) {
       let j = i + 1;
       const slide = Slide.findOne({num: j});
       let afile = slide.fileId;
       afile.getFileRecord();
-      list[i].image = afile;
-      list[i].title = slide.name;
-      list[i].detail = slide.content;
+      const obj = {
+        image: afile,
+        title: slide.name,
+        detail: slide.content
+      };
+      list.push(obj);
     }
     return list;
   },
