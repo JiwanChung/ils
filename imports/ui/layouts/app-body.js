@@ -77,7 +77,6 @@ Template.App_body.onCreated(function appBodyOnCreated() {
     if(error){
       //Error handling code
     } else {
-      console.log(result);
       Session.set("ip", result);
     }
   });
@@ -85,7 +84,6 @@ Template.App_body.onCreated(function appBodyOnCreated() {
     if(error){
       //Error handling code
     } else {
-      console.log(result);
       Session.set("godip", result);
     }
   });

@@ -57,7 +57,6 @@ Template.bulletinpage.onRendered(function bulletinPageOnRendered() {
       type: type
     });
   });
-  console.log("cchanged");
 });
 
 Template.bulletinsee.onRendered(function bulletinSeeOnRendered() {
@@ -78,7 +77,6 @@ Template.bulletinpage.helpers({
   },
   type() {
     FlowRouter.watchPathChange();
-    console.log(Session.get("type"));
     return bulletintype = Session.get("type");
   },
   bcounts() {
@@ -188,7 +186,6 @@ Template.bulletinadd.events({
 
     const instance = Template.instance();
     const type = instance.data.type;
-    console.log("child" + type);
     // Get value from form element
     const target = event.target;
     const title = target.title.value;
@@ -203,15 +200,11 @@ Template.bulletinadd.events({
       for (var i = 0; i < this.files.length; i++) {
         fileObj.push(Files.insert(this.files[i]));
       }
-      //console.log("name:" + this.filename);
-      //console.log("file:" + this.thisfile.name);
-      console.log("array"+fileObj[0]);
       fileId = FileData.insert({
         title: title,
         file: fileObj
       });
     }
-    console.log(fileId);
 
     // Insert a task into the collection
     Bulletinall.insert({
@@ -224,7 +217,6 @@ Template.bulletinadd.events({
       createdAt: new Date(), // current time
     });
 
-    console.log(title + "added!");
     // Clear form
     target.title.value = '';
     target.detail.value = '';

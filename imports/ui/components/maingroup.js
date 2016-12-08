@@ -39,7 +39,6 @@ Template.maingroup.helpers({
 
 Template.workit.events({
   'click a'() {
-    console.log("clicked!");
     const instance = Template.instance();
     const contenttitle = instance.data.name;
     const menuid = instance.data._id;

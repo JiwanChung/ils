@@ -35,7 +35,6 @@ Template.top.helpers({
       biginput: viewtype,
       menuid: menuid
     });
-    console.log(menuid);
     return menuid;
   },
 });

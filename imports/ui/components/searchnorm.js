@@ -20,7 +20,6 @@ Template.searchnorm.events({
     const result = Session.get("searchtype");
     const instance = Template.instance();
     const type = result;
-    console.log("searchtype"+ type);
     const coll = instance.data.coll;
     const value = $(event.target).val();
     Session.set({keyword: value});

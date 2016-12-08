@@ -62,7 +62,6 @@ Template.searchs.events({
     const result = Session.get("searchtype");
     const instance = Template.instance();
     const type = instance.data.type;
-    console.log("searchtype"+ type);
     const value = $(event.target).val();
     if (value == null || value == "") {
       Session.set({searchresult: setbulletine(type)});

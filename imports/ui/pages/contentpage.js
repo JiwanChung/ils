@@ -51,14 +51,12 @@ Template.newcontent.events({
   'submit form'(event) {
     event.preventDefault();
 
-    console.log( 'Submitting form!' );
 
     // Get value from form element
     const target = event.target;
     const thisid = this._id;
     const detail = target.detail.value;
 
-    console.log(thisid);
 
     // Insert a task into the collection
     Contentall.update({

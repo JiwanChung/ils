@@ -68,7 +68,6 @@ Template.site.helpers({
         attr: att
       });
     }
-    console.log(Session.get('attr'));
     return Session.get('attr');
   },
   ip() {
@@ -82,7 +81,6 @@ Template.site.helpers({
 
 Template.sitecontents.helpers({
   returndata(cat) {
-    console.log("searched");
     const instance = Template.instance();
     const searched = instance.data.searched;
     const shouldreturn = searched.filter(function rundevilrun(elem) {
@@ -112,7 +110,6 @@ Template.addsite.events({
       type: type,
       category: cat
     });
-    console.log(name);
     target.name.value = '';
     target.link.value = '';
     target.cat.value = '';

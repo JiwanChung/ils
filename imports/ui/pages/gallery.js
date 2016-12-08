@@ -163,15 +163,11 @@ Template.addgall.events({
       for (var i = 0; i < this.files.length; i++) {
         fileObj.push(Images.insert(this.files[i]));
       }
-      //console.log("name:" + this.filename);
-      //console.log("file:" + this.thisfile.name);
-      console.log("array"+fileObj[0]);
       fileId = ImageData.insert({
         name: name,
         file: fileObj
       });
     }
-    console.log(fileId);
 
     // Insert a task into the collection
     Galleryall.insert({

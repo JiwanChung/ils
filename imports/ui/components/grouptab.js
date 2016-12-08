@@ -25,12 +25,11 @@ Template.grouptab.helpers({
     const instance = Template.instance();
     const menuid = instance.data.type;
     const viewtype = Menus.findOne({_id: menuid}).name;
-    
+
     Session.set({
       biginput: viewtype,
       menuid: menuid
     });
-    console.log(menuid);
     return menuid;
   },
 });

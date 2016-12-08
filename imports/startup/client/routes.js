@@ -17,7 +17,6 @@ import '../../ui/pages/morepage.js';
 import '../../ui/pages/map.js';
 import '../../ui/pages/site.js';
 import '../../ui/pages/admin.js';
-import '../../ui/pages/admin2.js';
 import '../../ui/pages/mainupdate.js';
 
 // Import to override accounts templates
@@ -125,13 +124,6 @@ FlowRouter.route('/admin', {
   name: 'admin.show',
   action() {
     BlazeLayout.render('App_body', { main: 'admin' });
-  },
-});
-
-FlowRouter.route('/admin2', {
-  name: 'admin.show',
-  action() {
-    BlazeLayout.render('App_body', { main: 'admin2' });
   },
 });
 

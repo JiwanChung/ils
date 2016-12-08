@@ -142,24 +142,20 @@ var theroute = function(menutype, menuid) {
 
 Template.dropdownli.events({
   'click .tolink'() {
-    console.log("clicked!");
     const instance = Template.instance();
     const contenttitle = instance.data.name;
     const menutype = instance.data.type;
     const menuid = instance.data._id;
-    console.log(menutype + contenttitle);
     theroute(menutype, menuid);
   }
 });
 
 Template.genbt.events({
   'click a'() {
-    console.log("clicked!");
     const instance = Template.instance();
     const contenttitle = instance.data.name;
     const menutype = instance.data.type;
     const menuid = instance.data._id;
-    console.log(menutype + contenttitle);
     theroute(menutype, menuid);
   },
 });
@@ -168,7 +164,6 @@ Template.langlink.events({
   'click a'(e) {
     const target = e.target;
     const name = target.name;
-    console.log(name);
     TAPi18n.setLanguage(name);
   },
 });

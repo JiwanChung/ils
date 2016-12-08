@@ -100,7 +100,6 @@ Template.addtime.events({
       detail: detail,
       year: year,
     });
-    console.log(name);
     Cloudinary._upload_file(thisfile, {
         public_id: id,
         type: "private",

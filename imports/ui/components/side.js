@@ -45,7 +45,6 @@ Template.side.helpers({
       biginput: viewtype,
       menuid: menuid
     });
-    console.log(menuid);
     return menuid;
   },
   done() {

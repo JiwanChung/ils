@@ -19,15 +19,12 @@ Template.quills.onRendered(function quillOnRendered() {
     let item = Session.get('item');
     let doc = item.doc;
     let obj = JSON.parse(doc);
-    console.log(obj);
     let rendered = transformer.transform(obj);
-    console.log(rendered);
     quill.clipboard.dangerouslyPasteHTML(rendered);
   };
 
   var computation = this.autorun(function(thisComp) {
     const isReady = handle.ready();
-    console.log(`Handle is ${isReady ? 'ready' : 'not ready'}`);
     if(isReady) {
       setinit();
       thisComp.stop();
@@ -60,20 +57,11 @@ Template.quills.onRendered(function quillOnRendered() {
       $.post('/your-endpoint', {
         partial: JSON.stringify(change)
       });*/
-      console.log('Saving changes', change);
       const type = Session.get('type');
-      console.log("type" + type);
       let item = Session.get('item');
       let contents = quill.getContents();
       let doc = JSON.stringify(contents, null, 2);
-      Contentall.update({
-        _id: item._id
-      },{
-        $set: {
-          doc: doc,
-          createdAt: new Date()
-        },
-      });
+      Meteor.call('upDoc', type, doc);
       Session.set({
         doc: doc
       });

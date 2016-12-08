@@ -67,7 +67,6 @@ Template.peoplepage.helpers({
   },
   searchednot() {
     const ses = Session.get("keyword");
-    console.log(ses);
     if ( ses == null || ses=="" ) {
       return true;
     } else {
@@ -170,7 +169,6 @@ Template.addpeople.events({
       createdAt: new Date(), // current time
     });
     Session.set({name: name});
-    console.log(name);
     target.name.value = '';
     target.detail.value = '';
     target.journals.value = '';

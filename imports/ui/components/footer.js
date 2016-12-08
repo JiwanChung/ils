@@ -83,7 +83,6 @@ Template.foot.events({
     Session.set({
       foottemp: 'footadd'
     });
-    console.log(Session.get('foottemp'));
   },
 });
 

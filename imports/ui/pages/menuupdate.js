@@ -49,8 +49,7 @@ Template.menushow.events({
       tempname: name,
       hier: hier,
       id: id
-    });
-    console.log(id);
+    })
     $("html, body").animate({ scrollTop: 500 }, "slow");
   },
 });
@@ -68,7 +67,6 @@ Template.newadd.events({
   'submit form'(event) {
     event.preventDefault();
 
-    console.log( 'Submitting form!' );
 
     // Get value from form element
     const target = event.target;
@@ -114,7 +112,6 @@ Template.newadd.events({
         console.log(res);
     });
 
-    console.log("PARENT:"+ parent + " TYPE:" + type + "added!");
     // Clear form
     target.nameen.value = '';
     target.nameko.value = '';
@@ -167,7 +164,6 @@ Template.underadd.events({
   'submit form'(event) {
     event.preventDefault();
 
-    console.log( 'Submitting form!' );
     const instance = Template.instance();
     // Get value from form element
     const target = event.target;
@@ -212,7 +208,6 @@ Template.underadd.events({
         console.log(res);
     });
 
-    console.log("PARENT:"+ parent + " TYPE:" + type + "added!");
     // Clear form
     target.nameen.value = '';
     target.nameko.value = '';
