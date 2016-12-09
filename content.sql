@@ -3,7 +3,7 @@ USE yslaw2;
 CREATE TABLE content (
   id int(11) NOT NULL AUTO_INCREMENT,
   titleinput varchar(45) NOT NULL,
-  doc JSON,
+  doc MEDIUMTEXT,
   PRIMARY KEY (id)
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 

@@ -1,12 +1,12 @@
 import { LiveMysql } from 'meteor/numtel:mysql';
 
 var liveDb = new LiveMysql({
-    host: '10.0.0.1',
+    host: 'localhost',
     // Port 3407 as specified in leaderboard.mysql.json
     // If using external MySQL server, the default port is 3306
     port: 3306,
-    user: 'yslaw2',
-    password: 'law6015!',
+    user: 'root',
+    password: '1111',
     database: 'yslaw2'
 });
 
@@ -37,6 +37,13 @@ Meteor.publish('showDoc', function(name) {
 
       liveDb.db.query(
         'UPDATE content SET doc = ? WHERE titleinput = ?', [ newdoc, titleinput ]);
+    }
+  });
+
+  Meteor.methods({
+    'inDoc': function(titleinput) {
+      liveDb.db.query(
+        'INSERT INTO content(titleinput, doc) VALUES (? , null)', [ titleinput ]);
     }
   });
 

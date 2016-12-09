@@ -13,6 +13,18 @@ import './menuupdate.html';
 // Components used inside the template
 import './app-not-found.js';
 
+var content = new MysqlSubscription('allContent');
+
+if (Meteor.isClient){
+  Meteor.methods({
+    'inDoc': function(titleinput){
+
+      // Force UI refresh
+      content.changed();
+    }
+  });
+}
+
 Template.menuupdate.helpers({
   addtemp() {
     return Session.get("addtemp");
@@ -75,18 +87,9 @@ Template.newadd.events({
     const parent = null;
     const hier = 0;
     const type = target.menuradio.value;
-    const thisfile = target.thisfile.files[0];
     if (type == "content") {
-      Contentall.insert({
-        titleinput: nameko,
-        doc: null,
-        createdAt: new Date(), // current time
-      });
-      Contentall.insert({
-        titleinput: nameen,
-        doc: null,
-        createdAt: new Date(), // current time
-      });
+      Meteor.call('inDoc', nameko);
+      Meteor.call('inDoc', nameen);
     }
 
     // Insert a task into the collection
@@ -102,20 +105,10 @@ Template.newadd.events({
       }
     });
 
-    Cloudinary._upload_file(thisfile, {
-        public_id: id,
-        type: "private",
-        folder: "secret"
-      },
-      function(err, res) {
-        console.log("Upload Error: " + err);
-        console.log(res);
-    });
 
     // Clear form
     target.nameen.value = '';
     target.nameko.value = '';
-    $(".dropify-clear").click();
   },
   'click #submitnew'(event) {
     event.preventDefault();
@@ -172,18 +165,9 @@ Template.underadd.events({
     const parent = Session.get("id");
     const hier = Session.get("hier");
     const type = target.menuradio.value;
-    const thisfile = target.thisfile.files[0];
     if (type == "content") {
-      Contentall.insert({
-        titleinput: nameko,
-        doc: null,
-        createdAt: new Date(), // current time
-      });
-      Contentall.insert({
-        titleinput: nameen,
-        doc: null,
-        createdAt: new Date(), // current time
-      });
+      Meteor.call('inDoc', nameko);
+      Meteor.call('inDoc', nameen);
     }
     // Insert a task into the collection
     const id = Menus.insertTranslations({
@@ -198,15 +182,6 @@ Template.underadd.events({
       }
     });
 
-    Cloudinary._upload_file(thisfile, {
-        public_id: id,
-        type: "private",
-        folder: "secret"
-      },
-      function(err, res) {
-        console.log("Upload Error: " + err);
-        console.log(res);
-    });
 
     // Clear form
     target.nameen.value = '';
