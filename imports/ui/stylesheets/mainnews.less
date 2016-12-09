@@ -2,11 +2,15 @@
   text-align: center;
 }
 
+.mainnews1 .boid blockquote {
+  border-left: 5px solid @color-sub;
+}
+
 .cardtitle {
   margin-left: 12rem;
   font-weight: bold;
   margin-bottom: 3rem;
-  color: white;
+  color: @text-news;
 }
 
 .newscard .material-icons {
@@ -15,7 +19,7 @@
 }
 
 .newscardone {
-  background-color: @color-news;;
+  background-color: @color-news;
   padding: 2rem;
 }
 
@@ -26,54 +30,55 @@
 .mainnews1 .collection.with-header {
   background-color: @color-news;
   margin:0;
+  border: none;
 }
 
-.mainnews1 .collection.with-header hr{
-  color:@color-sub;
-  margin-top: 0;
+.mainnews1 .collection.with-header .ma {
+  border: none;
 }
+
 
 .mainnews1 .collection.with-header .mi {
   padding:0;
+  border: none;
 }
 
 .mainnews1 .collection.with-header .boid {
-  background-color: @color-news;
+  background-color: @color-newsone;
+  border: none;
   padding-left: 1rem;
+  box-sizing: content-box;
+
 }
 
 .mainnews1 .collection.with-header .collection-header {
   background-color: @color-news;
-  color: black;
+  color: @text-news;
   font-size: 3rem;
 }
 
 .mainnews1 .collection.with-header .collection-header h4{
   font-size: 2rem;
   font-weight: bold;
+  color: @text-news;
 }
 
 .collection .mi .bi{
   padding: 10px;
 }
 
-.collection .mi .bi hr{
-  color: @color-sub;
-
-}
 
 
 .collection .mi .bim{
-  background-color: @color-news;
   font-weight: bold;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
+  color: @text-news;
 }
 
 .collection .mi .bic{
-  background-color: @color-news;
-  padding-left: 5rem;
   padding-top: 0;
-  font-size: 1.2rem;
+  font-size: 1rem;
+  color: @text-news;
 }
 
 .minsw .card .card-content .mainnews1 {
@@ -88,20 +93,13 @@
 }
 
 .minsw .card {
-  margin: 0;
-  border-color: @color-sub;
-  border-style: solid;
+  margin: 0 10px 10px;
 }
 
 .contentpage .row .minsw {
-  padding: 5px;
 }
 
-.why {
-  margin: 5px;
-  top: -35px;
-}
 
 .hmm {
-  margin-bottom: 0;
+  margin-bottom: 10px;
 }

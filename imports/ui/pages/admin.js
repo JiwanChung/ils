@@ -38,6 +38,10 @@ Template.admin.helpers({
     const obj = Ip.findOne({ip: dip});
     return obj ? true : false;
   },
+  seeip() {
+    const sip = Session.get('ip');
+    return sip[0];
+  },
 });
 
 Template.showip.helpers({

@@ -38,7 +38,7 @@ Template.map.onRendered(function mapOnRendered() {
   var HOME_PATH = window.HOME_PATH || '.';
   var contentString = [
         '<div class="iw_inner">',
-        '   <h5>연세대학교 법학연구원 사무실</h5>',
+        '   <h5>연세대학교 법학연구원</h5>',
         '   <p>연세대학교 학술정보원 7층 법학연구원<br />',
         '       <br />',
         '       02-2123-6015 <br />',
@@ -61,46 +61,6 @@ Template.map.onRendered(function mapOnRendered() {
 
   infowindow.open(map, marker);
 });
-
-
-Template.amap.onRendered(function amapOnRendered() {
-  var amapOptions = {
-    center: new naver.maps.LatLng(37.564615, 126.936666),
-    zoom: 10
-  };
-  var ils = new naver.maps.LatLng(37.564615, 126.936666);
-  var amap = new naver.maps.Map('amap', amapOptions);
-  amarker = new naver.maps.Marker({
-    map: map,
-    position: ils
-  });
-  var HOME_PATH = window.HOME_PATH || '.';
-  var acontentString = [
-        '<div class="iw_inner">',
-        '   <h5>광복관 법학연구원</h5>',
-        '   <p>연세대학교 광복관 법학연구원<br />',
-        '       <br />',
-        '       02-2123-6015 <br />',
-        '       ',
-        '   </p>',
-        '</div>'
-  ].join('');
-
-  var infowindow = new naver.maps.InfoWindow({
-      content: acontentString
-  });
-
-  naver.maps.Event.addListener(amarker, "click", function(e) {
-      if (infowindow.getMap()) {
-          infowindow.close();
-      } else {
-          infowindow.open(amap, amarker);
-      }
-  });
-
-  infowindow.open(amap, amarker);
-});
-
 
 Template.map.helpers({
   type() {

@@ -110,8 +110,9 @@ var theroute = function(menutype, menuid) {
         break;
     case "journal":
         thisob = Menus.find({parent: menuid, name:'소개'}).fetch();
-        thisid = thisob[0]._id;
-        if(!thisid) {
+        if(typeof(thisob[0]) !== "undefined" && thisob[0] !== null) {
+          thisid = thisob[0]._id;
+        } else {
           thisob = Menus.findOne({parent: menuid});
           thisid = thisob._id;
         }
@@ -119,8 +120,9 @@ var theroute = function(menutype, menuid) {
         break;
     case "business":
         thisob = Menus.find({parent: menuid, name:'소개'}).fetch();
-        thisid = thisob[0]._id;
-        if(!thisid) {
+        if(typeof(thisob[0]) !== "undefined" && thisob[0] !== null) {
+          thisid = thisob[0]._id;
+        } else {
           thisob = Menus.findOne({parent: menuid});
           thisid = thisob._id;
         }
@@ -128,8 +130,10 @@ var theroute = function(menutype, menuid) {
         break;
     case "center":
         thisob = Menus.find({parent: menuid, name:'소개'}).fetch();
-        thisid = thisob[0]._id;
-        if(!thisid) {
+        if(typeof(thisob[0]) !== "undefined" && thisob[0] !== null) {
+          console.log("fuck");
+          thisid = thisob[0]._id;
+        } else {
           thisob = Menus.findOne({parent: menuid});
           thisid = thisob._id;
         }
@@ -147,6 +151,9 @@ Template.dropdownli.events({
     const menutype = instance.data.type;
     const menuid = instance.data._id;
     theroute(menutype, menuid);
+    if ($(window).width() < 600 ) {
+      $('#button-collapse').click();
+    }
   }
 });
 
@@ -160,10 +167,26 @@ Template.genbt.events({
   },
 });
 
+Template.genbtm.events({
+  'click a'() {
+    const instance = Template.instance();
+    const contenttitle = instance.data.name;
+    const menutype = instance.data.type;
+    const menuid = instance.data._id;
+    theroute(menutype, menuid);
+    if ($(window).width() < 600 ) {
+      $('#button-collapse').click();
+    }
+  },
+});
+
 Template.langlink.events({
   'click a'(e) {
     const target = e.target;
     const name = target.name;
     TAPi18n.setLanguage(name);
+    if ($(window).width() < 600 ) {
+      $('#button-collapse').click();
+    }
   },
 });

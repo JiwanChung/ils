@@ -8,6 +8,34 @@
   </div>
 </template>
 
+<template name="foot">
+  {{#if feet}}
+  {{#if ip}}
+  <a class="btn-floating btn-large waves-effect waves-light red" id="footchange" name="change"><i class="material-icons">add</i></a>
+  {{/if}}
+  <div class="footercontainer">
+    <div class="row">
+      <div class="col l3 offset-l1 s12 foottitle">
+        <h5>{{foote "name"}}</h5>
+        <p>{{foote "detail"}}</p>
+      </div>
+      <div class="col l7 s12">
+        <ul>
+          <li><a href="#!">{{foote "location"}}</a></li>
+          <hr>
+          <li><a href="tel:{{foote 'tel'}}">TEL: {{foote "tel"}}</a></li>
+          <li><a href="fax:{{foote 'fax'}}">FAX: {{foote "fax"}}</a></li>
+          <li><a href="email:{{foote 'email'}}">EMAIL: {{foote "email"}}</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="footer-copyright">
+      {{foote 'copyright'}}
+  </div>
+  {{/if}}
+</template>
+
 <template name="footadd">
   {{#if feet}}
   {{#if ip}}
@@ -75,35 +103,5 @@
   <div class="footer-copyright">
   </div>
   {{/if}}
-  {{/if}}
-</template>
-
-<template name="foot">
-  {{#if feet}}
-  {{#if ip}}
-  <a class="btn-floating btn-large waves-effect waves-light red" id="footchange" name="change"><i class="material-icons">add</i></a>
-  {{/if}}
-  <div class="footercontainer">
-    <div class="row">
-      <div class="col l4 offset-l1 s12">
-        <h5>{{foote "name"}}</h5>
-        <p>{{foote "detail"}}</p>
-      </div>
-      <div class="col l4 offset-l2 s12">
-        <ul>
-          <li><a href="#!">{{foote "location"}}</a></li>
-          <hr>
-          <li><a href="tel:{{foote 'tel'}}">TEL: {{foote "tel"}}</a></li>
-          <li><a href="fax:{{foote 'fax'}}">FAX: {{foote "fax"}}</a></li>
-          <li><a href="email:{{foote 'email'}}">EMAIL: {{foote "email"}}</a></li>
-        </ul>
-      </div>
-    </div>
-  </div>
-  <div class="footer-copyright">
-    <div class="container" style="float:right">
-      {{foote 'copyright'}}
-    </div>
-  </div>
   {{/if}}
 </template>

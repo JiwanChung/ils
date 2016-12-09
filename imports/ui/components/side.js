@@ -27,6 +27,8 @@ var pushpin = function() {
 
 Template.side.onRendered(function sideOnRendered() {
   pushpin();
+  let width = $('.itmere').width();
+  $('.moreside').width( width );
 });
 
 Template.side.helpers({

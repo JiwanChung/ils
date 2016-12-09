@@ -11,5 +11,9 @@
   "webyonseihome": "Yonsei Univ. Home",
   "weblawuniv": "Yonsei Univ. Law School",
   "news": "News",
-  "eventnews": "Event News"
+  "eventnews": "Event News",
+  "searchtype": "Search Type",
+  "title": "Title",
+  "content": "Content",
+  "plzsearch": "Search..."
 }

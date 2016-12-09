@@ -22,8 +22,7 @@
 <template name="mainnews1">
   <div class="mainnews1">
     <ul class="collection with-header">
-        <li class="collection-header"><h4>{{_ "news"}}</h4></li>
-        <hr>
+        <li class="collection-header ma"><h4>{{_ "news"}}</h4></li>
         {{#each bbgun}}
           {{> newdetail}}
         {{/each}}
@@ -34,8 +33,7 @@
 <template name="mainnews2">
   <div class="mainnews1">
     <ul class="collection with-header">
-        <li class="collection-header"><h4>{{_ "eventnews"}}</h4></li>
-        <hr>
+        <li class="collection-header ma"><h4>{{_ "eventnews"}}</h4></li>
         {{#each bbgun}}
           {{> newdetail}}
         {{/each}}
@@ -46,13 +44,15 @@
 <template name="newdetail">
   <li class="collection-item row mi flow-text">
     <div class="boid">
-      <div class="bi bim">
-        {{title}}
-      </div>
-      <div class="bi bic">
-        <hr>
-        {{concat}}
-      </div>
+      <blockquote>
+        <div class="bi bim">
+          {{title}}
+        </div>
+        <div class="bi bic">
+          {{concat}}
+        </div>
+      </blockquote>
+
     </div>
   </li>
 </template>

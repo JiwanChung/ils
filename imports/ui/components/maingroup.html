@@ -4,13 +4,11 @@
       <div class="minsg">
         <div class="row">
           <h3>{{_ "business"}}</h3>
-          <hr>
           {{#each busi}}
             {{> workit}}
           {{/each}}
 
           <h3>{{_ "center"}}</h3>
-          <hr>
           {{#each center}}
             {{> workit}}
           {{/each}}
@@ -21,8 +19,8 @@
 </template>
 
 <template name="workit">
-  <div class="card workit col s12 m12 l6">
-    <div class="card-content groupwork">
+  <div class="workit col s12 m12 l6">
+    <div class="groupwork">
       <a class="waves-effect waves-teal btn-flat" name="{{name}}">{{name}}</a>
     </div>
   </div>
