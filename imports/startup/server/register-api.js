@@ -19,3 +19,4 @@ import '../../api/three.js';
 import '../../api/threed.js';
 import '../../api/ip.js';
 import '../../api/slide.js';
+import '../../api/jlink.js';

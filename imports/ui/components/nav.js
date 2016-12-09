@@ -84,8 +84,42 @@ Template.collapsiblemobile.helpers({
   }
 });
 
+var moreroute = function(menuid, id, menutype) {
+  switch (menutype) {
+    case "board":
+        FlowRouter.go('more.board', { bigid: menuid, id: id });
+        break;
+    case "gallery":
+        FlowRouter.go('more.gallery', { bigid: menuid, id: id });
+        break;
+    case "people":
+        FlowRouter.go('more.people', { bigid: menuid, id: id });
+        break;
+    case "site":
+        FlowRouter.go('more.site', { bigid: menuid, id: id });
+        break;
+    case "history":
+        FlowRouter.go('more.history', { bigid: menuid, id: id });
+        break;
+    case "map":
+        FlowRouter.go('more.map', { bigid: menuid, id: id });
+        break;
+    case "tree":
+        FlowRouter.go('more.tree', { bigid: menuid, id: id });
+        break;
+    case "journallink":
+        FlowRouter.go('more.journallink', { bigid: menuid, id: id });
+        break;
+    case "content":
+        FlowRouter.go('more.content', { bigid: menuid, id: id });
+        break;
+    default:
+        FlowRouter.go('more.content', { bigid: menuid, id: id });
+  }
+}
+
 var theroute = function(menutype, menuid) {
-  let thisob, thisid;
+  let thisob, thisid, thistype;
   switch (menutype) {
     case "board":
         FlowRouter.go('bulletins.show', { id: menuid });
@@ -108,36 +142,44 @@ var theroute = function(menutype, menuid) {
     case "tree":
         FlowRouter.go('tree.show', { id: menuid });
         break;
+    case "journallink":
+        FlowRouter.go('journallink.show', { id: menuid });
+        break;
     case "journal":
         thisob = Menus.find({parent: menuid, name:'소개'}).fetch();
         if(typeof(thisob[0]) !== "undefined" && thisob[0] !== null) {
           thisid = thisob[0]._id;
+          thistype = thisob[0].type;
         } else {
           thisob = Menus.findOne({parent: menuid});
           thisid = thisob._id;
+          thistype = thisob.type;
         }
-        FlowRouter.go('more.content', { bigid: menuid, id: thisid });
+        moreroute(menuid, thisid, thistype);
         break;
     case "business":
         thisob = Menus.find({parent: menuid, name:'소개'}).fetch();
         if(typeof(thisob[0]) !== "undefined" && thisob[0] !== null) {
           thisid = thisob[0]._id;
+          thistype = thisob[0].type;
         } else {
           thisob = Menus.findOne({parent: menuid});
           thisid = thisob._id;
+          thistype = thisob.type;
         }
-        FlowRouter.go('more.content', { bigid: menuid, id: thisid });
+        moreroute(menuid, thisid, thistype);
         break;
     case "center":
         thisob = Menus.find({parent: menuid, name:'소개'}).fetch();
         if(typeof(thisob[0]) !== "undefined" && thisob[0] !== null) {
-          console.log("fuck");
           thisid = thisob[0]._id;
+          thistype = thisob[0].type;
         } else {
           thisob = Menus.findOne({parent: menuid});
           thisid = thisob._id;
+          thistype = thisob.type;
         }
-        FlowRouter.go('more.content', { bigid: menuid, id: thisid });
+        moreroute(menuid, thisid, thistype);
         break;
     default:
         FlowRouter.go('contents.show', { id: menuid });

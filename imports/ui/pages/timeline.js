@@ -9,6 +9,7 @@ import { contentRenderHold } from '../launch-screen.js';
 import { Timeline } from '../../api/timeline.js';
 import { Ip } from '../../api/ip.js';
 import { Menus } from '../../api/menus.js';
+import { Images } from '../../api/images.js';
 
 import './timeline.html';
 
@@ -94,21 +95,16 @@ Template.addtime.events({
     const detail = target.detail.value;
     const year = target.year.value;
     const thisfile = target.thisfile.files[0];
+    const fileId = Images.insert(thisfile);
 
-    const id = Timeline.insert({
+    Timeline.insert({
       name: name,
       detail: detail,
       year: year,
+      fileId: fileId,
+      createdAt: new Date(),
     });
-    Cloudinary._upload_file(thisfile, {
-        public_id: id,
-        type: "private",
-        folder: "secret"
-      },
-      function(err, res) {
-        console.log("Upload Error: " + err);
-        console.log(res);
-    });
+
     target.name.value = '';
     target.detail.value = '';
     target.year.value = '';

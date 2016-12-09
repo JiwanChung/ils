@@ -87,6 +87,9 @@ Template.sidetab.events({
       case "tree":
           FlowRouter.go('more.tree', { bigid: menuid, id: id });
           break;
+      case "journallink":
+          FlowRouter.go('more.journallink', { bigid: menuid, id: id });
+          break;
       case "content":
           FlowRouter.go('more.content', { bigid: menuid, id: id });
           break;

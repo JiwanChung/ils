@@ -18,6 +18,7 @@ import '../../ui/pages/map.js';
 import '../../ui/pages/site.js';
 import '../../ui/pages/admin.js';
 import '../../ui/pages/mainupdate.js';
+import '../../ui/pages/journallink.js';
 
 // Import to override accounts templates
 //import '../../ui/accounts/accounts-templates.js';
@@ -82,6 +83,13 @@ FlowRouter.route('/timeline/:id', {
   name: 'timeline.show',
   action() {
     BlazeLayout.render('App_body', { main: 'timeline' });
+  },
+});
+
+FlowRouter.route('/journallink/:id', {
+  name: 'journallink.show',
+  action() {
+    BlazeLayout.render('App_body', { main: 'journallink' });
   },
 });
 
@@ -180,6 +188,13 @@ FlowRouter.route('/dorganization/:bigid/:id', {
   name: 'more.tree',
   action() {
     BlazeLayout.render('App_body', { main: 'morepage', sub: 'tree' });
+  },
+});
+
+FlowRouter.route('/djournallink/:bigid/:id', {
+  name: 'more.journallink',
+  action() {
+    BlazeLayout.render('App_body', { main: 'morepage', sub: 'journallink' });
   },
 });
 
