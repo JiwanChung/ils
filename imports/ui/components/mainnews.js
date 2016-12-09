@@ -48,11 +48,50 @@ Template.mainnews2.helpers({
   },
 });
 
-Template.newdetail.helpers({
+Template.newdetail2.helpers({
   concat() {
     const instance = Template.instance();
     const detail = instance.data.detail;
     const concat = detail.slice(0, 25);
     return concat;
+  },
+});
+
+Template.newdetail1.helpers({
+  concat() {
+    const instance = Template.instance();
+    const detail = instance.data.detail;
+    const concat = detail.slice(0, 25);
+    return concat;
+  },
+});
+
+Template.newdetail1.events({
+  'click a'(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    const instance = Template.instance();
+    const id = instance.data._id;
+    Session.set({
+      "viewroute": id
+    });
+    const menu = Menus.findOne({name: "소식"});
+    const menuid = menu._id;
+    FlowRouter.go('bulletins.show', { id: menuid });
+  },
+});
+
+Template.newdetail2.events({
+  'click a'(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    const instance = Template.instance();
+    const id = instance.data._id;
+    Session.set({
+      "viewroute": id
+    });
+    const menu = Menus.findOne({name: "행사 소식"});
+    const menuid = menu._id;
+    FlowRouter.go('bulletins.show', { id: menuid });
   },
 });

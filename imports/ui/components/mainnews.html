@@ -24,7 +24,7 @@
     <ul class="collection with-header">
         <li class="collection-header ma"><h4>{{_ "news"}}</h4></li>
         {{#each bbgun}}
-          {{> newdetail}}
+          {{> newdetail1}}
         {{/each}}
       </ul>
   </div>
@@ -35,15 +35,15 @@
     <ul class="collection with-header">
         <li class="collection-header ma"><h4>{{_ "eventnews"}}</h4></li>
         {{#each bbgun}}
-          {{> newdetail}}
+          {{> newdetail2}}
         {{/each}}
       </ul>
   </div>
 </template>
 
-<template name="newdetail">
+<template name="newdetail1">
   <li class="collection-item row mi flow-text">
-    <div class="boid">
+    <a href="#" class="boid">
       <blockquote>
         <div class="bi bim">
           {{title}}
@@ -53,6 +53,22 @@
         </div>
       </blockquote>
 
-    </div>
+    </a>
+  </li>
+</template>
+
+<template name="newdetail2">
+  <li class="collection-item row mi flow-text">
+    <a href="#" class="boid">
+      <blockquote>
+        <div class="bi bim">
+          {{title}}
+        </div>
+        <div class="bi bic">
+          {{concat}}
+        </div>
+      </blockquote>
+
+    </a>
   </li>
 </template>

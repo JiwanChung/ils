@@ -145,7 +145,9 @@ var theroute = function(menutype, menuid) {
 };
 
 Template.dropdownli.events({
-  'click .tolink'() {
+  'click .tolink'(e) {
+    e.preventDefault();
+    e.stopPropagation();
     const instance = Template.instance();
     const contenttitle = instance.data.name;
     const menutype = instance.data.type;
@@ -158,7 +160,9 @@ Template.dropdownli.events({
 });
 
 Template.genbt.events({
-  'click a'() {
+  'click a'(e) {
+    e.preventDefault();
+    e.stopPropagation();
     const instance = Template.instance();
     const contenttitle = instance.data.name;
     const menutype = instance.data.type;
@@ -168,7 +172,9 @@ Template.genbt.events({
 });
 
 Template.genbtm.events({
-  'click a'() {
+  'click a'(e) {
+    e.preventDefault();
+    e.stopPropagation();
     const instance = Template.instance();
     const contenttitle = instance.data.name;
     const menutype = instance.data.type;
@@ -182,6 +188,8 @@ Template.genbtm.events({
 
 Template.langlink.events({
   'click a'(e) {
+    e.preventDefault();
+    e.stopPropagation();
     const target = e.target;
     const name = target.name;
     TAPi18n.setLanguage(name);

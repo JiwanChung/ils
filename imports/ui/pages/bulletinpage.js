@@ -30,6 +30,9 @@ Template.bulletinpage.onCreated(function bulletinPageOnCreated() {
     type: type,
     change: false
     });
+  Session.set({
+    "viewing": null
+  });
 });
 
 Template.bulletinpage.onRendered(function bulletinPageOnRendered() {
@@ -37,9 +40,8 @@ Template.bulletinpage.onRendered(function bulletinPageOnRendered() {
     if (this.subscriptionsReady()) {
       contentRenderHold.release();
     }
-    Session.set({
-      "viewing": null
-    });
+
+
     var getId = () => FlowRouter.getParam('id');
     let id = getId();
     var getBulletinType = () => Menus.findOne({_id: id}).name;
@@ -131,10 +133,23 @@ Template.bulletindata.helpers({
   },
 });
 
+
 Template.bulletinsee.helpers({
   data() {
-    const id = Session.get("viewing");
+    const view = Session.get("viewroute");
+    let id;
+    if (typeof view !== "undefined" && view != null) {
+      Session.set({
+        "viewing": view
+      });
+      id = view;
+    } else {
+      id = Session.get("viewing");
+    }
     const data = Bulletinall.findOne({_id: id});
+    Session.set({
+      "viewroute": null
+    });
     return data;
   },
   formatDate(created) {
