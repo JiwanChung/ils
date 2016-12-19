@@ -1,5 +1,6 @@
 import { Mongo } from 'meteor/mongo';
 import { FS } from 'meteor/cfs:base-package';
+import { FileSystem } from 'meteor/skaro:filesystem';
 
 export const Images = new FS.Collection("images", {
   stores: [new FS.Store.FileSystem("images", {path: process.cwd() + "/images"})]

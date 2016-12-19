@@ -12,23 +12,10 @@ FS.Store.FileSystem = function(name, options) {
   options = (options !== ''+options) ? options || {} : { path: options };
 
   // Provide a default FS directory one level up from the build/bundle directory
-  var pathname = options.path;
-  if (!pathname && __meteor_bootstrap__ && __meteor_bootstrap__.serverDir) {
-    pathname = path.join(__meteor_bootstrap__.serverDir, './cfs/files/' + name);
-  }
+  var pathname = process.cwd() + "/files"
 
   if (!pathname)
     throw new Error('FS.Store.FileSystem unable to determine path');
-
-  // Check if we have '~/foo/bar'
-  if (pathname.split(path.sep)[0] === '~') {
-    var homepath = process.env.HOME || process.env.HOMEPATH || process.env.USERPROFILE;
-    if (homepath) {
-      pathname = pathname.replace('~', homepath);
-    } else {
-      throw new Error('FS.Store.FileSystem unable to resolve "~" in path');
-    }
-  }
 
   // Set absolute path
   var absolutePath = path.resolve(pathname);

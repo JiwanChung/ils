@@ -12,7 +12,7 @@ import './menuupdate.html';
 
 // Components used inside the template
 import './app-not-found.js';
-
+/*
 var content = new MysqlSubscription('allContent');
 
 if (Meteor.isClient){
@@ -24,7 +24,7 @@ if (Meteor.isClient){
     }
   });
 }
-
+*/
 Template.menuupdate.helpers({
   addtemp() {
     return Session.get("addtemp");
@@ -88,8 +88,16 @@ Template.newadd.events({
     const hier = 0;
     const type = target.menuradio.value;
     if (type == "content") {
-      Meteor.call('inDoc', nameko);
-      Meteor.call('inDoc', nameen);
+      Contentall.insert({
+        titleinput: nameko,
+        doc: null,
+        createdAt: new Date(), // current time
+      });
+      Contentall.insert({
+        titleinput: nameen,
+        doc: null,
+        createdAt: new Date(), // current time
+      });
     }
 
     // Insert a task into the collection
@@ -117,41 +125,6 @@ Template.newadd.events({
   },
 });
 
-Template.newadd.onRendered(function neonRendered() {
-  $('.dropify').dropify(
-    {
-      messages: {
-          'default': '파일을 드래그하거나 클릭하세요.',
-          'replace': '파일을 바꾸려면 파일을 드래그하거나 클릭하세요.',
-          'remove':  '지우기',
-          'error':   '파일 형식 오류'
-      }
-  }
-  );
-  $("input[type='image']").click(function(e) {
-        e.preventDefault();
-        e.stopPropagation();
-        $("input[id='submitnew']").click();
-  });
-});
-
-Template.underadd.onRendered(function udonRendered() {
-  $('.dropify').dropify(
-    {
-      messages: {
-          'default': '파일을 드래그하거나 클릭하세요.',
-          'replace': '파일을 바꾸려면 파일을 드래그하거나 클릭하세요.',
-          'remove':  '지우기',
-          'error':   '파일 형식 오류'
-      }
-  }
-  );
-  $("input[type='image']").click(function(e) {
-        e.preventDefault();
-        e.stopPropagation();
-        $("input[id='submitunder']").click();
-  });
-});
 
 Template.underadd.events({
   'submit form'(event) {
@@ -166,8 +139,16 @@ Template.underadd.events({
     const hier = Session.get("hier");
     const type = target.menuradio.value;
     if (type == "content") {
-      Meteor.call('inDoc', nameko);
-      Meteor.call('inDoc', nameen);
+      Contentall.insert({
+        titleinput: nameko,
+        doc: null,
+        createdAt: new Date(), // current time
+      });
+      Contentall.insert({
+        titleinput: nameen,
+        doc: null,
+        createdAt: new Date(), // current time
+      });
     }
     // Insert a task into the collection
     const id = Menus.insertTranslations({

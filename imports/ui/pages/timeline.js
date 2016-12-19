@@ -60,7 +60,7 @@ Template.timeline.helpers({
     return instance.getContentTitle();
   },
   timeline() {
-    return Timeline.find({}).fetch();
+    return Timeline.find({}, {sort: {year: 1}}).fetch();
   },
   ip() {
     const sip = Session.get('ip');
@@ -72,11 +72,11 @@ Template.timeline.helpers({
 
 
 Template.mytimeline.helpers({
-
-  id() {
+  image() {
     const instance = Template.instance();
-    const id = instance.data._id;
-    return "secret/" + id;
+    let afile = instance.data.fileId;
+    afile.getFileRecord();
+    return afile;
   },
 });
 

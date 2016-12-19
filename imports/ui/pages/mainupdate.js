@@ -57,7 +57,7 @@ Template.mainadd.events({
     const thisfile = target.thisfile.files[0];
     const fileId = Images.insert(thisfile);
     const obj = Slide.findOne({num: num});
-    const id = obj.id;
+    const id = obj._id;
     if ( ! id ) {
       Slide.insertTranslations({
         name: nameko,

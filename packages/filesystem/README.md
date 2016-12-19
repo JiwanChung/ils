@@ -18,6 +18,10 @@ Install using Meteorite. When in a Meteor app directory, enter:
 $ meteor add cfs:filesystem
 ```
 
+## Important Note
+
+Note that using this Storage Adapter on the free Meteor deployment servers on  `*.meteor.com` will cause a reset of files at every code deploy. You may want to have a look at the [GridFS Storage Adapter](https://github.com/CollectionFS/Meteor-CollectionFS/tree/devel/packages/gridfs) for persistent file storage.
+
 ## Usage
 
 ```js

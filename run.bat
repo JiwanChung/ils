@@ -1,2 +1,2 @@
-SET MONGO_URL=mongodb://jiwan:beetle27@ds031597.mlab.com:31597/ils
+SET MONGO_URL=mongodb://s:s@ds127928.mlab.com:27928/yslaw2
 meteor

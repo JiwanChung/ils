@@ -128,7 +128,7 @@ FlowRouter.route('/slide', {
   },
 });
 
-FlowRouter.route('/admin', {
+FlowRouter.route('/myadmin', {
   name: 'admin.show',
   action() {
     BlazeLayout.render('App_body', { main: 'admin' });

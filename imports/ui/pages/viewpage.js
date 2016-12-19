@@ -16,7 +16,7 @@ import './viewpage.html';
 import './app-not-found.js';
 
 var transformer = require('delta-transform-html');
-var content = new MysqlSubscription('allContent');
+/*var content = new MysqlSubscription('allContent');
 var thiscontent;
 
 if (Meteor.isClient){
@@ -34,7 +34,7 @@ if (Meteor.isClient){
       content.changed();
     }
   });
-}
+}*/
 
 Template.viewpage.onCreated(function contentShowPageOnCreated() {
   this.getId = () => FlowRouter.getParam('id');
@@ -55,16 +55,26 @@ Template.viewpage.onRendered(function contentShowPageOnRendered() {
     }
   });
 
-
+  /*
   const title = this.getContentTitle();
   thiscontent = new MysqlSubscription('showDoc', title);
+  */
 });
 
 Template.viewpage.helpers({
   // We use #each on an array of one item so that the "list" template is
   // removed and a new copy is added when changing lists, which is
   // important for animation purposes.
-  contents() {
+  contentArray() {
+    const instance = Template.instance();
+    const contenttitle = instance.getContentTitle();
+    const result = Contentall.findOne({titleinput: contenttitle});
+    Session.set({
+      item: result
+    });
+    return result;
+  },
+  /*contents() {
     return content.reactive();
   },
   doc() {
@@ -79,7 +89,7 @@ Template.viewpage.helpers({
         item: result
       });
       return result;
-  },
+  },*/
   type() {
     FlowRouter.watchPathChange();
     const instance = Template.instance();

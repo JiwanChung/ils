@@ -58,9 +58,18 @@ Template.quills.onRendered(function quillOnRendered() {
         partial: JSON.stringify(change)
       });*/
       const type = Session.get('type');
+      let item = Session.get('item');
       let contents = quill.getContents();
       let doc = JSON.stringify(contents, null, 2);
-      Meteor.call('upDoc', type, doc);
+      Contentall.update({
+        _id: item._id
+        },{
+        $set: {
+          doc: doc,
+          createdAt: new Date()
+        },
+      });
+      /*Meteor.call('upDoc', type, doc);
       Session.set({
         doc: doc
       });

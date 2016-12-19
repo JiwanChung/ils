@@ -1,0 +1,58 @@
+<template name="testTemplate">
+  {{> testTemplate1 data}}
+</template>
+
+<template name="testTemplate1">
+  {{#noop}}{{> testTemplate2 data}}{{/noop}}
+</template>
+
+<template name="testTemplate2">
+  {{testInstanceGet}}{{testInstanceParent}}{{testData}}
+</template>
+
+<template name="testTemplate3">
+</template>
+
+<template name="testTemplate4">
+</template>
+
+<template name="testTemplate5">
+</template>
+
+<template name="testTemplate6">
+</template>
+
+<template name="testTemplate7">
+</template>
+
+<template name="testTemplate8">
+</template>
+
+<template name="testTemplate9">
+  <h1>{{copyAsHelper}}</h1>
+</template>
+
+<template name="testTemplate11">
+</template>
+
+<template name="testTemplate14">
+</template>
+
+<template name="testTemplate15">
+</template>
+
+<template name="testTemplate16">
+</template>
+
+<template name="testTemplate17">
+</template>
+
+<template name="testTemplate20">
+</template>
+
+<template name="clearEventMaps">
+</template>
+
+<template name="noop">
+  {{> Template.contentBlock}}
+</template>

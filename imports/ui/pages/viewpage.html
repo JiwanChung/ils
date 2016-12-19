@@ -3,13 +3,13 @@
   <div class="navbottom">
     <div class="row">
       <div class="col s12 m10 l8 offset-m1 offset-l2">
-        {{#if doc}}
+        {{#if contentArray}}
           {{#if change}}
           {{#if ip}}
             {{> contentchange}}
           {{/if}}
           {{else}}
-            {{#with doc}}
+            {{#with contentArray}}
               {{> contentshow}}
             {{/with}}
           {{/if}}
