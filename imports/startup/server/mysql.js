@@ -1,13 +1,14 @@
 var mysql = require('mysql');
 export const Mysql = mysql.createPool({
   connectionLimit : 10,
-  host     : 'localhost',
+  host     : '10.0.0.1',
   user     : 'yslaw2',
-  password : '1111',
+  password : 'changnam99892',
   database : 'yslaw2'
 });
 
 Mysql.getConnection(function(err, connection) {
+  console.log("MySQL connected");
   // connected! (unless `err` is set)
 });
 
