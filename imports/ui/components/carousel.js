@@ -9,13 +9,30 @@ Template.carousel.onCreated(function caOnCreated() {
 });
 
 Template.carousel.onRendered(function caOnRendered() {
-  $('.materialboxed').materialbox();
-  $('.carousel').carousel();
 
+  $('.carousel').carousel({
+            dist:-100,
+            shift:0,
+            padding:-200
+      });
+  $('.materialboxed').materialbox();
+});
+
+Template.carousel.helpers({
 });
 
 Template.carousel.events({
-  'click img'(e) {
+  'click a'(e) {
+    e.stopPropagation();
+    $(".active1").css("zIndex", 999);
+  },
+  'click .carousel'(e) {
     e.stopPropagation();
   },
+  'click .material-placeholder'(e) {
+    e.stopPropagation();
+  },
+  'click img'(e) {
+    e.stopPropagation();
+  }
 });

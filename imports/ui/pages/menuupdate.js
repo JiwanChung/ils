@@ -75,6 +75,16 @@ Template.underadd.helpers({
   },
 });
 
+function insert(name) {
+  var query = Meteor.call('inDoc', name, (err, res) => {
+    if (err) {
+      alert(err);
+    } else {
+      console.log("success");
+    }
+  });
+};
+
 Template.newadd.events({
   'submit form'(event) {
     event.preventDefault();
@@ -88,7 +98,7 @@ Template.newadd.events({
     const hier = 0;
     const type = target.menuradio.value;
     if (type == "content") {
-      Contentall.insert({
+      /*Contentall.insert({
         titleinput: nameko,
         doc: null,
         createdAt: new Date(), // current time
@@ -97,7 +107,9 @@ Template.newadd.events({
         titleinput: nameen,
         doc: null,
         createdAt: new Date(), // current time
-      });
+      });*/
+      insert(nameko);
+      insert(nameen);
     }
 
     // Insert a task into the collection
@@ -139,7 +151,7 @@ Template.underadd.events({
     const hier = Session.get("hier");
     const type = target.menuradio.value;
     if (type == "content") {
-      Contentall.insert({
+      /*Contentall.insert({
         titleinput: nameko,
         doc: null,
         createdAt: new Date(), // current time
@@ -148,7 +160,9 @@ Template.underadd.events({
         titleinput: nameen,
         doc: null,
         createdAt: new Date(), // current time
-      });
+      });*/
+      insert(nameko);
+      insert(nameen);
     }
     // Insert a task into the collection
     const id = Menus.insertTranslations({

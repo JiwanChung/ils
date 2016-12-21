@@ -1,54 +1,93 @@
-import { LiveMysql } from 'meteor/numtel:mysql';
-
-var liveDb = new LiveMysql({
-    host: 'sql6.freemysqlhosting.net',
-    // Port 3407 as specified in leaderboard.mysql.json
-    // If using external MySQL server, the default port is 3306
-    port: 3306,
-    user: 'sql6148500',
-    password: 'KL1xD8mjAR',
-    database: 'sql6148500'
+var mysql = require('mysql');
+export const Mysql = mysql.createPool({
+  connectionLimit : 10,
+  host     : 'localhost',
+  user     : 'yslaw2',
+  password : '1111',
+  database : 'yslaw2'
 });
 
-Meteor.publish('allContent', function(){
-  return liveDb.select(
-    'SELECT * FROM content',
-    [ { table: 'content' } ]
-  );
+Mysql.getConnection(function(err, connection) {
+  // connected! (unless `err` is set)
 });
 
-Meteor.publish('showDoc', function(name) {
-    return liveDb.select(
-      'SELECT id, titleinput, doc FROM content WHERE titleinput = ' + liveDb.db.escape(name),
-      [
-        {
-          table: 'content',
-          condition: function(row, newRow, rowDeleted) {
-            // newRow provided on UPDATE query events
-            return row.name === name || (newRow && newRow.name === name);
-          }
-        }
-      ]
-    );
-  });
+var Fiber = Npm.require('fibers');
 
-  Meteor.methods({
-    'upDoc': function(titleinput, newdoc) {
-
-      liveDb.db.query(
-        'UPDATE content SET doc = ? WHERE titleinput = ?', [ newdoc, titleinput ]);
+Meteor.methods({
+  'upDoc': function(id, newdoc) {
+    var fiber = Fiber.current;
+    var query = Mysql.query('UPDATE content SET doc = ? WHERE id = ?', [ newdoc, id ], function(err, results) {
+      fiber.run(results);
+      return results;
+    });
+    var res = Fiber.yield();
+    return res;
+  },
+  'showDoc': function(titleinput, callback) {
+    var fiber = Fiber.current;
+    var query = Mysql.query('SELECT * FROM content WHERE titleinput = ?', [ titleinput ], function(err, results) {
+      fiber.run(results);
+      return results;
+    });
+    var res = Fiber.yield();
+    return res[0];
+  },
+  'inDoc': function(titleinput) {
+    var fiber = Fiber.current;
+    var query = Mysql.query('INSERT INTO content(titleinput, doc) VALUES (? , null)', [ titleinput ], function(err, results) {
+      fiber.run(results);
+      return results;
+    });
+    var res = Fiber.yield();
+    return res;
+  },
+  'inPic': function(name, type, doc, parentid, parenttype) {
+    var fiber = Fiber.current;
+    var query = Mysql.query('INSERT INTO pic(name, type, doc, parentid, parenttable) VALUES (? , ? , ? , ? , ?)', [ name, type, doc, parentid, parenttype ], function(err, results) {
+      fiber.run(results);
+      return results;
+    });
+    var res = Fiber.yield();
+    return res;
+  },
+  'showPic': function(pid, ptable) {
+    var fiber = Fiber.current;
+    console.log(pid, ptable);
+    var query = Mysql.query('SELECT * FROM pic WHERE parentid = ? and parenttable = ?', [ pid, ptable ], function(err, results) {
+      fiber.run(results);
+      return results;
+    });
+    var res = Fiber.yield();
+    var images = [];
+    for (var i in res) {
+      var obj = res[i];
+      images.push(eval(obj.doc));
     }
-  });
-
-  Meteor.methods({
-    'inDoc': function(titleinput) {
-      liveDb.db.query(
-        'INSERT INTO content(titleinput, doc) VALUES (? , null)', [ titleinput ]);
-    }
-  });
+    return images;
+  },
+  'inGal': function(name, type, detail) {
+    var fiber = Fiber.current;
+    var query = Mysql.query('INSERT INTO galleryall(name, type, detail, createdAt) VALUES ( ? , ? , ? , NOW() )', [ name, type, detail ], function(err, results) {
+      fiber.run(results);
+      return results;
+    });
+    var res = Fiber.yield();
+    return res;
+  },
+  'showGal': function(type) {
+    var fiber = Fiber.current;
+    var query = Mysql.query('SELECT * FROM galleryall WHERE type = ?', [ type ], function(err, results) {
+      fiber.run(results);
+      return results;
+    });
+    var res = Fiber.yield();
+    return res;
+  },
+});
 
 var closeAndExit = function() {
-    liveDb.end();
+   Mysql.end();
+   process.exit();
 };
 // Close connections on hot code push
 process.on('SIGTERM', closeAndExit);

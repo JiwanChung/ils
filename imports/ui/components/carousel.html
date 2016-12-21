@@ -1,7 +1,9 @@
 <template name="carousel">
   <div class="carousel">
     {{#each images}}
-      <a class="carousel-item" href="javascript:;"><img class="materialboxed" src="{{this.url store='images'}}"></a>
+      <a class="carousel-item" href="#{{id}}">
+        <img class="materialboxed" src={{res}}>
+      </a>
     {{/each}}
   </div>
 </template>

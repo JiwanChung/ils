@@ -9,7 +9,6 @@ import { Ip } from '../../api/ip.js';
 import { Menus } from '../../api/menus.js';
 
 import { contentRenderHold } from '../launch-screen.js';
-
 import './viewpage.html';
 
 // Components used inside the template
@@ -18,23 +17,7 @@ import './app-not-found.js';
 var transformer = require('delta-transform-html');
 /*var content = new MysqlSubscription('allContent');
 var thiscontent;
-
-if (Meteor.isClient){
-  Meteor.methods({
-    'upDoc': function(titleinput, newdoc){
-      // Find the selected player in the array of results
-      var selectedContent = content.filter(function(content) {
-        return content.titleinput === titleinput;
-      })[0];
-
-      // Increase the score
-      selectedContent.doc = newdoc;
-
-      // Force UI refresh
-      content.changed();
-    }
-  });
-}*/
+*/
 
 Template.viewpage.onCreated(function contentShowPageOnCreated() {
   this.getId = () => FlowRouter.getParam('id');
@@ -76,20 +59,23 @@ Template.viewpage.helpers({
   },
   /*contents() {
     return content.reactive();
-  },
+  },*/
   doc() {
       const instance = Template.instance();
       const contenttitle = instance.getContentTitle();
-      content.depend();
-      var cont = content.filter(function(cont) {
-        return cont.titleinput === contenttitle;
+
+      var query = Meteor.call('showDoc', contenttitle, (err, res) => {
+        if (err) {
+          alert(err);
+        } else {
+          Session.set({
+            item: res
+          });
+        }
       });
-      const result = cont[0];
-      Session.set({
-        item: result
-      });
+      const result = Session.get('item');
       return result;
-  },*/
+  },
   type() {
     FlowRouter.watchPathChange();
     const instance = Template.instance();

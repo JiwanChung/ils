@@ -17,6 +17,7 @@ import './gallery.html';
 // Components used inside the template
 import './app-not-found.js';
 
+
 Template.gallery.onCreated(function gallOnCreated() {
   this.getId = () => FlowRouter.getParam('id');
   let id = this.getId();
@@ -58,7 +59,19 @@ Template.gallery.helpers({
   gallery() {
     const instance = Template.instance();
     const type = instance.getGalleryType();
-    return Galleryall.find({type: type}).fetch();
+    var query = Meteor.call('showGal', type, (err, res) => {
+      if (err) {
+        alert(err);
+      } else {
+        console.log("success");
+        console.log(res);
+        Session.set({
+          gal: res
+        });
+      }
+    });
+    const res = Session.get('gal');
+    return res;
   },
   gallsearch() {
     const ses = Session.get("searched");
@@ -67,7 +80,19 @@ Template.gallery.helpers({
     } else {
       const instance = Template.instance();
       const type = instance.getGalleryType();
-      return Galleryall.find({type: type}).fetch();
+      var query = Meteor.call('showGal', type, (err, res) => {
+        if (err) {
+          alert(err);
+        } else {
+          console.log("success");
+          console.log(res);
+          Session.set({
+            gal: res
+          });
+        }
+      });
+      const res = Session.get('gal');
+      return res;
     }
   },
   ip() {
@@ -78,23 +103,32 @@ Template.gallery.helpers({
   },
 });
 
+Template.imagecard.onCreated(function icOnCreated() {
+  this.getId = () => FlowRouter.getParam('id');
+  let id = this.getId();
+  this.getGalleryType = () => Menus.findOne({_id: id}).name;
+});
+
 Template.imagecard.helpers({
-  id() {
-    const instance = Template.instance();
-    const id = instance.data._id;
-    return "secret/" + id;
-  },
   images() {
     const instance = Template.instance();
-    const id = instance.data.fileId;
-    const data = ImageData.findOne({_id: id});
-    this.files = data.file;
-    let fileObj = [];
-    for (var i = 0; i < this.files.length; i++) {
-      let afile = this.files[i];
-      fileObj.push(afile.getFileRecord());
+    const pid = instance.data.name;
+    const ptype = instance.getGalleryType();
+    var query = Meteor.call('showPic', pid, ptype, (err, res) => {
+      if (err) {
+        alert(err);
+      } else {
+        Session.setDefault(pid, res);
+      }
+    });
+    let res = Session.get(pid);
+    let mainin = [];
+    for ( var i in res ) {
+      const mil = res[i];
+      const mone = { 'res' : mil , 'id' : i};
+      mainin.push(mone);
     }
-    return fileObj;
+    return mainin;
   },
   clicked(param) {
     if (Session.get('clicky') == param) {
@@ -104,12 +138,17 @@ Template.imagecard.helpers({
   },
   animage() {
     const instance = Template.instance();
-    const id = instance.data.fileId;
-    const data = ImageData.findOne({_id: id});
-    this.files = data.file;
-    let afile = this.files[0];
-    afile.getFileRecord();
-    return afile;
+    const pid = instance.data.name;
+    const ptype = instance.getGalleryType();
+    var query = Meteor.call('showPic', pid, ptype, (err, res) => {
+      if (err) {
+        alert(err);
+      } else {
+        Session.setDefault(pid, res);
+      }
+    });
+    let res = Session.get(pid);
+    return res[0];
   },
 });
 
@@ -117,9 +156,10 @@ Template.imagecard.events({
   'click a'(e) {
     e.preventDefault();
     const instance = Template.instance();
-    const id = instance.data._id;
+    const id = instance.data.id;
     const target = $("#"+id);
     if ( !target.hasClass("active") ) {
+      $(".active1").css("zIndex", 5);
       $(".active1").removeClass( "s12 m12 l12 active1" ).addClass( "s12 m6 l6" );
       $(".activecard1").removeClass("large activecard1").addClass("medium");
 
@@ -136,6 +176,7 @@ Template.imagecard.events({
 
 Template.gallery.events({
   'click .gallerywrapper'(e) {
+    $(".active1").css("zIndex", 5);
     $(".active1 .ishidden").hide();
     $(".active1").removeClass( "s12 m12 l12 active1" ).addClass( "s12 m6 l6" );
     $(".activecard1").removeClass("large activecard1").addClass("medium");
@@ -153,30 +194,56 @@ Template.addgall.events({
     const instance = Template.instance();
     const type = instance.data.type;
 
-    this.files = target.files.files;
+    const files = target.files.files;
 
     Session.set({name: name});
 
-    let fileId = null;
-    if (this.files[0] != null) {
-      let fileObj = [];
-      for (var i = 0; i < this.files.length; i++) {
-        fileObj.push(Images.insert(this.files[i]));
+    Meteor.call('inGal', name, type, detail, (err, res) => {
+      if (err) {
+        alert(err);
+      } else {
+        console.log("inGal");
+        console.log(res.insertId);
+        Session.set({pid: res.insertId});
       }
-      fileId = ImageData.insert({
-        name: name,
-        file: fileObj
-      });
+    });
+
+    if (files[0] != null) {
+      for (var i = 0; i < files.length; i++) {
+        setupReader(files[i]);        
+      }
     }
 
-    // Insert a task into the collection
-    Galleryall.insert({
-      name: name,
-      detail: detail,
-      type: type,
-      fileId: fileId,
-      createdAt: new Date(), // current time
-    });
+    function setupReader(file) {
+      const fname = file.name;
+      const ftype = file.type;
+
+      var reader  = new FileReader();
+      const pid = name;
+
+      console.log(pid, fname);
+      reader.addEventListener("load", function () {
+        const data = reader.result;
+        const fdoc = JSON.stringify(data, null, 2);
+        console.log(fdoc.length);
+        var query = Meteor.call('inPic', fname, ftype, fdoc, pid, type, (err, res) => {
+          if (err) {
+            alert(err);
+          } else {
+            console.log("success");
+            console.log(res);
+          }
+        });
+        console.log(fdoc.length);
+      }, false);
+
+      if (file) {
+        console.log("mymy");
+        console.log(file);
+        reader.readAsDataURL(file);
+      }
+    }
+
 
     target.name.value = '';
     target.detail.value = '';

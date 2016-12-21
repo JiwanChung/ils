@@ -19,6 +19,7 @@ import '../../ui/pages/site.js';
 import '../../ui/pages/admin.js';
 import '../../ui/pages/mainupdate.js';
 import '../../ui/pages/journallink.js';
+import '../../ui/pages/test.js';
 
 // Import to override accounts templates
 //import '../../ui/accounts/accounts-templates.js';
@@ -34,6 +35,13 @@ FlowRouter.route('/', {
   name: 'App.home',
   action() {
     BlazeLayout.render('App_body', { main: 'homepage' });
+  },
+});
+
+FlowRouter.route('/test', {
+  name: 'App.test',
+  action() {
+    BlazeLayout.render('App_body', { main: 'test' });
   },
 });
 

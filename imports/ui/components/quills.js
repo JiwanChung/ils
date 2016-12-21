@@ -61,14 +61,23 @@ Template.quills.onRendered(function quillOnRendered() {
       let item = Session.get('item');
       let contents = quill.getContents();
       let doc = JSON.stringify(contents, null, 2);
-      Contentall.update({
+      var query = Meteor.call('upDoc', item.id, doc, (err, res) => {
+        if (err) {
+          alert(err);
+        } else {
+          Session.set({
+            item: res
+          });
+        }
+      });
+      /*Contentall.update({
         _id: item._id
         },{
         $set: {
           doc: doc,
           createdAt: new Date()
         },
-      });
+      });*/
       /*Meteor.call('upDoc', type, doc);
       Session.set({
         doc: doc

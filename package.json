@@ -5,12 +5,17 @@
     "start": "meteor run"
   },
   "dependencies": {
+    "bindings": "^1.2.1",
+    "bson-ext": "^1.0.1",
     "delta-transform-html": "^1.2.0",
     "dropify": "^0.2.1",
     "eq.js": "^1.9.0",
     "gm": "^1.23.0",
     "jquery": "^3.1.1",
     "meteor-node-stubs": "^0.2.3",
-    "quill": "^1.1.5"
+    "mongodb": "^2.2.16",
+    "nan": "^2.4.0",
+    "quill": "^1.1.5",
+    "slick-carousel": "^1.6.0"
   }
 }

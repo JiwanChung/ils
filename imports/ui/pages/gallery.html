@@ -65,20 +65,18 @@
 </template>
 
 <template name="imagecard">
-  <div class="col s12 m6 l6 noclick" id="{{_id}}">
+  <div class="col s12 m6 l6 noclick" id="{{id}}">
     <a href="#">
-      <div class="card cardg waves-effect waves-block waves-light" name="{{_id}}">
-        <div class="card-image">
-          {{#if clicked _id}}
+      <div class="card-panel cardg" name="{{id}}">
+        <div class="my-image">
+          {{#if clicked id}}
             {{> carousel images=images}}
           {{else}}
-            {{#with animage}}
-              <img class="materialboxed" width="300" src="{{this.url store='images'}}">
-            {{/with}}
+            <img width="100%" src={{animage}}>
           {{/if}}
-          <span class="card-title"></span>
         </div>
-        <div class="card-content">
+        <hr>
+        <div class="mycontent">
           <div><p style="font-weight:bold;">{{name}}</p></div>
           <div class="row">
           </div>

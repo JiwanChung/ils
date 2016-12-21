@@ -46,6 +46,7 @@ const showConnectionIssue = new ReactiveVar(false);
 Meteor.startup(() => {
   // Only show the connection error box if it has been 5 seconds since
   // the app started
+
   setTimeout(() => {
     // FIXME:
     // Launch screen handle created in lib/router.js
