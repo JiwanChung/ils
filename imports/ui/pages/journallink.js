@@ -55,6 +55,49 @@ Template.journallink.helpers({
         break;
     }
   },
+  clientKey() {
+    return 3032;
+  },
+  startPage() {
+    return "ISS_RForm";
+  },
+  Session_Member() {
+    const sip = Session.get('ip');
+    const dip = sip[0];
+    return dip;
+  },
+  eVal() {
+    let date = new Date();
+    const fYear = String(date.getFullYear());
+    const y = fYear.substr(2, 4);
+    const zMonth = date.getMonth();
+    const m = ('0' + String(zMonth+1)).slice(-2);
+    const zDate = date.getDate();
+
+    const d = ('0' + String(zDate)).slice(-2);
+    const zHour = String(date.getHours());
+    const H = ('0' + zHour).slice(-2);
+    const zMin = String(date.getMinutes());
+    const i = ('0' + zMin).slice(-2);
+    const n = String(zMonth + 1);
+    const j = zDate;
+    let timeStamp = y.concat(m, d, H, i);
+    let strTemp = '';
+    for (let intTemp = 1; intTemp <= 10; intTemp++){
+        strTemp = timeStamp.substr(intTemp - 1, 1).concat(strTemp);
+        if (intTemp == 1){
+            strTemp = String(203 + (('0' + String(date.getSeconds())).slice(-2)*n)).concat(strTemp);
+        }
+        if (intTemp == 3){
+            strTemp = String(189 + (j*H)).concat(strTemp);
+        }
+        if (intTemp == 9){
+            strTemp = String(187 + Number(('0' + String(date.getSeconds())).slice(-2))).concat(strTemp);
+        }
+    }
+    console.log(strTemp);
+    return strTemp;
+  }
 });
 
 
