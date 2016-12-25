@@ -8,6 +8,7 @@ import { contentRenderHold } from '../launch-screen.js';
 
 import { Menus } from '../../api/menus.js';
 import { Jlink } from '../../api/jlink.js';
+import { Journals } from '../../api/journals.js';
 
 import './journallink.html';
 
@@ -34,29 +35,15 @@ Template.journallink.helpers({
     const instance = Template.instance();
     return viewtype = instance.getContentTitle();
   },
-  link() {
+  clientKey() {
     const instance = Template.instance();
     const type = instance.getContentTitle();
-    switch(type) {
-      case "법학연구":
-        return "http://ils.yonsei.ac.kr/sub3/JournalSearch_ils/ISS_GotoSearch.php";
-        break;
-      case "공공거버넌스와 법":
-        return "http://ils.yonsei.ac.kr/sub3/JournalSearch_pub/ISS_GotoSearch.php";
-        break;
-      case "글로벌비즈니스와 법":
-        return "http://ils.yonsei.ac.kr/sub3/JournalSearch_glo/ISS_GotoSearch.php";
-        break;
-      case "의료과학기술과 법":
-        return "http://ils.yonsei.ac.kr/sub3/JournalSearch_med/ISS_GotoSearch.php";
-        break;
-      default:
-        return "http://ils.yonsei.ac.kr/sub3/JournalSearch_ils/ISS_GotoSearch.php";
-        break;
-    }
-  },
-  clientKey() {
-    return 3032;
+    console.log("WTF", type);
+    const fetched = Journals.findOne({name: type});
+    console.log("WTF", fetched);
+    const ckey = fetched.CID;
+    console.log("WTF", ckey);
+    return ckey;
   },
   startPage() {
     return "ISS_RForm";

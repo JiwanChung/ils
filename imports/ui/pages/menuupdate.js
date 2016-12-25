@@ -49,8 +49,8 @@ Template.menushow.helpers({
   },
 });
 
-Template.menushow.events({
-  'click a'(event) {
+Template.menufab.events({
+  'click .green'(event) {
     event.preventDefault();
     const addtemp = $(event.currentTarget).attr("id");
     const name = $(event.currentTarget).attr("data-name2");
@@ -64,6 +64,11 @@ Template.menushow.events({
     })
     $("html, body").animate({ scrollTop: 500 }, "slow");
   },
+  'click .red'(event) {
+    event.preventDefault();
+    const id = $(event.currentTarget).attr("name");
+    Menus.remove(id);
+  }
 });
 
 Template.underadd.helpers({

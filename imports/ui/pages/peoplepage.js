@@ -11,6 +11,7 @@ import { Ip } from '../../api/ip.js';
 import { Menus } from '../../api/menus.js';
 import { People } from '../../api/people.js';
 import { Images } from '../../api/images.js';
+import { PeopleCat } from '../../api/peoplecat.js';
 import './peoplepage.html';
 
 // Components used inside the template
@@ -87,6 +88,15 @@ Template.peoplecard.helpers({
     const id = instance.data._id;
     return "secret/" + id;
   },
+  ifimage() {
+    const instance = Template.instance();
+    let afile = instance.data.fileId;
+    if (afile) {
+      return true;
+    } else {
+      return false;
+    }
+  },
   image() {
     const instance = Template.instance();
     let afile = instance.data.fileId;
@@ -97,11 +107,12 @@ Template.peoplecard.helpers({
 
 Template.peoplecat.helpers({
   cat() {
-    let list = ["원장", "부원장", "연구원", "결송입안팀", "행정실", "SSK사업단", "의료기술과학과 법 센터", "아시아 법 센터"];
+    let cat = PeopleCat.find({}, { sort: { priority: -1 }}).fetch();
     let result = [];
-    for (let i = 0; i < list.length; i++) {
+    for (let i = 0; i < cat.length; i++) {
       let objecty = {};
-      objecty.name = list[i];
+      objecty.name = cat[i].name;
+      console.log("WTF", cat[i]);
       const datum = People.find({department: objecty.name}).fetch();
       objecty.datum = datum;
       result.push(objecty);
@@ -157,7 +168,10 @@ Template.addpeople.events({
     const detail = target.detail.value;
     const depart = target.department.value;
     const thisfile = target.thisfile.files[0];
-    const fileId = Images.insert(thisfile);
+    let fileId = null;
+    if (thisfile) {
+      fileId = Images.insert(thisfile);
+    }
 
     People.insert({
       name: name,

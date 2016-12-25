@@ -20,6 +20,7 @@ import '../../ui/pages/admin.js';
 import '../../ui/pages/mainupdate.js';
 import '../../ui/pages/journallink.js';
 import '../../ui/pages/test.js';
+import '../../ui/pages/journaladmin.js';
 
 // Import to override accounts templates
 //import '../../ui/accounts/accounts-templates.js';
@@ -143,10 +144,24 @@ FlowRouter.route('/myadmin', {
   },
 });
 
+FlowRouter.route('/myjadmin', {
+  name: 'jadmin.show',
+  action() {
+    BlazeLayout.render('App_body', { main: 'journaladmin' });
+  },
+});
+
 FlowRouter.route('/more/:bigid', {
   name: 'more.show',
   action() {
     BlazeLayout.render('App_body', { main: 'morepage', sub: 'viewpage'});
+  },
+});
+
+FlowRouter.route('/dnone/:bigid', {
+  name: 'more.none',
+  action() {
+    BlazeLayout.render('App_body', { main: 'morepage', sub: 'App_notFound'});
   },
 });
 

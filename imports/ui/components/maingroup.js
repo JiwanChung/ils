@@ -37,11 +37,63 @@ Template.maingroup.helpers({
   },
 });
 
+var moreroute = function(menuid, id, menutype) {
+  switch (menutype) {
+    case "board":
+        FlowRouter.go('more.board', { bigid: menuid, id: id });
+        break;
+    case "gallery":
+        FlowRouter.go('more.gallery', { bigid: menuid, id: id });
+        break;
+    case "people":
+        FlowRouter.go('more.people', { bigid: menuid, id: id });
+        break;
+    case "site":
+        FlowRouter.go('more.site', { bigid: menuid, id: id });
+        break;
+    case "history":
+        FlowRouter.go('more.history', { bigid: menuid, id: id });
+        break;
+    case "map":
+        FlowRouter.go('more.map', { bigid: menuid, id: id });
+        break;
+    case "tree":
+        FlowRouter.go('more.tree', { bigid: menuid, id: id });
+        break;
+    case "journallink":
+        FlowRouter.go('more.journallink', { bigid: menuid, id: id });
+        break;
+    case "content":
+        FlowRouter.go('more.content', { bigid: menuid, id: id });
+        break;
+    case "none":
+        FlowRouter.go('more.none', { bigid: menuid });
+        break;
+    default:
+        FlowRouter.go('more.content', { bigid: menuid, id: id });
+  }
+}
+
 Template.workit.events({
   'click a'() {
     const instance = Template.instance();
     const contenttitle = instance.data.name;
     const menuid = instance.data._id;
-    FlowRouter.go('more.show', { bigid: menuid });
+    let thisob, thisid, thistype;
+    thisob = Menus.find({parent: menuid, name:'소개'}).fetch();
+    if(typeof(thisob[0]) !== "undefined" && thisob[0] !== null) {
+      thisid = thisob[0]._id;
+      thistype = thisob[0].type;
+      moreroute(menuid, thisid, thistype);
+    } else {
+      thisob = Menus.findOne({parent: menuid});
+      if(typeof(thisob[0]) !== "undefined" && thisob[0] !== null) {
+        thisid = thisob._id;
+        thistype = thisob.type;
+        moreroute(menuid, thisid, thistype);
+      } else {
+        moreroute(menuid, thisid, "none");
+      }
+    }
   },
 });

@@ -1,6 +1,6 @@
 .secchart {
   height: 60rem;
-  background-color: @color-back;
+  background-color: @color-tree;
   font-weight: bold;
 }
 
@@ -84,13 +84,13 @@
 
 .org-chart ul a{
 	display: block;
-	background: @color-group;
+	background: @color-treetop;
 	text-align: center;
 	overflow: hidden;
 	font-size: .7em;
 	text-decoration: none;
 	font-weight: bold;
-	color: #333;
+	color: @text-treetop;
 	height: 70px;
 	margin-bottom: -26px;
 	box-shadow: 4px 4px 9px -4px rgba(0,0,0,0.4);
@@ -325,7 +325,15 @@
 }
 
 /* Department/ section colors */
-.department.dep-a a{ background: @color-news; }
+.department.dep-a a{
+  background: @color-treemid;
+  color: @text-treetop;
+}
+
+.department.dep-a ul li a{
+  background: @color-treebot;
+  color: @text-treebot;
+}
 .department.dep-b a{ background: #AAD4E7; }
 .department.dep-c a{ background: #FDB0FD; }
 .department.dep-d a{ background: #A3A2A2; }

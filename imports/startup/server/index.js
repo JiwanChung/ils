@@ -12,3 +12,4 @@ import './security.js';
 import './register-api.js';
 import './cfs.js';
 import './mysql.js';
+import './upsert.js';

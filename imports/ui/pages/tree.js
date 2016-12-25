@@ -50,7 +50,8 @@ Template.tree.helpers({
     return instance.getContentTitle();
   },
   tree() {
-    return Tree.find({}).fetch();
+    const type = Session.get('type');
+    return Tree.find({type: type}).fetch();
   },
   ip() {
     const sip = Session.get('ip');
@@ -73,10 +74,12 @@ Template.mytree.helpers({
 Template.chart.helpers({
   charts() {
     let list = [];
-    const diesem = Tree.find({top: ""}).fetch();
+    const type = Session.get('type');
+    const diesem = Tree.find({top: "", type: type}).fetch();
     for (i = 0; i < diesem.length; i++) {
       const top = diesem[i].name;
-      const tor = Tree.find({top: top}).fetch();
+      const topid = diesem[i]._id;
+      const tor = Tree.find({top: topid, type: type}).fetch();
       const obj = {
         top: top,
         tor: tor
@@ -101,14 +104,23 @@ Template.chart.events({
 Template.addtree.events({
   'submit form'(event) {
     event.preventDefault();
-
+    const type = Session.get('type');
     const target = event.target;
     const nameko = target.nameko.value;
     const nameen = target.nameen.value;
-    const top = target.top.value;
+    const ttop = target.top.value;
+    let top = "";
+    if (ttop) {
+      const tor = Tree.findOne({name: ttop});
+      const tok = tor._id;
+      if (tok) {
+        top = tok;
+      }
+    }
     Tree.insertTranslations({
       name: nameko,
-      top: top
+      top: top,
+      type: type,
       }, {
       en: {
           name: nameen

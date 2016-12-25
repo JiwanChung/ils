@@ -76,11 +76,15 @@
 <template name="peoplecard">
   <div class="col s4 m3 l2 noclick" id="{{_id}}">
     <a href="#">
-      <div class="card waves-effect waves-block waves-light" name="{{_id}}">
+      <div class="card peoplecard waves-effect waves-block waves-light" name="{{_id}}">
         <div class="card-image">
+          {{#if ifimage}}
           {{#with image}}
             <img class="materialboxed" width="300" src="{{this.url store='images'}}">
           {{/with}}
+          {{else}}
+            <img class="materialboxed defaultperson" width="300" src="/images/defaultperson.jpg">
+          {{/if}}
           <span class="card-title"></span>
         </div>
           <div class="row">

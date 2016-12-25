@@ -5,7 +5,22 @@ nav {
     transition:opacity 0.3s;
     box-shadow: 0px 0px 0px #888888;
     font-family: yonseititle, sans-serif;
+    border-style: solid;
+    border-width: 0 0 2px 0;
+    border-color: @color-sub;
+    color: @text-nav;
 }
+
+nav .nav-wrapper ul a {
+  color: @text-nav;
+  font-weight: bold;
+}
+
+nav .nav-wrapper a i {
+  color: @text-nav;
+  font-weight: bold;
+}
+
 
 nav.opaque {
     opacity: 1;
@@ -87,4 +102,18 @@ nav .nav-wrapper i {
     padding-right: 3rem;
     padding-left: 3rem;
   }
+}
+
+.nav-wrapper .brand-logo {
+  display:flex;
+  align-items:center;
+  font-weight: bold;
+}
+
+.brand-logo img {
+}
+
+.brand-logo .lt {
+  margin-left: 15px;
+  color: @text-nav;
 }

@@ -27,8 +27,22 @@
   </div>
 </template>
 
+<template name="menufab">
+  <div class="fixed-action-btn menufab" style="position: relative; display: inline-block; top: 5px; margin-left: 10px; right:10px;">
+    <a class="btn-floating blue">
+      <i class="large material-icons">mode_edit</i>
+    </a>
+    <ul>
+      <li><a class="btn-floating waves-effect waves-light green" id="{{newunder}}" name="{{id}}" data-name2="{{name}}" hier={{hier}}><i class="material-icons">add</i></a></li>
+      {{#if checkdel}}
+      <li><a class="btn-floating waves-effect waves-light red" name="{{id}}"><i class="material-icons">no_sim</i></a></li>
+      {{/if}}
+    </ul>
+  </div>
+</template>
+
 <template name="menushow">
-  <a class="btn-floating btn-large waves-effect waves-light red" id="newadd" data-name2="전체" hier=0><i class="material-icons">add</i></a>
+  {{> menufab newunder="newadd" hier=0 checkdel=false id="whole" name="전체"}}
   <hr>
   {{#each hier0}}
   <div class="card">
@@ -36,7 +50,7 @@
       <span class="card-title">
         {{name}}
       </span>
-      <a class="btn-floating waves-effect waves-light green" id="underadd" name="{{_id}}" data-name2="{{name}}" hier=1><i class="material-icons">add</i></a>
+      {{> menufab newunder="underadd" hier=1 checkdel=true id=_id name=name}}
       <hr>
       <div class="row">
         {{#each hier1 _id}}
@@ -45,7 +59,7 @@
               <span class="card-title">
                 {{name}}
               </span>
-              <a class="btn-floating waves-effect waves-light blue" id="underadd" name="{{_id}}" data-name2="{{name}}" hier=2><i class="material-icons">add</i></a>
+              {{> menufab newunder="underadd" hier=2 checkdel=true id=_id name=name}}
               <hr>
               {{#each hier2 _id}}
                 <div class="card">

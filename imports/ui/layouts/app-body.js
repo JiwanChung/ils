@@ -145,4 +145,7 @@ Template.mainbutton.events({
   'click #slideupdate'(e){
     FlowRouter.go('slide.update', { password: "dwedwewewqscxc" });
   },
+  'click #tojadminpage'(e){
+    FlowRouter.go('jadmin.show', { password: "dwedwewewqscxc" });
+  },
 });

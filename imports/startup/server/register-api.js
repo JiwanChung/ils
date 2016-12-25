@@ -20,3 +20,7 @@ import '../../api/threed.js';
 import '../../api/ip.js';
 import '../../api/slide.js';
 import '../../api/jlink.js';
+import '../../api/jlink.js';
+import '../../api/journals.js';
+import '../../api/panel.js';
+import '../../api/peoplecat.js';

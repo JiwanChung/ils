@@ -113,6 +113,9 @@ var moreroute = function(menuid, id, menutype) {
     case "content":
         FlowRouter.go('more.content', { bigid: menuid, id: id });
         break;
+    case "none":
+        FlowRouter.go('more.none', { bigid: menuid });
+        break;
     default:
         FlowRouter.go('more.content', { bigid: menuid, id: id });
   }
@@ -150,36 +153,51 @@ var theroute = function(menutype, menuid) {
         if(typeof(thisob[0]) !== "undefined" && thisob[0] !== null) {
           thisid = thisob[0]._id;
           thistype = thisob[0].type;
+          moreroute(menuid, thisid, thistype);
         } else {
           thisob = Menus.findOne({parent: menuid});
-          thisid = thisob._id;
-          thistype = thisob.type;
+          if(typeof(thisob[0]) !== "undefined" && thisob[0] !== null) {
+            thisid = thisob._id;
+            thistype = thisob.type;
+            moreroute(menuid, thisid, thistype);
+          } else {
+            moreroute(menuid, thisid, "none");
+          }
         }
-        moreroute(menuid, thisid, thistype);
         break;
     case "business":
         thisob = Menus.find({parent: menuid, name:'소개'}).fetch();
         if(typeof(thisob[0]) !== "undefined" && thisob[0] !== null) {
           thisid = thisob[0]._id;
           thistype = thisob[0].type;
+          moreroute(menuid, thisid, thistype);
         } else {
           thisob = Menus.findOne({parent: menuid});
-          thisid = thisob._id;
-          thistype = thisob.type;
+          if(typeof(thisob[0]) !== "undefined" && thisob[0] !== null) {
+            thisid = thisob._id;
+            thistype = thisob.type;
+            moreroute(menuid, thisid, thistype);
+          } else {
+            moreroute(menuid, thisid, "none");
+          }
         }
-        moreroute(menuid, thisid, thistype);
         break;
     case "center":
         thisob = Menus.find({parent: menuid, name:'소개'}).fetch();
         if(typeof(thisob[0]) !== "undefined" && thisob[0] !== null) {
           thisid = thisob[0]._id;
           thistype = thisob[0].type;
+          moreroute(menuid, thisid, thistype);
         } else {
           thisob = Menus.findOne({parent: menuid});
-          thisid = thisob._id;
-          thistype = thisob.type;
+          if(typeof(thisob[0]) !== "undefined" && thisob[0] !== null) {
+            thisid = thisob._id;
+            thistype = thisob.type;
+            moreroute(menuid, thisid, thistype);
+          } else {
+            moreroute(menuid, thisid, "none");
+          }
         }
-        moreroute(menuid, thisid, thistype);
         break;
     default:
         FlowRouter.go('contents.show', { id: menuid });
