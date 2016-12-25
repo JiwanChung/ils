@@ -3,7 +3,7 @@ import { FlowRouter } from 'meteor/kadira:flow-router';
 import { _ } from 'meteor/underscore';
 import { $ } from 'meteor/jquery';
 import { Session } from 'meteor/session';
-
+import { TAPi18n } from 'meteor/tap:i18n';
 import { contentRenderHold } from '../launch-screen.js';
 
 import { Menus } from '../../api/menus.js';
