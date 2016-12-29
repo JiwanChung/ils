@@ -5,7 +5,6 @@ import { $ } from 'meteor/jquery';
 import { Session } from 'meteor/session';
 import { Tracker } from 'meteor/tracker';
 import { Contentall } from '../../api/contentall.js';
-
 var transformer = require('delta-transform-html');
 
 import './quills.html';
@@ -23,6 +22,7 @@ Template.quills.onRendered(function quillOnRendered() {
     quill.clipboard.dangerouslyPasteHTML(rendered);
   };
 
+
   var computation = this.autorun(function(thisComp) {
     const isReady = handle.ready();
     if(isReady) {
@@ -31,7 +31,7 @@ Template.quills.onRendered(function quillOnRendered() {
     }
   });
   var Delta = Quill.import('delta');
-  Template.quill = quill = new Quill('#editor', {
+  let options = {
     modules: {
       toolbar: [
         ['bold', 'italic', 'underline'],
@@ -43,7 +43,8 @@ Template.quills.onRendered(function quillOnRendered() {
     },
     placeholder: '입력하세요',
     theme: 'snow'
-  });
+  };
+  Template.quill = quill = new Quill('#editor', options);
 
   var change = new Delta();
   quill.on('text-change', function(delta) {
@@ -59,6 +60,7 @@ Template.quills.onRendered(function quillOnRendered() {
       });*/
       const type = Session.get('type');
       let item = Session.get('item');
+      let pid = Session.get('pid');
       let contents = quill.getContents();
       let doc = JSON.stringify(contents, null, 2);
       var query = Meteor.call('upDoc', item.id, doc, (err, res) => {

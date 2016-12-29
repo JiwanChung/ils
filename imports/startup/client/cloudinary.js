@@ -1,4 +1,4 @@
-import { $ } from 'meteor/jquery';
+import { $ } from 'jquery';
 import { Cloudinary } from 'meteor/lepozepo:cloudinary';
 
 $.cloudinary.config({

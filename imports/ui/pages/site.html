@@ -44,6 +44,9 @@
 </template>
 
 <template name="sitecont">
+  {{#if ip}}
+    <a class="btn-floating waves-effect waves-light red" name="{{_id}}"><i class="material-icons">no_sim</i></a>
+  {{/if}}
   <a href="{{link}}" class="collection-item">{{name}}</a>
 </template>
 

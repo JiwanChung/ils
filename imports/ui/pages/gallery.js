@@ -1,10 +1,9 @@
 import { Template } from 'meteor/templating';
 import { FlowRouter } from 'meteor/kadira:flow-router';
 import { _ } from 'meteor/underscore';
-import { $ } from 'meteor/jquery';
 import { Materialize } from 'meteor/materialize:materialize';
 import { Session } from 'meteor/session';
-
+import { $ } from 'meteor/jquery';
 import { contentRenderHold } from '../launch-screen.js';
 import { Ip } from '../../api/ip.js';
 import { Menus } from '../../api/menus.js';
@@ -130,6 +129,12 @@ Template.imagecard.helpers({
     }
     return mainin;
   },
+  ip() {
+    const sip = Session.get('ip');
+    const dip = sip[0];
+    const obj = Ip.findOne({ip: dip});
+    return obj ? true : false;
+  },
   clicked(param) {
     if (Session.get('clicky') == param) {
       return true;
@@ -153,7 +158,7 @@ Template.imagecard.helpers({
 });
 
 Template.imagecard.events({
-  'click a'(e) {
+  'click .mainimage'(e) {
     e.preventDefault();
     const instance = Template.instance();
     const id = instance.data.id;
@@ -172,6 +177,23 @@ Template.imagecard.events({
   'click .noclick'(e) {
     e.stopPropagation();
   },
+  'click .red'(event) {
+    event.preventDefault();
+    const id = $(event.currentTarget).attr("name");
+    const instance = Template.instance();
+    const type = instance.getGalleryType();
+    var query = Meteor.call('delGal', id, type, (err, res) => {
+      if (err) {
+        alert(err);
+      } else {
+        let did = id + "del";
+        Session.setDefault(did, res);
+      }
+    });
+    let did = id + "del";
+    let res = Session.get(did);
+    return res[0];
+  }
 });
 
 Template.gallery.events({
@@ -210,7 +232,7 @@ Template.addgall.events({
 
     if (files[0] != null) {
       for (var i = 0; i < files.length; i++) {
-        setupReader(files[i]);        
+        setupReader(files[i]);
       }
     }
 

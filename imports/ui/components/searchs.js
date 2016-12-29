@@ -1,9 +1,8 @@
 import { Template } from 'meteor/templating';
 import { _ } from 'meteor/underscore';
-import { $ } from 'meteor/jquery';
 import { ReactiveVar } from 'meteor/reactive-var';
 import { Session } from 'meteor/session';
-
+import { $ } from 'meteor/jquery';
 
 import './searchs.html';
 

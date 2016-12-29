@@ -1,7 +1,6 @@
 import { Template } from 'meteor/templating';
 import { _ } from 'meteor/underscore';
 import { $ } from 'meteor/jquery';
-
 import { Menus } from '../../api/menus.js';
 import { Bulletinall } from '../../api/bulletinall.js';
 import { Slide } from '../../api/slide.js';
@@ -47,7 +46,7 @@ Template.aslide.helpers({
   concatm() {
     const instance = Template.instance();
     const detail = instance.data.detail;
-    const concat = detail.slice(0, 15);
+    const concat = detail.slice(0, 500);
     return concat;
   },
 });

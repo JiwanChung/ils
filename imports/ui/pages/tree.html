@@ -30,6 +30,9 @@
 
 <template name="tchart">
   <li class="department dep-a">
+    {{#if ip}}
+    <a class="btn-floating waves-effect waves-light red" name="{{topid}}"><i class="material-icons">no_sim</i></a>
+    {{/if}}
     <a href="#"><span>{{top}}</span></a>
     <ul class="sections">
       {{#each tor}}
@@ -40,6 +43,9 @@
 </template>
 
 <template name="achart">
+  {{#if ip}}
+  <a class="btn-floating waves-effect waves-light rek" name="{{_id}}"><i class="material-icons">no_sim</i></a>
+  {{/if}}
   <li class="section"><a href="#"><span>{{name}}</span></a></li>
 </template>
 

@@ -1,11 +1,11 @@
 import { Template } from 'meteor/templating';
 import { _ } from 'meteor/underscore';
-import { $ } from 'meteor/jquery';
 import { Materialize } from 'meteor/materialize:materialize';
 import { Session } from 'meteor/session';
 import { Menus } from '../../api/menus.js';
 import { Ip } from '../../api/ip.js';
 import { Panel } from '../../api/panel.js';
+import { $ } from 'meteor/jquery';
 import './panel.html';
 
 

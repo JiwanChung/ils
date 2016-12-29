@@ -1,11 +1,10 @@
 import { Template } from 'meteor/templating';
 import { _ } from 'meteor/underscore';
-import { $ } from 'meteor/jquery';
-
 import { Contentall } from '../../api/contentall.js';
 import { Menus } from '../../api/menus.js';
 import { Ip } from '../../api/ip.js';
 import { Session } from 'meteor/session';
+import { $ } from 'meteor/jquery';
 
 
 import './nav.html';
@@ -156,7 +155,7 @@ var theroute = function(menutype, menuid) {
           moreroute(menuid, thisid, thistype);
         } else {
           thisob = Menus.findOne({parent: menuid});
-          if(typeof(thisob[0]) !== "undefined" && thisob[0] !== null) {
+          if(typeof(thisob) !== "undefined" && thisob !== null) {
             thisid = thisob._id;
             thistype = thisob.type;
             moreroute(menuid, thisid, thistype);
@@ -173,7 +172,8 @@ var theroute = function(menutype, menuid) {
           moreroute(menuid, thisid, thistype);
         } else {
           thisob = Menus.findOne({parent: menuid});
-          if(typeof(thisob[0]) !== "undefined" && thisob[0] !== null) {
+          console.log("RE",thisob);
+          if(typeof(thisob) !== "undefined" && thisob !== null) {
             thisid = thisob._id;
             thistype = thisob.type;
             moreroute(menuid, thisid, thistype);
@@ -190,7 +190,8 @@ var theroute = function(menutype, menuid) {
           moreroute(menuid, thisid, thistype);
         } else {
           thisob = Menus.findOne({parent: menuid});
-          if(typeof(thisob[0]) !== "undefined" && thisob[0] !== null) {
+          console.log("RE",thisob);
+          if(typeof(thisob) !== "undefined" && thisob !== null) {
             thisid = thisob._id;
             thistype = thisob.type;
             moreroute(menuid, thisid, thistype);

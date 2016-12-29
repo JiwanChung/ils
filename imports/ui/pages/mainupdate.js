@@ -1,9 +1,8 @@
 import { Template } from 'meteor/templating';
 import { FlowRouter } from 'meteor/kadira:flow-router';
 import { _ } from 'meteor/underscore';
-import { $ } from 'meteor/jquery';
 import { Session } from 'meteor/session';
-
+import { $ } from 'meteor/jquery';
 import { Slide } from '../../api/slide.js';
 import { Ip } from '../../api/ip.js';
 import { Images } from '../../api/images.js';

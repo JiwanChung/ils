@@ -2,11 +2,10 @@ import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 import { FlowRouter } from 'meteor/kadira:flow-router';
 import { _ } from 'meteor/underscore';
-import { $ } from 'meteor/jquery';
 import { Counts } from 'meteor/tmeasday:publish-counts';
 import { Session } from 'meteor/session';
 import { Tracker } from 'meteor/tracker';
-
+import { $ } from 'meteor/jquery';
 import { contentRenderHold } from '../launch-screen.js';
 import { Ip } from '../../api/ip.js';
 import { Menus } from '../../api/menus.js';
@@ -128,8 +127,14 @@ Template.bulletindata.helpers({
   concat() {
     const instance = Template.instance();
     const detail = instance.data.detail;
-    const concat = detail.slice(0, 25);
+    const concat = detail.slice(0, 50);
     return concat;
+  },
+  ip() {
+    const sip = Session.get('ip');
+    const dip = sip[0];
+    const obj = Ip.findOne({ip: dip});
+    return obj ? true : false;
   },
 });
 
@@ -184,7 +189,7 @@ Template.bulletinsee.helpers({
 });
 
 Template.bulletindata.events({
-  'click a'(e) {
+  'click .avatar'(e) {
     e.preventDefault();
     e.stopPropagation();
     const id = e.target.id;
@@ -193,6 +198,11 @@ Template.bulletindata.events({
     });
     $("html, body").animate({ scrollTop: 500 }, "slow");
   },
+  'click .red'(event) {
+    event.preventDefault();
+    const id = $(event.currentTarget).attr("name");
+    Bulletinall.remove(id);
+  }
 });
 
 Template.bulletinadd.events({

@@ -1,12 +1,11 @@
 import { Template } from 'meteor/templating';
 import { _ } from 'meteor/underscore';
-import { $ } from 'meteor/jquery';
 import { Footer } from '../../api/footer.js';
 import { Session } from 'meteor/session';
 import { Materialize } from 'meteor/materialize:materialize';
 import { contentRenderHold } from '../launch-screen.js';
 import { Ip } from '../../api/ip.js';
-
+import { $ } from 'meteor/jquery';
 import './footer.html';
 
 Template.footer.onCreated(function footerOnCreated() {

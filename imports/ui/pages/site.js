@@ -1,11 +1,10 @@
 import { Template } from 'meteor/templating';
 import { FlowRouter } from 'meteor/kadira:flow-router';
 import { _ } from 'meteor/underscore';
-import { $ } from 'meteor/jquery';
 import { Materialize } from 'meteor/materialize:materialize';
 import { Session } from 'meteor/session';
 import { Ip } from '../../api/ip.js';
-
+import { $ } from 'meteor/jquery';
 import { contentRenderHold } from '../launch-screen.js';
 
 import { Menus } from '../../api/menus.js';
@@ -58,7 +57,9 @@ Template.site.helpers({
   },
   siteatt() {
     function distinct() {
-      var data = Site.find({}).fetch();
+      const instance = Template.instance();
+      const type = instance.getSiteType();
+      var data = Site.find({type: type}).fetch();
       var distinctData = _.uniq(data, false, function(d) {return d.category});
       return distinctData;
     };
@@ -90,8 +91,22 @@ Template.sitecontents.helpers({
   },
 });
 
+Template.sitecont.helpers({
+  ip() {
+    const sip = Session.get('ip');
+    const dip = sip[0];
+    const obj = Ip.findOne({ip: dip});
+    return obj ? true : false;
+  },
+});
 
-
+Template.sitecont.events({
+  'click .red'(event) {
+    event.preventDefault();
+    const id = $(event.currentTarget).attr("name");
+    Site.remove(id);
+  }
+});
 
 Template.addsite.events({
   'submit form'(event) {

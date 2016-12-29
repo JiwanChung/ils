@@ -1,10 +1,9 @@
 import { Template } from 'meteor/templating';
 import { FlowRouter } from 'meteor/kadira:flow-router';
 import { _ } from 'meteor/underscore';
-import { $ } from 'meteor/jquery';
 import { Materialize } from 'meteor/materialize:materialize';
 import { Session } from 'meteor/session';
-
+import { $ } from 'meteor/jquery';
 import { contentRenderHold } from '../launch-screen.js';
 import { Ip } from '../../api/ip.js';
 
@@ -88,6 +87,12 @@ Template.peoplecard.helpers({
     const id = instance.data._id;
     return "secret/" + id;
   },
+  ip() {
+    const sip = Session.get('ip');
+    const dip = sip[0];
+    const obj = Ip.findOne({ip: dip});
+    return obj ? true : false;
+  },
   ifimage() {
     const instance = Template.instance();
     let afile = instance.data.fileId;
@@ -130,7 +135,7 @@ Template.peopleeach.helpers({
 });
 
 Template.peoplecard.events({
-  'click a'(e) {
+  'click .mainpeo'(e) {
     e.preventDefault();
     const instance = Template.instance();
     const id = instance.data._id;
@@ -147,6 +152,11 @@ Template.peoplecard.events({
   'click .noclick'(e) {
     e.stopPropagation();
   },
+  'click .red'(event) {
+    event.preventDefault();
+    const id = $(event.currentTarget).attr("name");
+    People.remove(id);
+  }
 });
 
 Template.peoplepage.events({

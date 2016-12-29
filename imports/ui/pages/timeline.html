@@ -24,6 +24,9 @@
 
 <template name="mytimeline">
     <div class="timeline-event">
+      {{#if ip}}
+        <a class="btn-floating waves-effect waves-light red" name="{{_id}}"><i class="material-icons">no_sim</i></a>
+      {{/if}}
       <div class="card timeline-content">
         <div class="card-image waves-effect waves-block waves-light">
           {{#with image}}

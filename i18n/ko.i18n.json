@@ -10,10 +10,11 @@
   "assidirec": "부원장",
   "webyonseihome": "연세대학교 홈페이지",
   "weblawuniv": "연세대 법학대학원",
-  "news": "소식",
-  "eventnews": "행사 소식",
+  "news": "공지사항",
+  "eventnews": "학술행사",
   "searchtype": "검색 종류",
   "title": "제목",
   "content": "내용",
-  "plzsearch": "검색하세요"
+  "plzsearch": "검색하세요",
+  "mapzip": "우편번호: 03722"
 }

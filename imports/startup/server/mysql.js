@@ -84,6 +84,15 @@ Meteor.methods({
     var res = Fiber.yield();
     return res;
   },
+  'delGal': function(id, type) {
+    var fiber = Fiber.current;
+    var query = Mysql.query('DELETE FROM galleryall WHERE type = ? AND id = ?', [ type, id ], function(err, results) {
+      fiber.run(results);
+      return results;
+    });
+    var res = Fiber.yield();
+    return res;
+  },
 });
 
 var closeAndExit = function() {

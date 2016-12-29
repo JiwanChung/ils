@@ -1,8 +1,7 @@
 import { Template } from 'meteor/templating';
 import { _ } from 'meteor/underscore';
-import { $ } from 'meteor/jquery';
 import { Session } from 'meteor/session';
-
+import { $ } from 'meteor/jquery';
 import { contentRenderHold } from '../launch-screen.js';
 
 import './mainnews.html';
@@ -34,7 +33,7 @@ Template.mainnews.helpers({
 
 Template.mainnews1.helpers({
   bbgun() {
-    const type = "소식";
+    const type = "공지사항";
     const bulletin = Bulletinall.find({type: type}, {sort: {createdAt: -1}, limit: 3 }).fetch();
     return bulletin;
   },
@@ -42,7 +41,7 @@ Template.mainnews1.helpers({
 
 Template.mainnews2.helpers({
   bbgun() {
-    const type = "행사 소식";
+    const type = "학술행사";
     const bulletin = Bulletinall.find({type: type}, {sort: {createdAt: -1}, limit: 3 }).fetch();
     return bulletin;
   },
@@ -52,7 +51,7 @@ Template.newdetail2.helpers({
   concat() {
     const instance = Template.instance();
     const detail = instance.data.detail;
-    const concat = detail.slice(0, 25);
+    const concat = detail.slice(0, 40);
     return concat;
   },
 });
@@ -61,7 +60,7 @@ Template.newdetail1.helpers({
   concat() {
     const instance = Template.instance();
     const detail = instance.data.detail;
-    const concat = detail.slice(0, 25);
+    const concat = detail.slice(0, 40);
     return concat;
   },
 });
@@ -75,7 +74,7 @@ Template.newdetail1.events({
     Session.set({
       "viewroute": id
     });
-    const menu = Menus.findOne({name: "소식"});
+    const menu = Menus.findOne({name: "공지사항"});
     const menuid = menu._id;
     FlowRouter.go('bulletins.show', { id: menuid });
   },
@@ -90,7 +89,7 @@ Template.newdetail2.events({
     Session.set({
       "viewroute": id
     });
-    const menu = Menus.findOne({name: "행사 소식"});
+    const menu = Menus.findOne({name: "학술행사"});
     const menuid = menu._id;
     FlowRouter.go('bulletins.show', { id: menuid });
   },

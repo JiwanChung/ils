@@ -1,9 +1,8 @@
 import { Template } from 'meteor/templating';
 import { FlowRouter } from 'meteor/kadira:flow-router';
 import { _ } from 'meteor/underscore';
-import { $ } from 'meteor/jquery';
 import { Session } from 'meteor/session';
-
+import { $ } from 'meteor/jquery';
 import { contentRenderHold } from '../launch-screen.js';
 
 import { Menus } from '../../api/menus.js';
@@ -38,8 +37,8 @@ Template.map.onRendered(function mapOnRendered() {
   var HOME_PATH = window.HOME_PATH || '.';
   var contentString = [
         '<div class="iw_inner">',
-        '   <h5>연세대학교 법학연구원</h5>',
-        '   <p>연세대학교 학술정보원 7층 법학연구원<br />',
+        '   <p style="font-size:15px">연세대학교 법학연구원</p>',
+        '   <p style="font-size:12px">연세대학교 학술정보원 7층 법학연구원<br />',
         '       <br />',
         '       02-2123-6015 <br />',
         '       ',

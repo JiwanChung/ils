@@ -43,6 +43,9 @@
 </template>
 
 <template name="bulletindata">
+  {{#if ip}}
+  <a class="btn-floating waves-effect waves-light red" name="{{_id}}"><i class="material-icons">no_sim</i></a>
+  {{/if}}
   <a href="#!" class="collection-item avatar" id="{{_id}}">
     <i class="material-icons circle {{color alert}}" id="{{_id}}">{{category}}</i>
     <span class="title" id="{{_id}}">{{title}}</span>
@@ -56,7 +59,7 @@
   {{#if data}}
     <div class="seecon">
       <div class="card">
-        <div class="card-content flow-text">
+        <div class="card-content">
           <span class="card-title" style="font-weight: bold;">{{data.title}}</span>
           <div class="bulletindate">{{formatDate data.createdAt}}</div>
           <div class="bulletincat">{{formatCat data.category}}</div>

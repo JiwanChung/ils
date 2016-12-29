@@ -1,9 +1,8 @@
 import { Template } from 'meteor/templating';
 import { FlowRouter } from 'meteor/kadira:flow-router';
 import { _ } from 'meteor/underscore';
-import { $ } from 'meteor/jquery';
 import { Materialize } from 'meteor/materialize:materialize';
-
+import { $ } from 'meteor/jquery';
 import { Contentall } from '../../api/contentall.js';
 import { Menus } from '../../api/menus.js';
 

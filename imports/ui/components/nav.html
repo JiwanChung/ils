@@ -46,7 +46,7 @@
 </template>
 
 <template name="langbt">
-  <li><a class="dropdown-button topnav" data-activates="langdrop" href="#" name="language">{{_ "lang"}}</a></li>
+  <a class="dropdown-button topnav" data-activates="langdrop" href="#" name="language">{{_ "lang"}}</a>
 </template>
 
 <template name="genbtm">
@@ -54,11 +54,16 @@
 </template>
 
 <template name="myNav">
-  <div class="navbar white-text">
+  <div class="langdiv">
+    {{> langdrop}}
+    <div class="langbt">
+      {{> langbt}}
+    </div>
+  </div>
+  <div class="navbar">
     {{#each menus}}
       {{> dropdownit}}
     {{/each}}
-    {{> langdrop}}
     <nav>
       <div class="nav-wrapper">
 
@@ -75,7 +80,7 @@
               {{> genbt}}
             {{/if}}
           {{/each}}
-          {{> langbt}}
+
         </ul>
         <ul class="side-nav" id="mobile-demo">
           <ul class="collapsible" data-collapsible="accordion">

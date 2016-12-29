@@ -1,10 +1,9 @@
 import { Template } from 'meteor/templating';
 import { FlowRouter } from 'meteor/kadira:flow-router';
 import { _ } from 'meteor/underscore';
-import { $ } from 'meteor/jquery';
 import { Session } from 'meteor/session';
 import { Materialize } from 'meteor/materialize:materialize';
-
+import { $ } from 'meteor/jquery';
 import { contentRenderHold } from '../launch-screen.js';
 
 import { Ip } from '../../api/ip.js';

@@ -1,9 +1,8 @@
 import { Template } from 'meteor/templating';
 import { FlowRouter } from 'meteor/kadira:flow-router';
 import { _ } from 'meteor/underscore';
-import { $ } from 'meteor/jquery';
 import { Session } from 'meteor/session';
-
+import { $ } from 'meteor/jquery';
 import { contentRenderHold } from '../launch-screen.js';
 
 import { Tree } from '../../api/tree.js';
@@ -82,6 +81,7 @@ Template.chart.helpers({
       const tor = Tree.find({top: topid, type: type}).fetch();
       const obj = {
         top: top,
+        topid: topid,
         tor: tor
       }
       list.push(obj);
@@ -90,8 +90,38 @@ Template.chart.helpers({
   }
 });
 
-Template.achart.helpers({
+Template.tchart.helpers({
+  ip() {
+    const sip = Session.get('ip');
+    const dip = sip[0];
+    const obj = Ip.findOne({ip: dip});
+    return obj ? true : false;
+  },
+});
 
+Template.tchart.events({
+  'click .red'(event) {
+    event.preventDefault();
+    const id = $(event.currentTarget).attr("name");
+    Tree.remove(id);
+  }
+});
+
+Template.achart.events({
+  'click .rek'(event) {
+    event.preventDefault();
+    const id = $(event.currentTarget).attr("name");
+    Tree.remove(id);
+  }
+});
+
+Template.achart.helpers({
+  ip() {
+    const sip = Session.get('ip');
+    const dip = sip[0];
+    const obj = Ip.findOne({ip: dip});
+    return obj ? true : false;
+  },
 });
 
 

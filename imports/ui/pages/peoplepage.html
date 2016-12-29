@@ -75,7 +75,10 @@
 
 <template name="peoplecard">
   <div class="col s4 m3 l2 noclick" id="{{_id}}">
-    <a href="#">
+    {{#if ip}}
+    <a class="btn-floating waves-effect waves-light red" name="{{_id}}"><i class="material-icons">no_sim</i></a>
+    {{/if}}
+    <a href="#" class="mainpeo">
       <div class="card peoplecard waves-effect waves-block waves-light" name="{{_id}}">
         <div class="card-image">
           {{#if ifimage}}

@@ -1,7 +1,6 @@
 import { Template } from 'meteor/templating';
 import { _ } from 'meteor/underscore';
 import { $ } from 'meteor/jquery';
-
 import { contentRenderHold } from '../launch-screen.js';
 
 import './maingroup.html';
@@ -87,7 +86,7 @@ Template.workit.events({
       moreroute(menuid, thisid, thistype);
     } else {
       thisob = Menus.findOne({parent: menuid});
-      if(typeof(thisob[0]) !== "undefined" && thisob[0] !== null) {
+      if(typeof(thisob) !== "undefined" && thisob !== null) {
         thisid = thisob._id;
         thistype = thisob.type;
         moreroute(menuid, thisid, thistype);
