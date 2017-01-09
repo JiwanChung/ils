@@ -122,6 +122,7 @@ var moreroute = function(menuid, id, menutype) {
 
 var theroute = function(menutype, menuid) {
   let thisob, thisid, thistype;
+  $('.dropdown-button').dropdown('close');
   switch (menutype) {
     case "board":
         FlowRouter.go('bulletins.show', { id: menuid });

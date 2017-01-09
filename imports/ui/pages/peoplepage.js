@@ -141,10 +141,10 @@ Template.peoplecard.events({
     const id = instance.data._id;
     const target = $("#"+id);
     if ( !target.hasClass("active") ) {
-      $(".active1").removeClass( "s12 m6 l4 active1" ).addClass( "s4 m3 l2" );
+      $(".active1").removeClass( "s12 m12 l8 active1" ).addClass( "s12 m6 l4" );
       $(".activecard1").removeClass("large activecard1").addClass("medium");
 
-      $("#"+id).removeClass( "s4 m3 l2" ).addClass( "s12 m6 l4 active1" );
+      $("#"+id).removeClass( "s12 m6 l4" ).addClass( "s12 m12 l8 active1" );
       $(id).removeClass("medium").addClass("large activecard1");
       $("#" + id + " .ishidden").show();
     }
@@ -162,7 +162,7 @@ Template.peoplecard.events({
 Template.peoplepage.events({
   'click .gallerywrapper'(e) {
     $(".active1 .ishidden").hide();
-    $(".active1").removeClass( "s12 m6 l4 active1" ).addClass( "s4 m3 l2" );
+    $(".active1").removeClass( "s12 m12 l8 active1" ).addClass( "s12 m6 l4" );
     $(".activecard1").removeClass("large activecard1").addClass("medium");
   },
 });

@@ -51,8 +51,7 @@ Template.mainadd.events({
     const target = event.target;
     const nameen = target.nameen.value;
     const nameko = target.nameko.value;
-    const conko = target.conko.value;
-    const conen = target.conen.value;
+    const link = target.link.value;
     const thisfile = target.thisfile.files[0];
     const fileId = Images.insert(thisfile);
     const obj = Slide.findOne({num: num});
@@ -60,26 +59,24 @@ Template.mainadd.events({
     if ( ! id ) {
       Slide.insertTranslations({
         name: nameko,
-        content: conko,
+        link: link,
         fileId: fileId,
         num: num
         }, {
         en: {
-            name: nameen,
-            content: conen
+            name: nameen
         }
       });
     } else {
       Slide.updateTranslations(id, {
         ko: {
         name: nameko,
-        content: conko,
+        link: link,
         fileId: fileId
         }
         }, {
         en: {
-            name: nameen,
-            content: conen
+            name: nameen
         }
       });
     }
@@ -89,8 +86,6 @@ Template.mainadd.events({
     // Clear form
     target.nameen.value = '';
     target.nameko.value = '';
-    target.conko.value = '';
-    target.conen.value = '';
     $(".dropify-clear").click();
   },
   'click .sendform'(event) {

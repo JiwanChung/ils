@@ -4,14 +4,18 @@
       <div class="minsg">
         <div class="row">
           <h3>{{_ "business"}}</h3>
-          {{#each busi}}
-            {{> workit}}
-          {{/each}}
+          <div class="wrop">
+            {{#each busi}}
+              {{> workit}}
+            {{/each}}
+          </div>
 
           <h3>{{_ "center"}}</h3>
-          {{#each center}}
-            {{> workit}}
-          {{/each}}
+          <div class="wrop">
+            {{#each center}}
+              {{> workit}}
+            {{/each}}
+          </div>
         </div>
       </div>
     </div>
